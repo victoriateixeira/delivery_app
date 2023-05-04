@@ -26,7 +26,8 @@ module.exports = {
     price: 7.50,
     urlImage:'http://localhost:3001/images/brahma_600ml.jpg'
   },
-  {id:5,
+  {
+    id:5,
     name: 'Skol 269ml',
     price:2.19, 
     urlImage:'http://localhost:3001/images/skol_269ml.jpg'},
@@ -42,22 +43,27 @@ module.exports = {
     price:4.99, 
     urlImage:'http://localhost:3001/images/becks_330ml.jpg'
   },
-  {id:8,
+  {
+    id:8,
     name: 'Brahma Duplo Malte 350ml',
     price:2.79, 
     urlImage:'http://localhost:3001/images/brahma_duplo_malte_350ml.jpg'
   },
-  {id:9,
+  {
+    id:9,
     name: 'Becks 600ml',
     price:8.89, 
     urlImage:'http://localhost:3001/images/becks_600ml.jpg'
   },
-  {id: 10,
-     name: 'Skol Beats Senses 269ml',
-  price:3.57,
-  urlImage: 'http://localhost:3001/images/skol_beats_senses_269ml.jpg'
+  {
+    id: 10,
+    name: 'Skol Beats Senses 269ml',
+    price:3.57,
+    urlImage: 'http://localhost:3001/images/skol_beats_senses_269ml.jpg'
   },
-  {id:11,
+
+  {
+    id:11,
     name: 'Stella Artois 275ml',
     price: 3.49, 
     urlImage:'http://localhost:3001/images/stella_artois_275ml.jpg'
