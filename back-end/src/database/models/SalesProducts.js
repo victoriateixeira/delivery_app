@@ -2,7 +2,7 @@ const { NUMBER } = require('sequelize');
 
 
 module.exports = (sequelize, DataTypes) => {
-  const SalesProducts = sequelize.define('SaleProduct',
+  const SalesProducts = sequelize.define('SalesProducts',
   {
     postId: { type: DataTypes.INTEGER, primaryKey: true}, 
     categoryId: { type: DataTypes.INTEGER, primaryKey: true}, 
@@ -14,20 +14,22 @@ module.exports = (sequelize, DataTypes) => {
     underscored: true,
 
   } );
+
   SalesProducts.associate = (models) => {
-    models.Sale.hasMany(models.Product, {
+    models.Sale.belongsToMany(models.Product, {
       as: 'products',
       through: SalesProducts,
-      foreignKey: 'productId', // se refere ao id de Book na tabela de `users_books`
-      otherKey: 'saleId', // se refere a outra chave de `users_books`
+      foreignKey: 'saleId', 
+      otherKey: 'productId', 
     });
-    models.Product.hasMany(models.Sale, {
+    models.Product.belongsToMany(models.Sale, {
       as: 'sales',
       through: SalesProducts,
-      foreignKey: 'saleId', // se refere ao id de User na tabela de `users_books`
-      otherKey: 'productId',
+      foreignKey: 'productId', 
+      otherKey: 'saleId',
     });
   };
+  
  
   return SalesProducts;
 }
