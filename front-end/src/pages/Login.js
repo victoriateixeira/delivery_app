@@ -1,7 +1,28 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import DeliveryContext from '../context/DeliveryContext';
+import validationInputs from '../utils/validationInputs';
 
 export default function Login() {
+  const {
+    isDisabled,
+    setIsDisabled,
+    email,
+    setEmail,
+    password,
+    setPassword,
+  } = useContext(DeliveryContext);
+
+  useEffect(() => {
+    const validationGeneral = validationInputs(email, password);
+
+    if (validationGeneral) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [email, password, isDisabled, setIsDisabled]);
+
   return (
     <main className="login-container">
       <div className="logo-container">
@@ -37,7 +58,6 @@ export default function Login() {
           type="button"
           data-testid="common_login__button-login"
           disabled={ isDisabled }
-          onClick={ handleSubmit }
         >
           LOGIN
         </button>
@@ -47,7 +67,6 @@ export default function Login() {
           type="button"
           data-testid="common_login__button-register"
           disabled={ isDisabled }
-          onClick={ handleSubmit }
         >
           Ainda não tenho conta
         </button>
