@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 function Routes() {
   return (
     <Switch>
-      <Route exact path="/customers/orders" component={ <CustomersOrders/> } />
+      <Route exact path="/customers/orders" component={ CustomersOrders } />
     </Switch>
   );
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 
 function OrderCard({ id, date, status, price }) {
+  console.log(id, date, status, price);
   return (
     <div className="order-card">
       <p data-testid={ `customer_orders__element-order-id-${id}` }>{ id }</p>

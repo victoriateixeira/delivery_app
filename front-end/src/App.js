@@ -1,13 +1,15 @@
 import React from 'react';
 import './App.css';
 import rockGlass from './images/rockGlass.svg';
-import Routes from './Routes';
+// import Routes from './Routes';
+import { Route, Switch } from 'react-router-dom';
+import CustomersOrders from './pages/CustomersOrders';
 
 function App() {
   return (
-    <div className="App">
-      <Routes />
-    </div>
+    <Switch>
+      <Route path="/customers/orders" component={ CustomersOrders } exact />
+    </Switch>
   );
 }
 
