@@ -10,3 +10,5 @@ function OrderCard({ id, date, status, price }) {
     </div>
   );
 }
+
+export default OrderCard;
