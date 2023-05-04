@@ -24,5 +24,5 @@ export default function DeliveryProvider({ children }) {
 }
 
 DeliveryProvider.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.isRequired,
 };

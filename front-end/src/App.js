@@ -6,7 +6,9 @@ function App() {
   return (
     <Switch>
       <Route exact path="/login" component={ Login } />
-      <Route exact path="/" element={ <Redirect to="/login" /> } />
+      <Route exact path="/">
+        <Redirect to="/login" />
+      </Route>
     </Switch>
   );
 }
