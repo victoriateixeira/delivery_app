@@ -23,13 +23,13 @@ function CustomersOrders() {
 
   return (
     <div className="customers-orders">
-      {
+      { orders.length > 0 ?
         orders.map((order) => <OrderCard
             id={order.id}
             date={order.date}
             status={order.status}
             price={order.price}
-          />)
+          />) : 'Você não possui pedidos'
       }
     </div>
   );

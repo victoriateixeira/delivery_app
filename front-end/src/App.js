@@ -8,7 +8,7 @@ import CustomersOrders from './pages/CustomersOrders';
 function App() {
   return (
     <Switch>
-      <Route path="/customers/orders" component={ CustomersOrders } exact />
+      <Route path="/customers/orders/:id" component={ CustomersOrders } exact />
     </Switch>
   );
 }
