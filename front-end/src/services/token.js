@@ -1,7 +1,7 @@
-import jwt from 'jsonwebtoken';
+import Jwt from 'jsonwebtoken';
 
 export const readToken = (token) => {
-  const decodedToken = jwt.decode(token);
+  const decodedToken = Jwt.decode(token);
   const userId = decodedToken.id;
   return userId;
 }
