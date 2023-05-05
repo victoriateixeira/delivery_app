@@ -62,11 +62,10 @@ export default function Login() {
           LOGIN
         </button>
       </Link>
-      <Link to="/">
+      <Link to="/register">
         <button
           type="button"
           data-testid="common_login__button-register"
-          disabled={ isDisabled }
         >
           Ainda não tenho conta
         </button>
