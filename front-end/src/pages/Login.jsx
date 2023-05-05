@@ -15,12 +15,7 @@ function Login() {
 
   useEffect(() => {
     const validationGeneral = validationInputs(email, password);
-
-    if (validationGeneral) {
-      setIsDisabled(false);
-    } else {
-      setIsDisabled(true);
-    }
+    setIsDisabled(!validationGeneral);
   }, [email, password, isDisabled, setIsDisabled]);
 
   return (
