@@ -13,7 +13,9 @@ function Products() {
     <NavBar/>
 {/* <div>
   products.map((product, index) => index < 12 && (
-    <ProductCard/>
+    <div key= {index}>
+    <ProductCard product = {product}/>
+    </div>
   ))
 </div> */}
     </>
