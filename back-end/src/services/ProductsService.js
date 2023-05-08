@@ -6,6 +6,7 @@ const getAllProducts = async () => {
 };
 const getProductById = async (id) => {
   const product = await Product.findById(id);
+  if (!product) { throw new Error({ status: 404, message: 'Product Not Found' }); }
   return product;
 };
 

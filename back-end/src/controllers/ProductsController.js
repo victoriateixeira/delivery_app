@@ -5,10 +5,14 @@ const products = await ProductsService.getAllProducts();
 return res.status(200).json(products);
 };
 
-const getProductById = async (req, res) => {
-  const { id } = req.params;
-  const product = await ProductsService.getProductById(Number(id));
-  return res.status(200).json(product);
+const getProductById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const product = await ProductsService.getProductById(Number(id));
+    return res.status(200).json(product);
+  } catch (error) {
+    next(error);
+  }
 };
 module.exports = {
   getAllProducts,
