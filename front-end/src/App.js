@@ -10,6 +10,7 @@ function App() {
       <Route path="/" render={ () => <Redirect to="/login" /> } exact />
       <Route path="/login" component={ Login } exact />
       <Route path="/register" component={ Register } exact />
+      <Route path="/customer/products" exact />
     </Switch>
   );
 }
