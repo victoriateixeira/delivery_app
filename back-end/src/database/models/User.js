@@ -13,12 +13,12 @@ role:DataTypes.STRING,
   },
   );
   User.associate = (models) => {
-    User.hasMany(models.Sales,
+    User.hasMany(models.Sale,
      { foreignKey: 'userId', as: 'userSales' });
   User.associate = (models) => {
-    User.hasMany(models.Sales,
+    User.hasMany(models.Sale,
      { foreignKey: 'sellerId', as: 'sellerSales' });
- };
-  return User;
+  };
 }
+return User;
 }

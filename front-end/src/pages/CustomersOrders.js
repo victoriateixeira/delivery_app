@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import OrderCard from '../components/OrderCard';
-import { requestOrders } from '../services/deliveryAPI';
+import { requestAPI } from '../services/deliveryAPI';
 import { saveUser, readUser } from '../services/localStorage';
 import { readToken } from '../services/token';
 
@@ -17,7 +17,7 @@ function CustomersOrders() {
     const { token } = readUser();
     const id = readToken(token);
     const fetchOrders = async () => {
-      const getOrders = await requestOrders(`/customers/orders/${id}`);
+      const getOrders = await requestAPI(`/customers/orders/${id}`);
       setOrders(getOrders);
     }
     fetchOrders();
