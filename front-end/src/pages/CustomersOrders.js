@@ -17,7 +17,7 @@ function CustomersOrders() {
     const { token } = readUser();
     const id = readToken(token);
     const fetchOrders = async () => {
-      const getOrders = await requestOrders('/customers/orders', id);
+      const getOrders = await requestOrders(`/customers/orders/${id}`);
       setOrders(getOrders);
     }
     fetchOrders();
