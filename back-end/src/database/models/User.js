@@ -1,7 +1,7 @@
 const defineUser = (sequelize, DataTypes) => sequelize.define(
   'User',
     {
-      id: { type: DataTypes.INTEGER, primaryKey: true }, 
+      id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true }, 
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       password: DataTypes.STRING,
