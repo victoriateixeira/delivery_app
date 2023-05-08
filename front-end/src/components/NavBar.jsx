@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import {useHistory} from 'react-router';
 function NavBar() {
   // useEffect() => {
-  //   //Fazer um fecth usando o endpoint getByEmail para buscar o nome do usuário no DB
+  //   //Resgatar o NOME do usuário do localStorage
   // }
-  
+
 const history = useHistory();
 const handlesClick = (page) => {
   history.push(`/${page}`)
@@ -37,7 +37,7 @@ const handlesClick = (page) => {
         type= 'button'
         onClick={handlesClick('products')}
         >
-Ciclano Da Silva
+NOME DO USUÁRIO
         </li>
         <li>
         <button 

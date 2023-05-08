@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import NavBar from '../components/NavBar';
+import requestApi from '../utils/requestAPI';
 
 function Products() {
-  return ()
+  // useEffect() => {
+  //   //fetchProducts
+  // const products = await requestApi(endpoint);
+  // return products;
+  // }
+  return (
+    <>
+    <NavBar/>
+{/* <div>
+  products.map((product, index) => index < 12 && (
+    <ProductCard/>
+  ))
+</div> */}
+    </>
+
+  )
 }
 
 export default Products;
