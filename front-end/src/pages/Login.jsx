@@ -23,6 +23,8 @@ export default function Login() {
     }
   }, [email, password, isDisabled, setIsDisabled]);
 
+  const handleSubmit = () => localStorage.setItem('user', JSON.stringify({ email }));
+
   return (
     <main className="login-container">
       <div className="logo-container">
@@ -58,6 +60,7 @@ export default function Login() {
           type="button"
           data-testid="common_login__button-login"
           disabled={ isDisabled }
+          onClick={ handleSubmit }
         >
           LOGIN
         </button>
