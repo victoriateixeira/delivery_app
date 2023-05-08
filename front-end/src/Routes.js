@@ -1,5 +1,5 @@
-import CustomersOrders from "./pages/CustomersOrders";
 import { Route, Switch } from 'react-router-dom';
+import CustomersOrders from './pages/CustomersOrders';
 
 function Routes() {
   return (

@@ -5,4 +5,4 @@ const orderRoutes = express.Router();
 
 orderRoutes.get('/:id', ordersController.getOrdersByUserId);
 
-module.exports =  orderRoutes;
+module.exports = orderRoutes;
