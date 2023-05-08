@@ -7,6 +7,8 @@ services:
       - 3000:3000
     platform: linux/x86_64
     working_dir: /app-front-end
+    volumes:
+      - ./front-end/src:/app-front-end/src
     depends_on:
       backend:
         condition: service_healthy
@@ -36,6 +38,10 @@ services:
       - JWT_SECRET=jwt_secret
       # Os dados abaixo se referem ao container `db`
       # Dica: Relembre aqui da comunicação interna entre containers
+      # - MYSQL_HOST=db
+      # - MYSQL_PORT=3306
+      # - MYSQL_USER=root
+      # - MYSQL_PASSWORD=senhaDoDB
       - DB_USER=root
       - DB_PASS=senhaDoDB
       - DB_HOST=db

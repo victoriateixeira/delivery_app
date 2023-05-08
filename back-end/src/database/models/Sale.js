@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Sale = sequelize.define('Sale',
    {
-id: { type: DataTypes.INTEGER, primaryKey: true }, 
+id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, }, 
 userId: DataTypes.INTEGER,
 sellerId: DataTypes.INTEGER,
 totalPrice:DataTypes.DECIMAL(9,2),
@@ -13,6 +13,7 @@ status:DataTypes.STRING,
   {
     timestamps: false,
     underscored: true,
+    tableName: 'sales',
   },
   );
   Sale.associate = (models) => {
