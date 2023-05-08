@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-// import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import DeliveryContext from '../context/DeliveryContext';
 import validationInputs from '../utils/validationInputs';
+import { postAPI } from '../services/deliveryAPI';
 
 function Register() {
+  const history = useHistory();
   const {
     isDisabled,
     setIsDisabled,
@@ -21,6 +23,17 @@ function Register() {
     const validateName = name.length >= nameLength;
     setIsDisabled(!(validationGeneral && validateName));
   }, [email, name, password, isDisabled, setIsDisabled]);
+
+  const register = async () => {
+    const user = {
+      name,
+      email,
+      password,
+      role: 'customer',
+    };
+    await postAPI('/user', user);
+    history.push('/customer/products');
+  };
 
   return (
     <main className="register-container">
@@ -59,6 +72,7 @@ function Register() {
         <button
           type="button"
           disabled={ isDisabled }
+          onClick={ register }
           data-testid="common_register__button-register"
         >
           Cadastrar
