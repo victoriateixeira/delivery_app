@@ -9,7 +9,7 @@ module.exports = {
       },
       name: { type: Sequelize.STRING, allowNull: false },
       price: { type: Sequelize.DECIMAL(4, 2), allowNull: false },
-      urlImage: { type: Sequelize.STRING, allowNull: false },
+      urlImage: { type: Sequelize.STRING, allowNull: false, field: 'url_image' },
     });
   },
 
@@ -17,4 +17,3 @@ module.exports = {
     await queryInterface.dropTable('products');
   },
 };
-
