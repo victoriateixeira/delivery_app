@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {useHistory} from 'react-router';
 function NavBar() {
+  // useEffect() => {
+  //   //Fazer um fecth usando o endpoint getByEmail para buscar o nome do usuário no DB
+  // }
+  
 const history = useHistory();
 const handlesClick = (page) => {
   history.push(`/${page}`)
