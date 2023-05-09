@@ -31,7 +31,7 @@ function Register() {
       password,
       role: 'customer',
     };
-    await postAPI('/user', user);
+    await postAPI('/user/register', user);
     history.push('/customer/products');
   };
 
