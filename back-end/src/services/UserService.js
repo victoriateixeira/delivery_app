@@ -1,17 +1,19 @@
 const md5 = require('md5');
 const { User } = require('../database/models');
 
-async function findAll() {
+const findAll = async () => {
   const result = await User.findAll();
   return result;
-}
+};
 
-async function createUser(user) {
+const createUser = async (user) => {
   const newUser = user;
+  const verifyAccount = await User.findOne({ where: { email: user.email } });
+  if (verifyAccount) throw new Error('Already registered');
   newUser.password = md5(user.password);
   const result = await User.create(newUser);
   return result;
-}
+};
 
 const findUser = async (email) => {
   const user = await User.findOne({ where: { email } });
@@ -21,6 +23,6 @@ const findUser = async (email) => {
 
 module.exports = {
   findAll,
-  createUser,
   findUser,
+  createUser,
 };

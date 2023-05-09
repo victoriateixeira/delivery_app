@@ -1,10 +1,14 @@
 const userService = require('../services/UserService');
 
-async function createUser(req, res) {
+const createUser = async (req, res) => {
   const user = req.body;
-  const result = await userService.createUser(user);
-  res.status(201).json(result);
-}
+  try {
+    const result = await userService.createUser(user);
+    return res.status(201).json(result);
+  } catch (err) {
+    return res.status(409).json({ message: err.message });
+  }
+};
 
 const findUser = async (req, res) => {
   const { email } = req.body;

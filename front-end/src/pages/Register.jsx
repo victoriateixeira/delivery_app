@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import DeliveryContext from '../context/DeliveryContext';
+import DeliveryContext from '../contexts/DeliveryContext';
 import validationInputs from '../utils/validationInputs';
 import { postAPI } from '../services/deliveryAPI';
 
@@ -16,6 +16,7 @@ function Register() {
   } = useContext(DeliveryContext);
 
   const [name, setName] = useState('');
+  const [isInConflict, setConflict] = useState(false);
 
   useEffect(() => {
     const nameLength = 12;
@@ -31,8 +32,12 @@ function Register() {
       password,
       role: 'customer',
     };
-    await postAPI('/user', user);
-    history.push('/customer/products');
+    try {
+      await postAPI('/user/register', user);
+      history.push('/customer/products');
+    } catch (err) {
+      setConflict(true);
+    }
   };
 
   return (
@@ -80,9 +85,10 @@ function Register() {
       </form>
       <p
         id="form-invalid-text"
-        hidden
+        hidden={ !isInConflict }
+        data-testid="common_register__element-invalid_register"
       >
-        Elemento oculto (Mensagem de erro)
+        Você já possui uma conta!
       </p>
     </main>
   );
