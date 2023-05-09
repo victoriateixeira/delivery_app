@@ -3,6 +3,7 @@ import ProductContext from './ProductContext';
 
 export default function ProductProvider({ children }) {
   const [products, setProducts] = useState([]);
+
   const value = useMemo(() => ({
     products,
     setProducts,
