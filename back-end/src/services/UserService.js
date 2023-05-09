@@ -15,7 +15,8 @@ async function createUser(user) {
 
 const findUser = async (email) => {
   const user = await User.findOne({ where: { email } });
-  return user;
+  if (user === null) return { type: 404, message: 'Ivalid Login' };
+  return { type: null, message: 'Success Login' };
 };
 
 module.exports = {

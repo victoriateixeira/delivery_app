@@ -6,13 +6,6 @@ import App from './App';
 import DeliveryProvider from './context/DeliveryProvider';
 
 ReactDOM.render(
-<<<<<<< HEAD
-  <BrowserRouter>
-    <DeliveryProvider>
-      <App />
-    </DeliveryProvider>
-  </BrowserRouter>,
-=======
   <React.StrictMode>
     <BrowserRouter>
       <DeliveryProvider>
@@ -20,7 +13,6 @@ ReactDOM.render(
       </DeliveryProvider>
     </BrowserRouter>
   </React.StrictMode>,
->>>>>>> origin/main-group-5-customers-orders
   document.getElementById('root'),
 );
 

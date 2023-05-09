@@ -9,9 +9,11 @@ async function createUser(req, res) {
 const findUser = async (req, res) => {
   const { email } = req.body;
   const user = await userService.findUser(email);
-  if (user === null) return res.status(401).json('Invalid email or password');
   
-  res.status(200).json(user);
+  const { type, message } = user;
+  if (!type) return res.status(200).json(message);
+
+  return res.status(type).json(message);
 };
 
 module.exports = {
