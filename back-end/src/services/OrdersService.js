@@ -12,7 +12,7 @@ const getOrderDetails = async (saleId) => {
   const order = await Sale.findOne(
     {
     where: { id: saleId },
-    include: [{ model: SalesProducts, include: [{ model: Product }] }],
+    include: [{ model: SalesProducts, include: [{ model: Product, as: 'products' }] }],
     },
   );
 
