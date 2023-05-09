@@ -1,5 +1,3 @@
-const { NUMBER } = require('sequelize');
-
 // eslint-disable-next-line max-lines-per-function
 module.exports = (sequelize, DataTypes) => {
   const SalesProducts = sequelize.define(
