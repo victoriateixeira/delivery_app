@@ -11,7 +11,8 @@ const getProductById = async (req, res, next) => {
     const product = await ProductsService.getProductById(Number(id));
     return res.status(200).json(product);
   } catch (error) {
-    next(error);
+    console.log(error, 'CONTROLLER');
+    return next(error);
   }
 };
 module.exports = {

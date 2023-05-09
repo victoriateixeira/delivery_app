@@ -1,12 +1,19 @@
-const Product = require('../database/models/Product');
+const { Product } = require('../database/models');
 
 const getAllProducts = async () => {
   const products = await Product.findAll();
   return products;
 };
 const getProductById = async (id) => {
-  const product = await Product.findById(id);
-  if (!product) { throw new Error({ status: 404, message: 'Product Not Found' }); }
+  const product = await Product.findAll(
+    { where: { id } },
+  );
+  if (product.length === 0) { 
+    const error = new Error('Product Not Found');
+    error.code = 404;
+    console.log(error.code, error.message, 'SERVICE');
+    throw error; 
+  }
   return product;
 };
 
