@@ -16,6 +16,7 @@ function Register() {
   } = useContext(DeliveryContext);
 
   const [name, setName] = useState('');
+  const [isInConflict, setConflict] = useState(false);
 
   useEffect(() => {
     const nameLength = 12;
@@ -31,8 +32,12 @@ function Register() {
       password,
       role: 'customer',
     };
-    await postAPI('/user', user);
-    history.push('/customer/products');
+    try {
+      await postAPI('/user/register', user);
+      history.push('/customer/products');
+    } catch (err) {
+      setConflict(true);
+    }
   };
 
   return (
@@ -46,7 +51,7 @@ function Register() {
             name="nome"
             placeholder="Seu nome"
             data-testid="common_register__input-name"
-            onChange={(e) => setName(e.target.value)}
+            onChange={ (e) => setName(e.target.value) }
           />
         </label>
         <label htmlFor="email">
@@ -56,7 +61,7 @@ function Register() {
             name="email"
             placeholder="seu-email@site.com.br"
             data-testid="common_register__input-email"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={ (e) => setEmail(e.target.value) }
           />
         </label>
         <label htmlFor="password">
@@ -66,13 +71,13 @@ function Register() {
             name="password"
             placeholder="******************"
             data-testid="common_register__input-password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={ (e) => setPassword(e.target.value) }
           />
         </label>
         <button
           type="button"
-          disabled={isDisabled}
-          onClick={register}
+          disabled={ isDisabled }
+          onClick={ register }
           data-testid="common_register__button-register"
         >
           Cadastrar
@@ -80,9 +85,10 @@ function Register() {
       </form>
       <p
         id="form-invalid-text"
-        hidden
+        hidden={ !isInConflict }
+        data-testid="common_register__element-invalid_register"
       >
-        Elemento oculto (Mensagem de erro)
+        Você já possui uma conta!
       </p>
     </main>
   );
