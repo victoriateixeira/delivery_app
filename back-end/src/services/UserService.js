@@ -15,9 +15,10 @@ const createUser = async (user) => {
   return result;
 };
 
-const findUser = async (email) => {
-  const user = await User.findOne({ where: { email } });
-  if (user === null) return { type: 404, message: 'Ivalid Login' };
+const findUser = async (user) => {
+  const foundUser = await User.findOne({ where: { email: user.email } });
+  if (foundUser === null) return { type: 404, message: 'Ivalid Login' };
+  
   return { type: null, message: 'Success Login' };
 };
 
