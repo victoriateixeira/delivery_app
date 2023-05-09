@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import DeliveryContext from '../context/DeliveryContext';
+import DeliveryContext from '../contexts/DeliveryContext';
 import validationInputs from '../utils/validationInputs';
 import { postAPI } from '../services/deliveryAPI';
 
@@ -46,7 +46,7 @@ function Register() {
             name="nome"
             placeholder="Seu nome"
             data-testid="common_register__input-name"
-            onChange={ (e) => setName(e.target.value) }
+            onChange={(e) => setName(e.target.value)}
           />
         </label>
         <label htmlFor="email">
@@ -56,7 +56,7 @@ function Register() {
             name="email"
             placeholder="seu-email@site.com.br"
             data-testid="common_register__input-email"
-            onChange={ (e) => setEmail(e.target.value) }
+            onChange={(e) => setEmail(e.target.value)}
           />
         </label>
         <label htmlFor="password">
@@ -66,13 +66,13 @@ function Register() {
             name="password"
             placeholder="******************"
             data-testid="common_register__input-password"
-            onChange={ (e) => setPassword(e.target.value) }
+            onChange={(e) => setPassword(e.target.value)}
           />
         </label>
         <button
           type="button"
-          disabled={ isDisabled }
-          onClick={ register }
+          disabled={isDisabled}
+          onClick={register}
           data-testid="common_register__button-register"
         >
           Cadastrar
