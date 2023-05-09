@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { node } from 'prop-types';
 import ProductContext from './ProductContext';
 import { requestAPI } from '../utils/deliveryAPI';
 
@@ -6,7 +7,7 @@ export default function ProductProvider({ children }) {
   const [products, setProducts] = useState([]);
 
   const getProducts = async () => {
-    const response = await requestAPI('/products');
+    const response = await requestAPI('/customer/products');
     setProducts(response);
   };
 
@@ -27,5 +28,5 @@ export default function ProductProvider({ children }) {
 }
 
 ProductProvider.propTypes = {
-  children: PropTypes.isRequired,
+  children: node.isRequired,
 };
