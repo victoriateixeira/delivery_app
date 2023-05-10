@@ -5,10 +5,38 @@ import { requestAPI } from '../utils/deliveryAPI';
 
 export default function ProductProvider({ children }) {
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
 
   const getProducts = async () => {
     const response = await requestAPI('/customer/products');
     setProducts(response);
+  };
+
+  const addToCart = async (product) => {
+    if (cart !== undefined) {
+      const isProduct = cart.some((cartItem) => cartItem.id === product.id);
+      if (!isProduct) {
+        setCart([...cart, { ...product, qty: 1 }]);
+      }
+      const newCart = cart.map((cartItem) => {
+        if (cartItem.id === product.id) {
+          cartItem.qty += 1;
+        }
+        return cartItem;
+      });
+      setCart(...newCart);
+    }
+  };
+  const removeFromCart = async (product) => {
+    if (cart !== undefined) {
+      const newCart = cart.map((cartItem) => {
+        if (cartItem.id === product.id && cartItem.qty > 0) {
+          cartItem.qty -= 1;
+        }
+        return cartItem;
+      });
+      setCart(...newCart);
+    }
   };
 
   useEffect(() => {
@@ -18,7 +46,11 @@ export default function ProductProvider({ children }) {
   const value = useMemo(() => ({
     products,
     setProducts,
-  }), [products]);
+    cart,
+    setCart,
+    addToCart,
+    removeFromCart,
+  }), [products, cart]);
 
   return (
     <ProductContext.Provider value={ value }>

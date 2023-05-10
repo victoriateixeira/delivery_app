@@ -6,9 +6,11 @@ import ProductContext from '../context/ProductContext';
 function ProductCard({ product }) {
   const { cart, addToCart, removeFromCart } = useContext(ProductContext);
   const { id, name, price, urlImage } = product;
-  const [cartQty, setCartQty] = useState(0);
+  const [cartQty, setCartQty] = useState();
   useEffect(() => {
-    setCartQty(cart.filter((cartItem) => cartItem.id === id).qty);
+    if (cart !== undefined) {
+      setCartQty(cart.filter((cartItem) => cartItem.id === id).qty);
+    }
   }, [cartQty, cart, id]);
 
   return (
