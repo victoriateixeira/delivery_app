@@ -6,11 +6,6 @@ const findAll = async () => {
   return result;
 };
 
-const findUser = async (email) => {
-  const user = await User.findOne({ where: { email } });
-  if (user === null) throw new Error('User not found');
-};
-
 const createUser = async (user) => {
   const newUser = user;
   const verifyAccount = await User.findOne({ where: { email: user.email } });
@@ -18,6 +13,14 @@ const createUser = async (user) => {
   newUser.password = md5(user.password);
   const result = await User.create(newUser);
   return result;
+};
+
+const findUser = async (user) => {
+  const foundUser = await User.findOne({ where: { email: user.email } });
+  if (foundUser === null) return { type: 404, message: 'Invalid Login' };
+  const md5Password = md5(user.password);
+  if (md5Password !== foundUser.password) return { type: 401, message: 'Invalid Password' };
+  return { type: null, message: 'Success Login' };
 };
 
 module.exports = {
