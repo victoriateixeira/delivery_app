@@ -1,9 +1,5 @@
-if (!JSON.parse(localStorage.getItem('user'))) {
-  localStorage.setItem('user', JSON.stringify({}));
-}
+export const save = (set, item) => localStorage
+  .setItem(set, JSON.stringify(item));
 
-export const saveUser = (getUser) => localStorage
-  .setItem('user', JSON.stringify(getUser));
-
-export const readUser = () => (
-  JSON.parse(localStorage.getItem('user')));
+export const read = (item) => (
+  JSON.parse(localStorage.getItem(item)));
