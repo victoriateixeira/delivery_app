@@ -9,18 +9,21 @@ function ProductCard({ product }) {
   const [cartQty, setCartQty] = useState(0);
   useEffect(() => {
     if (Array.isArray(cart) && cart.length > 0) {
-      console.log(id);
-      console.log(cart);
-      const [iQty] = cart.filter((cartItem) => {
-        console.log(cartItem.id);
-        console.log(+cartItem.id === +id);
-        return +cartItem.id === +id;
-      });
+      // console.log(id);
+      // console.log(cart);
+      const [iQty] = cart.filter((cartItem) =>
+        // console.log(cartItem.id);
+        // console.log(+cartItem.id === +id);
+        +cartItem.id === +id);
 
-      console.log(iQty);
+      // console.log(iQty);
       if (iQty) {
         setCartQty(iQty.qty);
+      } else {
+        setCartQty(0);
       }
+    } else {
+      setCartQty(0);
     }
   }, [cartQty, cart, id]);
 
