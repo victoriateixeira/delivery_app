@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 function Checkout() {
   const [items, setItems] = useState([]);
-  const [cartItems, setCartItem] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     // Recuperar itens do localStorage
@@ -24,7 +23,8 @@ function Checkout() {
   };
 
   return (
-    <div>
+    <>
+      <h3>Finalizar Pedido</h3>
       <table>
         <thead>
           <tr>
@@ -83,8 +83,44 @@ function Checkout() {
 
         </p>
       </div>
+      <br />
+      <h3>Detalhes e Endereço para Entrega</h3>
+      <div>
+        <label htmlFor="select-seller">
+          P. Vendedora Responsável:
+          <input
+            name="select-seller"
+            type="select"
+            data-testid="customer_checkout_select-seller"
+          />
+        </label>
 
-    </div>
+        <label htmlFor="input-address">
+          Endereço
+          <input
+            name="input-address"
+            type="text"
+            data-testid="customer_checkout_input-adress"
+          />
+        </label>
+
+        <label htmlFor="input-number">
+          Número
+          <input
+            name="input-number"
+            type="number"
+            data-testid="customer_checkout_input-adress-number"
+          />
+        </label>
+
+        <button
+          type="button"
+          data-testid="customer_checkout_button-submit-order"
+        >
+          Finalizar Pedido
+        </button>
+      </div>
+    </>
   );
 }
 
