@@ -2,6 +2,7 @@ const { NUMBER } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   const SalesProducts = sequelize.define(
+
 'SalesProducts',
   {
     postId: { type: DataTypes.INTEGER, primaryKey: true }, 

@@ -1,5 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Sale = sequelize.define(
+
 'Sale',
    {
 id: { type: DataTypes.INTEGER, primaryKey: true }, 
@@ -19,15 +20,19 @@ status: DataTypes.STRING,
   Sale.associate = (models) => {
     // define o tipo de relacionamento
         Sale.belongsTo(
+
 models.User,
         // define qual a foreign key a ser criada
           { foreignKey: 'userId', as: 'user' },
+,
 );
         Sale.belongsTo(
+
 models.User,
         // define qual a foreign key a ser criada
           { foreignKey: 'sellerId', as: 'seller' },
+,
 );
       };
   return Sale;
-};
+};;

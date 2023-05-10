@@ -45,6 +45,7 @@
     "sequelize-cli": "6.4.1"
   },
   "dependencies": {
-    "git-commit-msg-linter": "^4.11.0"
+    "git-commit-msg-linter": "^4.11.0",
+    "react-router-dom": "^5.3.4"
   }
 }
