@@ -15,8 +15,8 @@ const findUser = async (req, res) => {
   try {
     const foundUser = await userService.findUser(user);
     const { type, message } = foundUser;
-    if (!type) return res.status(200).json(message);
-    return res.status(type).json(message);
+    if (!type) return res.status(200).json({ message });
+    return res.status(type).json({ message });
   } catch (err) {
     return res.status(409).json({ message: err.message });
   }

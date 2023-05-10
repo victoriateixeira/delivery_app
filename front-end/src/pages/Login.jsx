@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import DeliveryContext from '../contexts/DeliveryContext';
 import validationInputs from '../utils/validationInputs';
 import { postAPI } from '../services/deliveryAPI';
 
-export default function Login() {
+function Login() {
   const {
     isDisabled,
     setIsDisabled,
@@ -16,13 +16,16 @@ export default function Login() {
     setInvalidLogin,
   } = useContext(DeliveryContext);
 
-  const userLogin = async () => {
+  const history = useHistory();
+
+  const UserLogin = async () => {
     const user = {
       email,
       password,
     };
     try {
       await postAPI('/user/login', user);
+      history.push('/customer/products');
     } catch (err) {
       console.log('user:', user, err);
       setInvalidLogin(true);
@@ -76,7 +79,7 @@ export default function Login() {
           type="button"
           data-testid="common_login__button-login"
           disabled={ isDisabled }
-          onClick={ userLogin }
+          onClick={ UserLogin }
         >
           LOGIN
         </button>
@@ -95,3 +98,5 @@ export default function Login() {
     </main>
   );
 }
+
+export default Login;

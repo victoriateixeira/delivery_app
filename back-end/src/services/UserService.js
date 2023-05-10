@@ -17,8 +17,9 @@ const createUser = async (user) => {
 
 const findUser = async (user) => {
   const foundUser = await User.findOne({ where: { email: user.email } });
-  if (foundUser === null) return { type: 404, message: 'Ivalid Login' };
-  
+  if (foundUser === null) return { type: 404, message: 'Invalid Login' };
+  const md5Password = md5(user.password);
+  if (md5Password !== foundUser.password) return { type: 401, message: 'Invalid Password' };
   return { type: null, message: 'Success Login' };
 };
 
