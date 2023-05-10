@@ -32,9 +32,9 @@ function CustomersOrders() {
           <OrderCard
             key={ order.id }
             id={ order.id }
-            date={ order.date }
+            date={ order.saleDate }
             status={ order.status }
-            price={ order.price }
+            price={ order.salePrice }
           />)) : 'Você não possui pedidos'}
     </div>
   );
