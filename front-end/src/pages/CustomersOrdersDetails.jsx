@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { requestAPI } from '../services/deliveryAPI';
+import OrderDetailsTable from '../components/OrderDetailsTable';
 
 function CustomersOrdersDetails() {
   const { id } = useParams();
@@ -43,6 +44,7 @@ function CustomersOrdersDetails() {
       >
         Marcar como entregue
       </button>
+      <OrderDetailsTable products={ order.products } />
     </div>
   );
 }
