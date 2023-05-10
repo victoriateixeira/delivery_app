@@ -10,7 +10,7 @@ function Routes() {
       <Route path="/" render={ () => <Redirect to="/login" /> } exact />
       <Route path="/login" component={ Login } exact />
       <Route path="/register" component={ Register } exact />
-      <Route path="/customer/products" exact />
+      <Route path="/customers/products" exact />
       <Route path="/customers/orders" component={ CustomersOrders } exact />
       <Route path="/customers/orders/:id" component={ CustomersOrdersDetails } exact />
     </Switch>

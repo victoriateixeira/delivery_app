@@ -20,7 +20,13 @@ const findUser = async (user) => {
   if (foundUser === null) return { type: 404, message: 'Invalid Login' };
   const md5Password = md5(user.password);
   if (md5Password !== foundUser.password) return { type: 401, message: 'Invalid Password' };
-  return { type: null, message: 'Success Login' };
+  const userObject = {
+    id: foundUser.id,
+    name: foundUser.name,
+    email: foundUser.email,
+    role: foundUser.role,
+  };
+  return { type: null, message: userObject };
 };
 
 module.exports = {
