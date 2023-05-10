@@ -6,10 +6,21 @@ import ProductContext from '../context/ProductContext';
 function ProductCard({ product }) {
   const { cart, addToCart, removeFromCart } = useContext(ProductContext);
   const { id, name, price, urlImage } = product;
-  const [cartQty, setCartQty] = useState();
+  const [cartQty, setCartQty] = useState(0);
   useEffect(() => {
-    if (cart !== undefined) {
-      setCartQty(cart.filter((cartItem) => cartItem.id === id).qty);
+    if (Array.isArray(cart) && cart.length > 0) {
+      console.log(id);
+      console.log(cart);
+      const [iQty] = cart.filter((cartItem) => {
+        console.log(cartItem.id);
+        console.log(+cartItem.id === +id);
+        return +cartItem.id === +id;
+      });
+
+      console.log(iQty);
+      if (iQty) {
+        setCartQty(iQty.qty);
+      }
     }
   }, [cartQty, cart, id]);
 
@@ -50,7 +61,7 @@ function ProductCard({ product }) {
       <span
         data-testid={ `customer_products__input-card-quantity-${id}` }
       >
-        {cartQty || 0}
+        {cartQty}
 
       </span>
       <button
