@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function Checkout() {
   const [items, setItems] = useState([]);
@@ -112,13 +113,18 @@ function Checkout() {
             data-testid="customer_checkout_input-adress-number"
           />
         </label>
+        <br />
+        <br />
 
-        <button
-          type="button"
-          data-testid="customer_checkout_button-submit-order"
-        >
-          Finalizar Pedido
-        </button>
+        <Link to="/customer/orders">
+          <button
+            type="button"
+            data-testid="customer_checkout_button-submit-order"
+          >
+            Finalizar Pedido
+          </button>
+        </Link>
+
       </div>
     </>
   );
