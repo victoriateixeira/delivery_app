@@ -6,7 +6,7 @@ import ProductContext from '../contexts/ProductContext';
 function ProductCard({ product }) {
   const { cart, addToCart, removeFromCart } = useContext(ProductContext);
   const { id, name, price, urlImage } = product;
-  const [cartQty, setCartQty] = useState(0);
+  const [cartQty, setCartQty] = useState();
   useEffect(() => {
     if (Array.isArray(cart) && cart.length > 0) {
       const [iQty] = cart.filter((cartItem) => +cartItem.id === +id);
@@ -20,7 +20,11 @@ function ProductCard({ product }) {
     } else {
       setCartQty(0);
     }
-  }, [cartQty, cart, id]);
+  }, [cart]);
+
+  //   useEffect(() => {
+  // const storageCart =
+  //   }, [])
 
   return (
     <div
@@ -59,7 +63,7 @@ function ProductCard({ product }) {
       <span
         data-testid={ `customer_products__input-card-quantity-${id}` }
       >
-        {cartQty}
+        {cartQty || 0}
 
       </span>
       <button

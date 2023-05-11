@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import NavBar from '../components/NavBar';
-import ProductContext from '../context/ProductContext';
+import ProductContext from '../contexts/ProductContext';
 import ProductCard from '../components/ProductCard';
 
 function Products() {

@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { node } from 'prop-types';
 import ProductContext from './ProductContext';
 import { requestAPI } from '../services/deliveryAPI';
+import { save } from '../services/localStorage';
 
 export default function ProductProvider({ children }) {
   const [products, setProducts] = useState([]);
@@ -16,11 +17,10 @@ export default function ProductProvider({ children }) {
     if (cart !== undefined || cart === []) {
       const copyCart = [...cart];
       const isProduct = copyCart.some((cartItem) => +cartItem.id === +product.id);
-      // console.log(isProduct);
       if (!isProduct) {
         copyCart.push({ ...product, qty: 1 });
         setCart(copyCart);
-      //  setCart([...cart, { ...product, qty: 1 }]);
+        save('cart', copyCart);
       } else {
         const newCart = copyCart.map((cartItem) => {
           if (cartItem.id === product.id) {
@@ -29,18 +29,10 @@ export default function ProductProvider({ children }) {
           return cartItem;
         });
         setCart([...newCart]);
+        save('cart', newCart);
         console.log(newCart);
       }
     }
-
-    // const copyCart = [...cart];
-    // const cartItem = copyCart.find((item) => item.id === product.id);
-    // if (!cartItem) {
-    //   copyCart.push({ ...product, qty: 1 });
-    // } else {
-    //   cartItem.qty += 1;
-    // }
-    // setCart(copyCart);
   };
   const removeFromCart = async (product) => {
     if (cart !== undefined) {
@@ -52,6 +44,7 @@ export default function ProductProvider({ children }) {
       });
       const updatedCart = newCart.filter((cartItem) => cartItem.qty > 0);
       setCart([...updatedCart]);
+      save('cart', updatedCart);
       console.log(updatedCart);
     }
   };

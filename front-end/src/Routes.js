@@ -2,6 +2,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import CustomersOrders from './pages/CustomersOrders';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Products from './pages/Products';
 import CustomersOrdersDetails from './pages/CustomersOrdersDetails';
 
 function Routes() {
