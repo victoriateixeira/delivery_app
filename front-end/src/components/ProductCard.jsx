@@ -5,6 +5,8 @@ import ProductContext from '../contexts/ProductContext';
 import { read } from '../services/localStorage';
 
 function ProductCard({ product }) {
+  const TWENTY_ONE = 21;
+  console.log(product);
   const { cart, setCart, addToCart, removeFromCart } = useContext(ProductContext);
   const { id, name, price, urlImage } = product;
   const [cartQty, setCartQty] = useState();
@@ -47,7 +49,8 @@ function ProductCard({ product }) {
           <img
             data-testid={ `customer_products__img-card-bg-image-${id}` }
             src={ urlImage }
-            alt={ name }
+            alt={ urlImage.slice(TWENTY_ONE) }
+            width={ 75 }
           />
         </button>
       </Link>
