@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { node } from 'prop-types';
 import ProductContext from './ProductContext';
-import { requestAPI } from '../utils/deliveryAPI';
+import { requestAPI } from '../services/deliveryAPI';
 
 export default function ProductProvider({ children }) {
   const [products, setProducts] = useState([]);

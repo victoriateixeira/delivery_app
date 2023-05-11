@@ -1,11 +1,12 @@
 import React, { useState, useMemo } from 'react';
-import { node } from 'prop-types';
+import PropTypes from 'prop-types';
 import DeliveryContext from './DeliveryContext';
 
 export default function DeliveryProvider({ children }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
+  const [invalidLogin, setInvalidLogin] = useState(false);
 
   const value = useMemo(() => ({
     email,
@@ -14,7 +15,9 @@ export default function DeliveryProvider({ children }) {
     setPassword,
     isDisabled,
     setIsDisabled,
-  }), [email, isDisabled, password]);
+    invalidLogin,
+    setInvalidLogin,
+  }), [email, isDisabled, password, invalidLogin]);
 
   return (
     <DeliveryContext.Provider value={ value }>
@@ -24,5 +27,5 @@ export default function DeliveryProvider({ children }) {
 }
 
 DeliveryProvider.propTypes = {
-  children: node.isRequired,
+  children: PropTypes.node.isRequired,
 };

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import ProductContext from '../context/ProductContext';
+import ProductContext from '../contexts/ProductContext';
 
 function ProductCard({ product }) {
   const { cart, addToCart, removeFromCart } = useContext(ProductContext);
@@ -9,12 +9,7 @@ function ProductCard({ product }) {
   const [cartQty, setCartQty] = useState(0);
   useEffect(() => {
     if (Array.isArray(cart) && cart.length > 0) {
-      // console.log(id);
-      // console.log(cart);
-      const [iQty] = cart.filter((cartItem) =>
-        // console.log(cartItem.id);
-        // console.log(+cartItem.id === +id);
-        +cartItem.id === +id);
+      const [iQty] = cart.filter((cartItem) => +cartItem.id === +id);
 
       // console.log(iQty);
       if (iQty) {

@@ -3,15 +3,19 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
-import DeliveryProvider from './context/DeliveryProvider';
-import ProductProvider from './context/ProductProvider';
+import DeliveryProvider from './contexts/DeliveryProvider';
+import ProductProvider from './contexts/ProductProvider';
+import UserProvider from './contexts/UserProvider';
+import './styles/index.css';
 
 ReactDOM.render(
   <BrowserRouter>
     <DeliveryProvider>
-      <ProductProvider>
-        <App />
-      </ProductProvider>
+      <UserProvider>
+        <ProductProvider>
+          <App />
+        </ProductProvider>
+      </UserProvider>
     </DeliveryProvider>
   </BrowserRouter>,
   document.getElementById('root'),

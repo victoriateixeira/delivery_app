@@ -1,8 +1,3 @@
-/**
-* @param {import('sequelize').Sequelize} sequelize
-* @param {import('sequelize').DataTypes} sequelize.DataTypes
-*/
-
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('sales_products', {
