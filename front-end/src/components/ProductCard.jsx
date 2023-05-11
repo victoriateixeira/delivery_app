@@ -2,16 +2,19 @@ import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ProductContext from '../contexts/ProductContext';
+import { read } from '../services/localStorage';
 
 function ProductCard({ product }) {
-  const { cart, addToCart, removeFromCart } = useContext(ProductContext);
+  const { cart, setCart, addToCart, removeFromCart } = useContext(ProductContext);
   const { id, name, price, urlImage } = product;
   const [cartQty, setCartQty] = useState();
   useEffect(() => {
+    const storeCart = read('cart');
+    setCart(storeCart);
+  }, []);
+  useEffect(() => {
     if (Array.isArray(cart) && cart.length > 0) {
       const [iQty] = cart.filter((cartItem) => +cartItem.id === +id);
-
-      // console.log(iQty);
       if (iQty) {
         setCartQty(iQty.qty);
       } else {
@@ -21,10 +24,6 @@ function ProductCard({ product }) {
       setCartQty(0);
     }
   }, [cart]);
-
-  //   useEffect(() => {
-  // const storageCart =
-  //   }, [])
 
   return (
     <div
