@@ -6,6 +6,7 @@ import { postAPI } from '../services/deliveryAPI';
 import UserContext from '../contexts/UserContext';
 // import { save } from '../services/localStorage';
 import '../styles/LoginStyle.css';
+import { save } from '../services/localStorage';
 
 function Login() {
   const { setUser } = useContext(UserContext);
@@ -30,9 +31,10 @@ function Login() {
     };
     try {
       const setLogin = await postAPI('/user/login', u);
-      console.log(setLogin.message);
+      console.log(setLogin);
       setUser(setLogin.message);
-      history.push('/customers/orders');
+      history.push('/customer/products');
+      save('user', setLogin.message);
     } catch (err) {
       console.log('user:', user, err);
       setInvalidLogin(true);

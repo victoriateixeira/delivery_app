@@ -1,12 +1,13 @@
-// import React, { useContext } from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
-// import UserContext from '../contexts/UserContext';
+import UserContext from '../contexts/UserContext';
 
 function NavBar() {
   // useEffect() => {
   //   //Resgatar o NOME do usuário do localStorage
   // }
-  // const { user } = useContext(UserContext);
+  const { user } = useContext(UserContext);
+  console.log(user);
   const history = useHistory();
   const handlesClick = (page) => {
     history.push(`/${page}`);
@@ -38,7 +39,7 @@ function NavBar() {
           // type="button"
           // onClick={ () => handlesClick('customer/products') }
         >
-          NOME
+          {user.name}
         </li>
         <li>
           <button
