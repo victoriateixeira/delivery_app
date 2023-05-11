@@ -1,24 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import { requestAPI } from '../services/deliveryAPI';
+import { requestAPI, updateAPI } from '../services/deliveryAPI';
 import OrderDetailsTable from '../components/OrderDetailsTable';
 
 function CustomersOrdersDetails() {
   const { id } = useParams();
   const [order, setOrder] = useState(undefined);
-  const [status, setStatus] = useState('PENDENTE');
+  const [status, setStatus] = useState();
 
   useEffect(() => {
     const fetchDetails = async () => {
       const response = await requestAPI(`/customers/orders/details/${id}`);
-      console.log(response);
+      setStatus(response.status);
       return setOrder(response);
     };
     fetchDetails();
-  }, []);
+  }, [status]);
 
-  const handleDeliveryStatus = () => {
-    setStatus('ENTREGUE');
+  const handleDeliveryStatus = async () => {
+    const updated = await updateAPI(
+      `/customers/orders/details/${id}`,
+      { status: 'ENTREGUE' },
+    );
+
+    return setStatus(updated.status);
   };
 
   return (

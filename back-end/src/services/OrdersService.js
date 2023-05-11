@@ -47,7 +47,17 @@ const getOrderDetails = async (saleId) => {
   return { type: null, message: orderObject(order) };
 };
 
+const updateOrderStatus = async (saleId, newStatus) => {
+  await Sale.update(
+    { status: newStatus },
+    { where: { id: saleId } },
+  );
+  const { message } = await getOrderDetails(saleId);
+  return message;
+};
+
 module.exports = {
   getOrdersByUserId,
   getOrderDetails,
+  updateOrderStatus,
 };
