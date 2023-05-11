@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import OrderCard from '../components/OrderCard';
 import { requestAPI } from '../services/deliveryAPI';
-// import { save, read } from '../services/localStorage';
 import UserContext from '../contexts/UserContext';
 
 function CustomersOrders() {
