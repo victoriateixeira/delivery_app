@@ -6,7 +6,7 @@ import OrderDetailsTable from '../components/OrderDetailsTable';
 function CustomersOrdersDetails() {
   const { id } = useParams();
   const [order, setOrder] = useState(undefined);
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('PENDENTE');
 
   useEffect(() => {
     const fetchDetails = async () => {
