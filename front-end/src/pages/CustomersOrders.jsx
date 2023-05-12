@@ -31,7 +31,7 @@ function CustomersOrders() {
             date={ formatDate(order.saleDate) }
             status={ order.status }
             price={ order.totalPrice }
-          />)) : 'Você não possui pedidos'}
+          />)) : 'Você ainda não fez pedidos'}
     </div>
   );
 }

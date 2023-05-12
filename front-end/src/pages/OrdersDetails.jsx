@@ -5,7 +5,7 @@ import OrderDetailsTable from '../components/OrderDetailsTable';
 import formatDate from '../utils/helpers';
 import UserContext from '../contexts/UserContext';
 
-function CustomersOrdersDetails() {
+function OrdersDetails() {
   const { id } = useParams();
   const [order, setOrder] = useState(undefined);
   const [status, setStatus] = useState();
@@ -134,4 +134,4 @@ function CustomersOrdersDetails() {
   );
 }
 
-export default CustomersOrdersDetails;
+export default OrdersDetails;
