@@ -93,6 +93,7 @@ function CustomersOrdersDetails() {
                 onClick={ handleDeliveryStatus }
                 type="button"
                 name="delivered"
+                disabled={ status !== 'PREPARANDO' }
               >
                 Marcar como entregue
               </button>
