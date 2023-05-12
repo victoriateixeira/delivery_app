@@ -5,6 +5,7 @@ import Register from './pages/Register';
 import CustomersOrdersDetails from './pages/CustomersOrdersDetails';
 import SellerOrders from './pages/SellerOrders';
 import AdminPage from './pages/AdminPage';
+import SellerOrdersDetails from './pages/SellerOrdersDetails';
 
 function Routes() {
   return (
@@ -16,6 +17,7 @@ function Routes() {
       <Route path="/customer/orders" component={ CustomersOrders } exact />
       <Route path="/customer/orders/:id" component={ CustomersOrdersDetails } exact />
       <Route path="/seller/orders" component={ SellerOrders } exact />
+      <Route path="/seller/orders/:id" component={ SellerOrdersDetails } exact />
       <Route path="/admin/manage" component={ AdminPage } exact />
     </Switch>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function OrderDetailsTable({ products }) {
+function OrderDetailsTable({ products, user }) {
   return (
     <table className="details-table">
       <thead>
@@ -18,35 +18,35 @@ function OrderDetailsTable({ products }) {
           <tr key={ index }>
             <td
               data-testid={
-                `customer_order_details__element-order-table-item-number-${index}`
+                `${user}_order_details__element-order-table-item-number-${index}`
               }
             >
               { index + 1 }
             </td>
             <td
               data-testid={
-                `customer_order_details__element-order-table-name-${index}`
+                `${user}_order_details__element-order-table-name-${index}`
               }
             >
               { product.name }
             </td>
             <td
               data-testid={
-                `customer_order_details__element-order-table-quantity-${index}`
+                `${user}_order_details__element-order-table-quantity-${index}`
               }
             >
               { product.quantity }
             </td>
             <td
               data-testid={
-                `customer_order_details__element-order-table-unit-price-${index}`
+                `${user}_order_details__element-order-table-unit-price-${index}`
               }
             >
               { product.price }
             </td>
             <td
               data-testid={
-                `customer_order_details__element-order-table-sub-total-${index}`
+                `${user}_order_details__element-order-table-sub-total-${index}`
               }
             >
               { product.price * product.quantity }
@@ -66,6 +66,7 @@ OrderDetailsTable.propTypes = {
       price: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  user: PropTypes.string.isRequired,
 };
 
 export default OrderDetailsTable;

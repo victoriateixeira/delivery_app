@@ -10,7 +10,7 @@ function CustomersOrdersDetails() {
 
   useEffect(() => {
     const fetchDetails = async () => {
-      const response = await requestAPI(`/customers/orders/details/${id}`);
+      const response = await requestAPI(`/customer/orders/details/${id}`);
       setStatus(response.status);
       return setOrder(response);
     };
@@ -48,11 +48,9 @@ function CustomersOrdersDetails() {
               `customer_order_details__element-order-details-label-delivery-status
               ${order.id}`
             }
-            // o correto seria:  data-testid="customer_order_details__element-order-details-label-delivery-status<index> não entendi de onde tirarei esse <index>"
           >
             { status }
           </p>
-          {/* esse status será retirado do objeto order, por enquanto está assim pois a lógica para modificar o status ainda não está sendo implementada */}
           <button
             data-testid="customer_order_details__button-delivery-check"
             onClick={ handleDeliveryStatus }
@@ -60,7 +58,10 @@ function CustomersOrdersDetails() {
           >
             Marcar como entregue
           </button>
-          <OrderDetailsTable products={ order.products } />
+          <OrderDetailsTable
+            products={ order.products }
+            user="customer"
+          />
         </div>
       ) : 'Pedido não encontrado'}
     </div>
