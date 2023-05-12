@@ -3,22 +3,21 @@ import { useHistory } from 'react-router';
 import NavBar from '../components/NavBar';
 import ProductContext from '../contexts/ProductContext';
 import ProductCard from '../components/ProductCard';
-import { read } from '../services/localStorage';
 
 function Products() {
-  const { products, setCart } = useContext(ProductContext);
-  const [totalCost, setTotalCost] = useState(0);
+  const { products, cart } = useContext(ProductContext);
+  const [totalCost, setTotalCost] = useState();
   const history = useHistory();
   const TWELVE = 12;
   useEffect(() => {
-    const storeCart = read('cart');
-    setCart(storeCart);
-    const total = storeCart.reduce((acc, curr) => {
+    // const storeCart = read('cart') || [];
+    // setCart(storeCart);
+    const total = cart.reduce((acc, curr) => {
       acc += curr.qty * curr.price;
       return acc;
     }, 0);
     setTotalCost(total.toFixed(2));
-  }, []);
+  }, [cart]);
 
   return (
     <>

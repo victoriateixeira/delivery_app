@@ -3,10 +3,12 @@ import { node } from 'prop-types';
 import ProductContext from './ProductContext';
 import { requestAPI } from '../services/deliveryAPI';
 import { save } from '../services/localStorage';
+import usePersistState from '../hooks/usePersistState';
 
 export default function ProductProvider({ children }) {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
+  // const [cart, setCart] = useState([]);
+  const [cart, setCart] = usePersistState('cart', []);
 
   const getProducts = async () => {
     const response = await requestAPI('/customer/products');

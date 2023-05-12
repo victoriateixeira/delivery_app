@@ -1,31 +1,65 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ProductContext from '../contexts/ProductContext';
-import { read } from '../services/localStorage';
+import { read, save } from '../services/localStorage';
 
 function ProductCard({ product }) {
   const TWENTY_ONE = 21;
   console.log(product);
-  const { cart, setCart, addToCart, removeFromCart } = useContext(ProductContext);
+  const { setCart, addToCart, removeFromCart } = useContext(ProductContext);
   const { id, name, price, urlImage } = product;
   const [cartQty, setCartQty] = useState();
-  useEffect(() => {
-    const storeCart = read('cart');
-    setCart(storeCart);
-  }, []);
-  useEffect(() => {
-    if (Array.isArray(cart) && cart.length > 0) {
-      const [iQty] = cart.filter((cartItem) => +cartItem.id === +id);
-      if (iQty) {
-        setCartQty(iQty.qty);
-      } else {
-        setCartQty(0);
+
+  // useEffect(() => {
+  //   const storeCart = read('cart');
+  //   setCart(storeCart);
+  // }, []);
+  // useEffect(() => {
+  //   const storeCart = read('cart');
+  //   setCart(storeCart);
+  //   if (Array.isArray(cart) && cart.length > 0) {
+  //     const [iQty] = cart.filter((cartItem) => +cartItem.id === +id);
+  //     if (iQty) {
+  //       setCartQty(iQty.qty);
+  //     } else {
+  //       setCartQty(0);
+  //     }
+  //   } else {
+  //     setCartQty(0);
+  //   }
+  // }, []);
+
+  const updateCart = (value) => {
+    const storeCart = read('cart') || [];
+    const updatedCart = storeCart.map((card) => {
+      if (+card.id === +id) {
+        card.qty = +value;
       }
-    } else {
-      setCartQty(0);
+      return card;
+    });
+    setCart(updatedCart);
+    save('cart', updatedCart);
+  };
+
+  const addQty = () => {
+    const newQty = cartQty + 1;
+    setCartQty(newQty);
+    addToCart(product);
+  };
+  const removeQty = () => {
+    if (cartQty > 0) {
+      const newQty = cartQty - 1;
+      setCartQty(newQty);
     }
-  }, [cart]);
+    removeFromCart(product);
+  };
+
+  const handleChange = ({ target }) => {
+    const { value } = target;
+    setCartQty(Number(value));
+    updateCart(value);
+  };
 
   return (
     <div
@@ -57,21 +91,22 @@ function ProductCard({ product }) {
       <button
         data-testid={ `customer_products__button-card-rm-item-${id}` }
         type="button"
-        onClick={ () => removeFromCart(product) }
+        onClick={ () => removeQty() }
         name="subtract"
       >
         -
       </button>
-      <span
-        data-testid={ `customer_products__input-card-quantity-${id}` }
-      >
-        {cartQty || 0}
 
-      </span>
+      <input
+        type="text"
+        data-testid={ `customer_products__input-card-quantity-${id}` }
+        onChange={ (e) => handleChange(e) }
+        value={ cartQty || 0 }
+      />
       <button
         data-testid={ `customer_products__button-card-add-item-${id}` }
         type="button"
-        onClick={ () => addToCart(product) }
+        onClick={ () => addQty() }
         name="add"
       >
         +
