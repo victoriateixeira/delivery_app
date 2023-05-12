@@ -2,12 +2,14 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
 import UserContext from '../contexts/UserContext';
 import { remove } from '../services/localStorage';
+import ProductContext from '../contexts/ProductContext';
 
 function NavBar() {
   // useEffect() => {
   //   //Resgatar o NOME do usuário do localStorage
   // }
   const { user, setUser } = useContext(UserContext);
+  const { setCart } = useContext(ProductContext);
   console.log(user);
   const history = useHistory();
   const handlesClick = (page) => {
@@ -18,6 +20,8 @@ function NavBar() {
     remove('user');
     setUser('');
     remove('user');
+    remove('cart');
+    setCart([]);
     history.push('/login');
   };
   return (
