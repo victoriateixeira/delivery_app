@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import OrderCard from '../components/OrderCard';
 import { requestAPI } from '../services/deliveryAPI';
 import UserContext from '../contexts/UserContext';
+import formatDate from '../utils/helpers';
 
 function CustomersOrders() {
   const history = useHistory();
@@ -27,7 +28,7 @@ function CustomersOrders() {
             onClick={ () => history.push(`/customers/orders/${order.id}`) }
             key={ order.id }
             id={ order.id }
-            date={ order.saleDate }
+            date={ formatDate(order.saleDate) }
             status={ order.status }
             price={ order.totalPrice }
           />)) : 'Você não possui pedidos'}

@@ -1,10 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
 import UserContext from '../contexts/UserContext';
 import { requestAPI } from '../services/deliveryAPI';
+import SellerOrderCard from '../components/SellerOrderCard';
+import formatDate from '../utils/helpers';
 
 function SellerOrders() {
   const { user } = useContext(UserContext);
-  const [orders, setOrders] = useState(undefined);
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     const fetchSellerOrders = async () => {
@@ -21,7 +23,14 @@ function SellerOrders() {
       <h1>Página do vendedor</h1>
       { orders.length > 0
         ? orders.map((order) => (
-          <p key={ order.id }>{ order.name }</p>
+          <SellerOrderCard
+            key={ order.id }
+            id={ order.id }
+            date={ formatDate(order.saleDate) }
+            price={ order.totalPrice }
+            address={ order.deliveryAddress }
+            addressNumber={ order.deliveryNumber }
+          />
         )) : 'Você ainda não tem pedidos'}
     </div>
   );
