@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import OrderCard from '../components/OrderCard';
 import { requestAPI } from '../services/deliveryAPI';
-// import { save, read } from '../services/localStorage';
 import UserContext from '../contexts/UserContext';
 
 function CustomersOrders() {
+  const history = useHistory();
   const { user } = useContext(UserContext);
   const [orders, setOrders] = useState([]);
 
@@ -23,6 +24,7 @@ function CustomersOrders() {
       { orders.length > 0
         ? orders.map((order) => (
           <OrderCard
+            onClick={ () => history.push(`/customers/orders/${order.id}`) }
             key={ order.id }
             id={ order.id }
             date={ order.saleDate }

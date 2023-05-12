@@ -23,6 +23,22 @@ function Login() {
 
   const history = useHistory();
 
+  const defineRoute = (role) => {
+    switch (role) {
+    case 'customer':
+      history.push('/customers/products');
+      break;
+    case 'seller':
+      history.push('/seller/orders');
+      break;
+    case 'administrator':
+      history.push('/admin/manage');
+      break;
+    default:
+      history.push('/customers/products');
+    }
+  };
+
   const UserLogin = async () => {
     const u = {
       email,
@@ -30,9 +46,9 @@ function Login() {
     };
     try {
       const setLogin = await postAPI('/user/login', u);
-      console.log(setLogin.message);
-      setUser(setLogin.message);
-      history.push('/customers/orders');
+      const { message } = setLogin;
+      setUser(message);
+      defineRoute(message.role);
     } catch (err) {
       console.log('user:', user, err);
       setInvalidLogin(true);
