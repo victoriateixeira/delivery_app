@@ -4,6 +4,7 @@ const getOrdersByUserId = async (userId) => {
   const orders = await Sale.findAll({
     where: { userId },
   });
+
   if (!orders) return [];
   return orders;
 };
@@ -52,6 +53,7 @@ const updateOrderStatus = async (saleId, newStatus) => {
     { status: newStatus },
     { where: { id: saleId } },
   );
+
   const { message } = await getOrderDetails(saleId);
   return message;
 };
@@ -60,4 +62,5 @@ module.exports = {
   getOrdersByUserId,
   getOrderDetails,
   updateOrderStatus,
+  orderObject,
 };
