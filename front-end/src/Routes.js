@@ -3,6 +3,7 @@ import CustomersOrders from './pages/CustomersOrders';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Products from './pages/Products';
+import Checkout from './pages/Checkout';
 import CustomersOrdersDetails from './pages/CustomersOrdersDetails';
 
 function Routes() {
@@ -12,7 +13,8 @@ function Routes() {
       <Route path="/login" component={ Login } exact />
       <Route path="/register" component={ Register } exact />
       <Route path="/customer/products" component={ Products } exact />
-      <Route path="/customers/orders" component={ CustomersOrders } exact />
+      <Route path="/customer/checkout" component={ Checkout } exact />
+      <Route path="/customer/orders" component={ CustomersOrders } exact />
       <Route path="/customers/orders/:id" component={ CustomersOrdersDetails } exact />
     </Switch>
   );

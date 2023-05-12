@@ -10,7 +10,6 @@ function NavBar() {
   // }
   const { user, setUser } = useContext(UserContext);
   const { setCart } = useContext(ProductContext);
-  console.log(user);
   const history = useHistory();
   const handlesClick = (page) => {
     history.push(`/${page}`);

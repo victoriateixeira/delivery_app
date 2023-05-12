@@ -2,14 +2,14 @@ import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ProductContext from '../contexts/ProductContext';
-import { read, save } from '../services/localStorage';
+// import { read, save } from '../services/localStorage';
 
 function ProductCard({ product }) {
   const TWENTY_ONE = 21;
   console.log(product);
-  const { setCart, addToCart, removeFromCart } = useContext(ProductContext);
+  const { addToCart, removeFromCart } = useContext(ProductContext);
   const { id, name, price, urlImage } = product;
-  const [cartQty, setCartQty] = useState();
+  const [cartQty, setCartQty] = useState(0);
 
   // useEffect(() => {
   //   const storeCart = read('cart');
@@ -30,22 +30,29 @@ function ProductCard({ product }) {
   //   }
   // }, []);
 
-  const updateCart = (value) => {
-    const storeCart = read('cart') || [];
-    const updatedCart = storeCart.map((card) => {
-      if (+card.id === +id) {
-        card.qty = +value;
-      }
-      return card;
-    });
-    setCart(updatedCart);
-    save('cart', updatedCart);
-  };
+  // const updateCart = (value) => {
+  //   const storeCart = read('cart') || [];
+  //   const isProduct = storeCart.some((item) => +item.id === +id);
+  //   if (!isProduct) {
+  //     storeCart.push({ ...product, qty: 1 });
+  //     setCart([...storeCart]);
+  //     save('cart', storeCart);
+  //   } else {
+  //     const updatedCart = storeCart.map((cartItem) => {
+  //       if (+cartItem.id === +id) {
+  //         cartItem.qty = +value;
+  //       }
+  //       return cartItem;
+  //     });
+  //     setCart([...updatedCart]);
+  //     save('cart', updatedCart);
+  //   }
+  // };
 
   const addQty = () => {
     const newQty = cartQty + 1;
     setCartQty(newQty);
-    addToCart(product);
+    addToCart(product, 1);
   };
   const removeQty = () => {
     if (cartQty > 0) {
@@ -57,21 +64,24 @@ function ProductCard({ product }) {
 
   const handleChange = ({ target }) => {
     const { value } = target;
-    setCartQty(Number(value));
-    updateCart(value);
+    console.log(value);
+    if (value.length > 0) {
+      setCartQty(Number(value));
+      addToCart(product, Number(value));
+    }
+    // ;
+    // updateCart(value);
   };
 
   return (
-    <div
-      data-testid={ `customer_products__element-card-price-${id}` }
-    >
+    <div>
       <Link to={ `customer/products/${id}` }>
-        <div
+        <span>R$</span>
+        <span
           data-testid={ `customer_products__element-card-price-${id}` }
         >
-          R$
-          {price}
-        </div>
+          {price.replace('.', ',')}
+        </span>
         <button
           type="button"
         >
@@ -98,10 +108,11 @@ function ProductCard({ product }) {
       </button>
 
       <input
-        type="text"
+        type="number"
+        min={ 0 }
         data-testid={ `customer_products__input-card-quantity-${id}` }
         onChange={ (e) => handleChange(e) }
-        value={ cartQty || 0 }
+        value={ cartQty }
       />
       <button
         data-testid={ `customer_products__button-card-add-item-${id}` }
