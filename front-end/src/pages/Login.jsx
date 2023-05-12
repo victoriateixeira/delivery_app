@@ -25,7 +25,7 @@ function Login() {
   const defineRoute = (role) => {
     switch (role) {
     case 'customer':
-      history.push('/customers/products');
+      history.push('/customer/products');
       break;
     case 'seller':
       history.push('/seller/orders');
@@ -34,7 +34,7 @@ function Login() {
       history.push('/admin/manage');
       break;
     default:
-      history.push('/customers/products');
+      history.push('/customer/products');
     }
   };
 

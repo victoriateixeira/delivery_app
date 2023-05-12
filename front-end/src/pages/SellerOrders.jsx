@@ -27,6 +27,7 @@ function SellerOrders() {
             key={ order.id }
             id={ order.id }
             date={ formatDate(order.saleDate) }
+            status={ order.status }
             price={ order.totalPrice }
             address={ order.deliveryAddress }
             addressNumber={ order.deliveryNumber }
