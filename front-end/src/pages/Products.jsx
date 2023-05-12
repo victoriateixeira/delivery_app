@@ -5,6 +5,7 @@ import ProductCard from '../components/ProductCard';
 
 function Products() {
   const { products } = useContext(ProductContext);
+
   return (
     <>
       <NavBar />

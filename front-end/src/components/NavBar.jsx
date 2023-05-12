@@ -1,16 +1,24 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
 import UserContext from '../contexts/UserContext';
+import { remove } from '../services/localStorage';
 
 function NavBar() {
   // useEffect() => {
   //   //Resgatar o NOME do usuário do localStorage
   // }
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   console.log(user);
   const history = useHistory();
   const handlesClick = (page) => {
     history.push(`/${page}`);
+  };
+
+  const logout = () => {
+    remove('user');
+    setUser('');
+    remove('user');
+    history.push('/login');
   };
   return (
 
@@ -45,7 +53,7 @@ function NavBar() {
           <button
             data-testid="customer_products__element-navbar-link-logout"
             type="button"
-            // onClick={ () => handlesClick('login') }
+            onClick={ () => logout() }
           >
             Sair
           </button>
