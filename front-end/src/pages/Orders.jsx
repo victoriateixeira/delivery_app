@@ -5,35 +5,38 @@ import { requestAPI } from '../services/deliveryAPI';
 import UserContext from '../contexts/UserContext';
 import formatDate from '../utils/helpers';
 
-function CustomersOrders() {
+function Orders() {
   const history = useHistory();
-  const { user } = useContext(UserContext);
   const [orders, setOrders] = useState([]);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     const fetchOrders = async () => {
       if (user.id) {
-        const getOrders = await requestAPI(`/customer/orders/${user.id}`);
+        const getOrders = await requestAPI(`/orders/${user.role}/${user.id}`);
         setOrders(getOrders);
       }
     };
     fetchOrders();
-  }, [user]);
+  });
 
   return (
-    <div className="customers-orders">
+    <div className="orders-page">
       { orders.length > 0
         ? orders.map((order) => (
           <OrderCard
-            onClick={ () => history.push(`/customer/orders/${order.id}`) }
             key={ order.id }
             id={ order.id }
             date={ formatDate(order.saleDate) }
             status={ order.status }
             price={ order.totalPrice }
-          />)) : 'Você ainda não fez pedidos'}
+            onClick={ () => history.push(`/${user.role}/orders/${order.id}`) }
+            role={ user.role }
+            address={ order.deliveryAddress }
+            addressNumber={ order.deliveryNumber }
+          />)) : ''}
     </div>
   );
 }
 
-export default CustomersOrders;
+export default Orders;

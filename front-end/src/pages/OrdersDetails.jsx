@@ -13,7 +13,7 @@ function OrdersDetails() {
 
   useEffect(() => {
     const fetchDetails = async () => {
-      const response = await requestAPI(`/customer/orders/details/${id}`);
+      const response = await requestAPI(`/orders/details/${id}`);
       setStatus(response.status);
       return setOrder(response);
     };
