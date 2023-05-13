@@ -4,6 +4,7 @@ import OrderCard from '../components/OrderCard';
 import { requestAPI } from '../services/deliveryAPI';
 import UserContext from '../contexts/UserContext';
 import formatDate from '../utils/helpers';
+import NavBar from '../components/NavBar';
 
 function Orders() {
   const history = useHistory();
@@ -22,6 +23,7 @@ function Orders() {
 
   return (
     <div className="orders-page">
+      <NavBar />
       { orders.length > 0
         ? orders.map((order) => (
           <OrderCard

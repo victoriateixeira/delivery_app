@@ -4,6 +4,7 @@ import { requestAPI, updateAPI } from '../services/deliveryAPI';
 import OrderDetailsTable from '../components/OrderDetailsTable';
 import formatDate from '../utils/helpers';
 import UserContext from '../contexts/UserContext';
+import NavBar from '../components/NavBar';
 
 function OrdersDetails() {
   const { id } = useParams();
@@ -48,6 +49,7 @@ function OrdersDetails() {
 
   return (
     <div className="orders-details">
+      <NavBar />
       { order ? (
         <div className="order-details-card">
           <h1>Detalhe do pedido</h1>

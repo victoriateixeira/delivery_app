@@ -23,47 +23,74 @@ function NavBar() {
     setCart([]);
     history.push('/login');
   };
+
   return (
-
     <nav>
-      <ul>
-        <li>
-          <button
-            data-testid="customer_products__element-navbar-link-products"
-            type="button"
-            onClick={ () => handlesClick('customer/products') }
-          >
-            Produtos
-          </button>
-        </li>
-        <li>
-          <button
-            data-testid="customer_products__element-navbar-link-orders"
-            type="button"
-            onClick={ () => handlesClick('customer/orders') }
-          >
-            Meus Pedidos
-          </button>
-        </li>
-        <li
-          data-testid="customer_products__element-navbar-user-full-name"
-          // type="button"
-          // onClick={ () => handlesClick('customer/products') }
-        >
-          {user.name}
-        </li>
-        <li>
-          <button
-            data-testid="customer_products__element-navbar-link-logout"
-            type="button"
-            onClick={ () => logout() }
-          >
-            Sair
-          </button>
-        </li>
-      </ul>
+      {
+        user && (
+          <ul>
+            {
+              user.role === 'customer'
+            && (
+              <li>
+                <button
+                  data-testid="customer_products__element-navbar-link-products"
+                  type="button"
+                  onClick={ () => handlesClick('customer/products') }
+                >
+                  Produtos
+                </button>
+              </li>
+            )
+            }
+            {
+              (user.role === 'customer' || user.role === 'seller')
+            && (
+              <li>
+                <button
+                  data-testid="customer_products__element-navbar-link-orders"
+                  type="button"
+                  onClick={ () => handlesClick(`${user.role}/orders`) }
+                >
+                  Meus Pedidos
+                </button>
+              </li>
+            )
+            }
+            {
+              user.role === 'admin'
+              && (
+                <li>
+                  <button
+                    data-testid="customer_products__element-navbar-link-orders"
+                    type="button"
+                    onClick={ () => handlesClick('admin/manage') }
+                  >
+                    Gerenciar usuários
+                  </button>
+                </li>
+              )
+            }
+            <li
+              data-testid="customer_products__element-navbar-user-full-name"
+              // type="button"
+              // onClick={ () => handlesClick('customer/products') }
+            >
+              {user.name}
+            </li>
+            <li>
+              <button
+                data-testid="customer_products__element-navbar-link-logout"
+                type="button"
+                onClick={ () => logout() }
+              >
+                Sair
+              </button>
+            </li>
+          </ul>
+        )
+      }
     </nav>
-
   );
 }
 
