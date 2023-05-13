@@ -58,7 +58,7 @@ function NavBar() {
             )
             }
             {
-              user.role === 'admin'
+              user.role === 'administrator'
               && (
                 <li>
                   <button
