@@ -18,7 +18,7 @@ function OrdersDetails() {
       return setOrder(response);
     };
     fetchDetails();
-  }, [status]);
+  }, [status, id]);
 
   const handleDeliveryStatus = async (e) => {
     let updated = '';
