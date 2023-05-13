@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 module.exports = {
    up: async (queryInterface) => {
   await queryInterface.bulkInsert('products', [

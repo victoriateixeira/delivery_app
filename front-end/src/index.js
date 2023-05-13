@@ -4,18 +4,20 @@ import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import DeliveryProvider from './contexts/DeliveryProvider';
+import ProductProvider from './contexts/ProductProvider';
 import UserProvider from './contexts/UserProvider';
+import './styles/index.css';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <DeliveryProvider>
-        <UserProvider>
+  <BrowserRouter>
+    <DeliveryProvider>
+      <UserProvider>
+        <ProductProvider>
           <App />
-        </UserProvider>
-      </DeliveryProvider>
-    </BrowserRouter>
-  </React.StrictMode>,
+        </ProductProvider>
+      </UserProvider>
+    </DeliveryProvider>
+  </BrowserRouter>,
   document.getElementById('root'),
 );
 

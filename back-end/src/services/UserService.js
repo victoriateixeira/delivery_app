@@ -1,5 +1,6 @@
 const md5 = require('md5');
 const { User } = require('../database/models');
+const { createToken } = require('../utils/jwtUtils');
 
 const findAll = async () => {
   const result = await User.findAll();
@@ -25,6 +26,7 @@ const findUser = async (user) => {
     name: foundUser.name,
     email: foundUser.email,
     role: foundUser.role,
+    token: createToken({ email: foundUser.email }),
   };
   return { type: null, message: userObject };
 };
