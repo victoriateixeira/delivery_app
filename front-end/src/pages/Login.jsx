@@ -26,7 +26,7 @@ function Login() {
   const defineRoute = (role) => {
     switch (role) {
     case 'customer':
-      history.push('/customer/orders');
+      history.push('/customer/products');
       break;
     case 'seller':
       history.push('/seller/orders');
