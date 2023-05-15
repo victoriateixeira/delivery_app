@@ -17,7 +17,6 @@ function Login() {
     setPassword,
     invalidLogin,
     setInvalidLogin,
-    user,
     setUser,
   } = useContext(DeliveryContext);
 
@@ -34,7 +33,6 @@ function Login() {
       setUser(setLogin.message);
       history.push('/customer/products');
     } catch (err) {
-      console.log('user:', user, err);
       setInvalidLogin(true);
     }
   };

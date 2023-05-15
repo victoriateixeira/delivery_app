@@ -46,9 +46,10 @@ describe('Testa a tela de login', () => {
   });
 
   it('Após o login, redireciona para a rota /customer/products', async () => {
-    const { history: { location: { pathname } } } = renderWithRouter(
+    const { history } = renderWithRouter(
       <DeliveryProvider><App /></DeliveryProvider>,
     );
+
     const email = screen.getByTestId(INPUT_EMAIL);
     const password = screen.getByTestId(INPUT_PASSWORD);
     const loginButton = screen.getByTestId(LOGIN_BUTTON);
@@ -57,8 +58,26 @@ describe('Testa a tela de login', () => {
     expect(loginButton).not.toBeDisabled();
     userEvent.click(loginButton);
 
-    expect(pathname).not.toBe('/login');
+    await waitFor(() => {
+      expect(history.location.pathname).toBe('/customer/products');
+    });
+  });
 
-    // expect(pathname).toMatch('/customer/products');
+  it('', async () => {
+    renderWithRouter(
+      <DeliveryProvider><App /></DeliveryProvider>,
+    );
+
+    const email = screen.getByTestId(INPUT_EMAIL);
+    const password = screen.getByTestId(INPUT_PASSWORD);
+    const loginButton = screen.getByTestId(LOGIN_BUTTON);
+    userEvent.type(email, 'trybe@trybe.com');
+    userEvent.type(password, VALID_PASSWORD);
+    userEvent.click(loginButton);
+
+    await waitFor(() => {
+      const invalidMessage = screen.getByTestId('common_login__element-invalid-email');
+      expect(invalidMessage).toBeInTheDocument();
+    });
   });
 });
