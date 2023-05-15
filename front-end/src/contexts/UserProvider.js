@@ -8,7 +8,7 @@ export default function UserProvider({ children }) {
   const value = useMemo(() => ({
     user,
     setUser,
-  }), [user, setUser]);
+  }), [user]);
 
   return (
     <UserContext.Provider value={ value }>

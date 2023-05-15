@@ -12,11 +12,11 @@ const createUser = async (req, res) => {
 
 const findUser = async (req, res) => {
   const user = req.body;
-  
-    const foundUser = await userService.findUser(user);
-    const { type, message } = foundUser;
-    if (!type) return res.status(200).json({ message });
-    return res.status(type).json({ message });
+
+  const foundUser = await userService.findUser(user);
+  const { type, message } = foundUser;
+  if (!type) return res.status(200).json({ message });
+  return res.status(type).json({ message });
 };
 
 module.exports = {

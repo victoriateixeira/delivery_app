@@ -3,12 +3,12 @@ import { Link, useHistory } from 'react-router-dom';
 import DeliveryContext from '../contexts/DeliveryContext';
 import validationInputs from '../utils/validationInputs';
 import { postAPI } from '../services/deliveryAPI';
-import UserContext from '../contexts/UserContext';
+// import UserContext from '../contexts/UserContext';
 // import { save } from '../services/localStorage';
 import '../styles/LoginStyle.css';
 
 function Login() {
-  const { setUser } = useContext(UserContext);
+  // const { user, setUser } = useContext(UserContext);
   const {
     isDisabled,
     setIsDisabled,
@@ -19,6 +19,7 @@ function Login() {
     invalidLogin,
     setInvalidLogin,
     user,
+    setUser,
   } = useContext(DeliveryContext);
 
   const history = useHistory();
@@ -26,7 +27,7 @@ function Login() {
   const defineRoute = (role) => {
     switch (role) {
     case 'customer':
-      history.push('/customers/products');
+      history.push('/customer/products');
       break;
     case 'seller':
       history.push('/seller/orders');
@@ -35,7 +36,7 @@ function Login() {
       history.push('/admin/manage');
       break;
     default:
-      history.push('/customers/products');
+      history.push('/customer/products');
     }
   };
 

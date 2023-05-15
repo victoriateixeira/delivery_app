@@ -25,24 +25,24 @@ describe('Verifica a rota /login', function () {
     const failedStatus = 404;
     
     const httpResponse = await chai
-    .request(app)
-    .post(loginRoute)
-    .send(invalidUserlogin);
+      .request(app)
+      .post(loginRoute)
+      .send(invalidUserlogin);
 
-  expect(httpResponse.status).to.be.equal(failedStatus);
-  expect(httpResponse.body).to.be.deep.equal({ message: 'Invalid Login' });
+    expect(httpResponse.status).to.be.equal(failedStatus);
+    expect(httpResponse.body).to.be.deep.equal({ message: 'Invalid Login' });
   });
 
   it('Retorna status 401, caso password esteja inválido', async function () {
     const failedStatus = 401;
     
     const response = await chai
-    .request(app)
-    .post(loginRoute)
-    .send(invalidPassword);
+      .request(app)
+      .post(loginRoute)
+      .send(invalidPassword);
 
-  expect(response.status).to.be.equal(failedStatus);
-  expect(response.body).to.be.deep.equal({ message: 'Invalid Password' });
+    expect(response.status).to.be.equal(failedStatus);
+    expect(response.body).to.be.deep.equal({ message: 'Invalid Password' });
   });
 
   it('Retorna status 200, caso a requisição seja feita com sucesso', async function () {
