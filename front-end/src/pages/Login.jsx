@@ -6,6 +6,7 @@ import { postAPI } from '../services/deliveryAPI';
 import UserContext from '../contexts/UserContext';
 // import { save } from '../services/localStorage';
 import '../styles/LoginStyle.css';
+import OnlineDelivery from '../images/OnlineDelivery.png';
 
 function Login() {
   const { setUser } = useContext(UserContext);
@@ -70,7 +71,7 @@ function Login() {
   return (
     <main className="login-container">
       <div className="logo-container">
-        {/* <img alt="app-logo" /> */}
+        <img src={ OnlineDelivery } alt="online delivery logo" width="500" />
       </div>
       <h1>Login</h1>
       <form>
