@@ -2,6 +2,8 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import CustomersOrders from './pages/CustomersOrders';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Products from './pages/Products';
+import Checkout from './pages/Checkout';
 import CustomersOrdersDetails from './pages/CustomersOrdersDetails';
 import SellerOrders from './pages/SellerOrders';
 import AdminPage from './pages/AdminPage';
@@ -17,6 +19,10 @@ function Routes() {
       <Route path="/customer/orders/:id" component={ CustomersOrdersDetails } exact />
       <Route path="/seller/orders" component={ SellerOrders } exact />
       <Route path="/admin/manage" component={ AdminPage } exact />
+      <Route path="/customer/products" component={ Products } exact />
+      <Route path="/customer/checkout" component={ Checkout } exact />
+      <Route path="/customer/orders" component={ CustomersOrders } exact />
+      <Route path="/customers/orders/:id" component={ CustomersOrdersDetails } exact />
     </Switch>
   );
 }

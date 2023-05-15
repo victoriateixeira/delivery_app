@@ -6,6 +6,7 @@ import { postAPI } from '../services/deliveryAPI';
 // import UserContext from '../contexts/UserContext';
 // import { save } from '../services/localStorage';
 import '../styles/LoginStyle.css';
+// import { save } from '../services/localStorage';
 
 function Login() {
   // const { user, setUser } = useContext(UserContext);
@@ -24,21 +25,21 @@ function Login() {
 
   const history = useHistory();
 
-  const defineRoute = (role) => {
-    switch (role) {
-    case 'customer':
-      history.push('/customer/products');
-      break;
-    case 'seller':
-      history.push('/seller/orders');
-      break;
-    case 'administrator':
-      history.push('/admin/manage');
-      break;
-    default:
-      history.push('/customer/products');
-    }
-  };
+  // const defineRoute = (role) => {
+  //   switch (role) {
+  //   case 'customer':
+  //     history.push('/customer/products');
+  //     break;
+  //   case 'seller':
+  //     history.push('/seller/orders');
+  //     break;
+  //   case 'administrator':
+  //     history.push('/admin/manage');
+  //     break;
+  //   default:
+  //     history.push('/customer/products');
+  //   }
+  // };
 
   const UserLogin = async () => {
     const u = {
@@ -47,9 +48,9 @@ function Login() {
     };
     try {
       const setLogin = await postAPI('/user/login', u);
-      const { message } = setLogin;
-      setUser(message);
-      defineRoute(message.role);
+      console.log(setLogin);
+      setUser(setLogin.message);
+      history.push('/customer/products');
     } catch (err) {
       console.log('user:', user, err);
       setInvalidLogin(true);

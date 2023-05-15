@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 module.exports = {
   up: async (queryInterface) => {
     await queryInterface.bulkInsert('users', [
@@ -15,7 +16,7 @@ module.exports = {
         email: 'fulana@deliveryapp.com',
         password: '3c28d2b0881bf46457a853e0b07531c6',
         // -- senha: md5('fulana@123')
-        role: 'seller'
+        role: 'seller',
       },
 
       {
@@ -24,7 +25,8 @@ module.exports = {
         email: 'zebirita@email.com',
         password: '1c37466c159755ce1fa181bd247cb925',
         // -- senha: md5('$#zebirita#$')
-        role: 'customer'
+        role: 'customer',
+
       },
     ], {});
   },

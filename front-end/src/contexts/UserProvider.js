@@ -1,10 +1,11 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import UserContext from './UserContext';
+import usePersistState from '../hooks/usePersistState';
 
 export default function UserProvider({ children }) {
-  const [user, setUser] = useState({});
-
+  // const [user, setUser] = useState({});
+  const [user, setUser] = usePersistState('user', []);
   const value = useMemo(() => ({
     user,
     setUser,
