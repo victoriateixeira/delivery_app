@@ -4,16 +4,13 @@ import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import DeliveryProvider from './contexts/DeliveryProvider';
-import UserProvider from './contexts/UserProvider';
 import './styles/index.css';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <DeliveryProvider>
-        <UserProvider>
           <App />
-        </UserProvider>
       </DeliveryProvider>
     </BrowserRouter>
   </React.StrictMode>,

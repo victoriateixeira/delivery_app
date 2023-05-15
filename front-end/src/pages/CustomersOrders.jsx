@@ -2,10 +2,10 @@ import React, { useEffect, useState, useContext } from 'react';
 import OrderCard from '../components/OrderCard';
 import { requestAPI } from '../services/deliveryAPI';
 // import { save, read } from '../services/localStorage';
-import UserContext from '../contexts/UserContext';
+import DeliveryContext from '../contexts/DeliveryContext';
 
 function CustomersOrders() {
-  const { user } = useContext(UserContext);
+  const { user } = useContext(DeliveryContext);
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {

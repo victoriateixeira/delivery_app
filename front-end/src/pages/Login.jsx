@@ -3,15 +3,14 @@ import { Link, useHistory } from 'react-router-dom';
 import DeliveryContext from '../contexts/DeliveryContext';
 import validationInputs from '../utils/validationInputs';
 import { postAPI } from '../services/deliveryAPI';
-import UserContext from '../contexts/UserContext';
 // import { save } from '../services/localStorage';
 import '../styles/LoginStyle.css';
 
 function Login() {
-  const { setUser } = useContext(UserContext);
   const {
     isDisabled,
     setIsDisabled,
+    setUser,
     email,
     setEmail,
     password,
