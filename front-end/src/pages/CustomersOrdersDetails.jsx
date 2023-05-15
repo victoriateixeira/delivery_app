@@ -10,7 +10,7 @@ function CustomersOrdersDetails() {
 
   useEffect(() => {
     const fetchDetails = async () => {
-      const response = await requestAPI(`/customers/orders/details/${id}`);
+      const response = await requestAPI(`/customer/orders/details/${id}`);
       setStatus(response.status);
       return setOrder(response);
     };
@@ -19,7 +19,7 @@ function CustomersOrdersDetails() {
 
   const handleDeliveryStatus = async () => {
     const updated = await updateAPI(
-      `/customers/orders/details/${id}`,
+      `//orders/details/${id}`,
       { status: 'ENTREGUE' },
     );
 

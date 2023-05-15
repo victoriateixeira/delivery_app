@@ -6,7 +6,7 @@ const productRoutes = require('./products.routes');
 const router = express.Router();
 
 router.use('/user', userRoutes);
-router.use('/customers/orders', ordersRoutes);
+router.use('/customer/orders', ordersRoutes);
 router.use('/products', productRoutes);
 
 module.exports = router;
