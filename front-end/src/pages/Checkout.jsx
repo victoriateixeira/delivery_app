@@ -1,22 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { requestAPI } from '../services/deliveryAPI';
 
 function Checkout() {
   const [items, setItems] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
+  const [seller, setSeller] = useState([]);
+  // const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    // Recuperar itens do localStorage
-    const savedCartItems = localStorage.getItem('cartItems');
-    if (savedCartItems) {
-      setCartItems(JSON.parse(savedCartItems));
-    }
+    const fetchSeller = async () => {
+      const response = await requestAPI('/customer/checkout/');
+
+      return setSeller(response);
+    };
+    fetchSeller();
   }, []);
 
-  useEffect(() => {
-    // Atualizar o localStorage sempre que o carrinho de compras for modificado
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  }, [cartItems]);
+  // useEffect(() => {
+  //   // Recuperar itens do localStorage
+  //   const savedCartItems = localStorage.getItem('cartItems');
+  //   if (savedCartItems) {
+  //     setCartItems(JSON.parse(savedCartItems));
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   // Atualizar o localStorage sempre que o carrinho de compras for modificado
+  //   localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  // }, [cartItems]);
 
   const removeItem = (id) => {
     const item = products.filter((ele) => ele.id !== id);
@@ -88,12 +99,25 @@ function Checkout() {
       <h3>Detalhes e Endereço para Entrega</h3>
       <div>
         <label htmlFor="select-seller">
-          P. Vendedora Responsável:
-          <input
-            name="select-seller"
+          P. Vendedor Responsável:
+          <select
             type="select"
             data-testid="customer_checkout_select-seller"
-          />
+            onChange={ ({ target }) => setSeller(target.value) }
+          >
+            { console.log(seller)}
+            {
+              seller.map((sel) => (
+                <option
+                  key="sel.id"
+                  value={ sel.id }
+                >
+                  {sel.name}
+                </option>
+              ))
+            }
+
+          </select>
         </label>
 
         <label htmlFor="input-address">
