@@ -3,13 +3,11 @@ import { Link, useHistory } from 'react-router-dom';
 import DeliveryContext from '../contexts/DeliveryContext';
 import validationInputs from '../utils/validationInputs';
 import { postAPI } from '../services/deliveryAPI';
-// import UserContext from '../contexts/UserContext';
 // import { save } from '../services/localStorage';
 import '../styles/LoginStyle.css';
 // import { save } from '../services/localStorage';
 
 function Login() {
-  // const { user, setUser } = useContext(UserContext);
   const {
     isDisabled,
     setIsDisabled,
@@ -24,22 +22,6 @@ function Login() {
   } = useContext(DeliveryContext);
 
   const history = useHistory();
-
-  // const defineRoute = (role) => {
-  //   switch (role) {
-  //   case 'customer':
-  //     history.push('/customer/products');
-  //     break;
-  //   case 'seller':
-  //     history.push('/seller/orders');
-  //     break;
-  //   case 'administrator':
-  //     history.push('/admin/manage');
-  //     break;
-  //   default:
-  //     history.push('/customer/products');
-  //   }
-  // };
 
   const UserLogin = async () => {
     const u = {

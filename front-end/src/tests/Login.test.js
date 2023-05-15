@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../utils/renderWithRouter';
@@ -45,26 +45,26 @@ describe('Testa a tela de login', () => {
     expect(loginButton).not.toBeDisabled();
   });
 
-  // it('Após o login, redireciona para a rota /customer/products', async () => {
-  //   const { history: { location: { pathname } } } = renderWithRouter(
-  //     <DeliveryProvider><App /></DeliveryProvider>,
-  //   );
-  //   const email = screen.getByTestId(INPUT_EMAIL);
-  //   const password = screen.getByTestId(INPUT_PASSWORD);
-  //   const loginButton = screen.getByTestId(LOGIN_BUTTON);
-  //   userEvent.type(email, VALID_EMAIL);
-  //   userEvent.type(password, VALID_PASSWORD);
-  //   expect(loginButton).not.toBeDisabled();
-  //   userEvent.click(loginButton);
+  it('Após o login, redireciona para a rota /customer/products', async () => {
+    const { history: { location: { pathname } } } = renderWithRouter(
+      <DeliveryProvider><App /></DeliveryProvider>,
+    );
+    const email = screen.getByTestId(INPUT_EMAIL);
+    const password = screen.getByTestId(INPUT_PASSWORD);
+    const loginButton = screen.getByTestId(LOGIN_BUTTON);
+    userEvent.type(email, VALID_EMAIL);
+    userEvent.type(password, VALID_PASSWORD);
+    expect(loginButton).not.toBeDisabled();
+    userEvent.click(loginButton);
 
-  //   await waitFor(
-  //     () => expect(pathname).not.toBe('/login'),
-  //     { timeout: 3000 },
-  //   );
+    // await waitFor(
+    //   () => expect(pathname).not.toBe('/login'),
+    //   { timeout: 3000 },
+    // );
 
-    // console.log(pathname);
+    console.log(pathname);
 
-    // expect(pathname).not.toBe('/login');
+    expect(pathname).not.toBe('/login');
 
     // expect(pathname).toMatch('/customer/products');
   });
