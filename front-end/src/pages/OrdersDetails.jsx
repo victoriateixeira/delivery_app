@@ -26,19 +26,19 @@ function OrdersDetails() {
     switch (e.target.name) {
     case 'preparing':
       updated = await updateAPI(
-        `/customer/orders/details/${id}`,
+        `/orders/details/${id}`,
         { status: 'PREPARANDO' },
       );
       break;
     case 'dispatch':
       updated = await updateAPI(
-        `/customer/orders/details/${id}`,
+        `/orders/details/${id}`,
         { status: 'EM TRÂNSITO' },
       );
       break;
     case 'delivered':
       updated = await updateAPI(
-        `/customer/orders/details/${id}`,
+        `/orders/details/${id}`,
         { status: 'ENTREGUE' },
       );
       break;
@@ -95,7 +95,7 @@ function OrdersDetails() {
                 onClick={ handleDeliveryStatus }
                 type="button"
                 name="delivered"
-                disabled={ status !== 'PREPARANDO' }
+                disabled={ status !== 'EM TRÂNSITO' }
               >
                 Marcar como entregue
               </button>

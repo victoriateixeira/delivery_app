@@ -1,0 +1,83 @@
+.order-card {
+  background-color: white;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  border-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 600px;
+  justify-content: space-between;
+  margin-left: 30px;
+}
+
+.order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 20px 10px 55px;
+}
+
+
+.status {
+  border-radius: 10px;
+  padding: 30px;
+  width: 200px;
+}
+
+.pending {
+  background-color: #ccb800;
+}
+
+.preparing {
+  background-color: #66cc00;
+}
+
+.dispatch {
+  background-color: rgb(255, 185, 56);
+}
+
+.delivered {
+  background-color: #00cc9b;
+}
+
+.date-price-status {
+  background-color: #b1c2be;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.date {
+  margin-bottom: 10px;
+}
+
+.card-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* padding: [top] [right] [bottom] [left]; */
+
+.date-price {
+  padding: 10px 30px 10px 30px;
+  background-color: #e5e5e5;
+  margin-left: 10px;
+  border-radius: 5px;
+}
+
+.container-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.address {
+  text-align: right;
+  padding: 10px;
+  background-color: #b1c2be;
+}
+
+.orders-list {
+  display: flex;
+}

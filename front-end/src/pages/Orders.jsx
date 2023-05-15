@@ -5,6 +5,7 @@ import { requestAPI } from '../services/deliveryAPI';
 import UserContext from '../contexts/UserContext';
 import formatDate from '../utils/helpers';
 import NavBar from '../components/NavBar';
+import '../styles/OrderCardStyle.css';
 
 function Orders() {
   const history = useHistory();
@@ -24,19 +25,21 @@ function Orders() {
   return (
     <div className="orders-page">
       <NavBar />
-      { orders.length > 0
-        ? orders.map((order) => (
-          <OrderCard
-            key={ order.id }
-            id={ order.id }
-            date={ formatDate(order.saleDate) }
-            status={ order.status }
-            price={ order.totalPrice }
-            onClick={ () => history.push(`/${user.role}/orders/${order.id}`) }
-            role={ user.role }
-            address={ order.deliveryAddress }
-            addressNumber={ order.deliveryNumber }
-          />)) : ''}
+      <div className="orders-list">
+        { orders.length > 0
+          ? orders.map((order) => (
+            <OrderCard
+              key={ order.id }
+              id={ order.id }
+              date={ formatDate(order.saleDate) }
+              status={ order.status }
+              price={ order.totalPrice }
+              onClick={ () => history.push(`/${user.role}/orders/${order.id}`) }
+              role={ user.role }
+              address={ order.deliveryAddress }
+              addressNumber={ order.deliveryNumber }
+            />)) : ''}
+      </div>
     </div>
   );
 }

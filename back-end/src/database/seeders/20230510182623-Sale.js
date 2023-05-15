@@ -8,13 +8,25 @@ module.exports = {
         delivery_address: 'Rua da Silva, Gama',
         delivery_number: '34',
         sale_date: '2023-05-10',
-        status: 'PENDENTE',
+      },
+      {
+        user_id: 3,
+        seller_id: 2,
+        total_price: 30.00,
+        delivery_address: 'Rua da Silva, Gama',
+        delivery_number: '34',
+        sale_date: '2023-05-10',
       },
     ]);
     await queryInterface.bulkInsert('sales_products', [
       {
         sale_id: sale,
         product_id: 9,
+        quantity: 2,
+      },
+      {
+        sale_id: sale,
+        product_id: 3,
         quantity: 2,
       },
     ]);
