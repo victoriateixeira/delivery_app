@@ -32,7 +32,7 @@ function Login() {
       const setLogin = await postAPI('/user/login', u);
       console.log(setLogin.message);
       setUser(setLogin.message);
-      history.push('/customers/orders');
+      history.push('/customer/products');
     } catch (err) {
       console.log('user:', user, err);
       setInvalidLogin(true);
