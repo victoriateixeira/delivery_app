@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../utils/renderWithRouter';
@@ -56,13 +56,6 @@ describe('Testa a tela de login', () => {
     userEvent.type(password, VALID_PASSWORD);
     expect(loginButton).not.toBeDisabled();
     userEvent.click(loginButton);
-
-    // await waitFor(
-    //   () => expect(pathname).not.toBe('/login'),
-    //   { timeout: 3000 },
-    // );
-
-    console.log(pathname);
 
     expect(pathname).not.toBe('/login');
 
