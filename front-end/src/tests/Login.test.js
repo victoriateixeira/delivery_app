@@ -63,7 +63,7 @@ describe('Testa a tela de login', () => {
     });
   });
 
-  it('', async () => {
+  it('Retorna mensagem de login inválido', async () => {
     renderWithRouter(
       <DeliveryProvider><App /></DeliveryProvider>,
     );
