@@ -3,8 +3,13 @@ import { Link, useHistory } from 'react-router-dom';
 import DeliveryContext from '../contexts/DeliveryContext';
 import validationInputs from '../utils/validationInputs';
 import { postAPI } from '../services/deliveryAPI';
+import UserContext from '../contexts/UserContext';
+// import { save } from '../services/localStorage';
+import '../styles/LoginStyle.css';
+import { save } from '../services/localStorage';
 
 function Login() {
+  const { setUser } = useContext(UserContext);
   const {
     isDisabled,
     setIsDisabled,
@@ -14,18 +19,22 @@ function Login() {
     setPassword,
     invalidLogin,
     setInvalidLogin,
+    user,
   } = useContext(DeliveryContext);
 
   const history = useHistory();
 
   const UserLogin = async () => {
-    const user = {
+    const u = {
       email,
       password,
     };
     try {
-      await postAPI('/user/login', user);
+      const setLogin = await postAPI('/user/login', u);
+      console.log(setLogin);
+      setUser(setLogin.message);
       history.push('/customer/products');
+      save('user', setLogin.message);
     } catch (err) {
       console.log('user:', user, err);
       setInvalidLogin(true);
@@ -48,11 +57,11 @@ function Login() {
     <main className="login-container">
       <div className="logo-container">
         {/* <img alt="app-logo" /> */}
-        <h1>NOME DO APP</h1>
       </div>
+      <h1>Login</h1>
       <form>
-        <h1>Login</h1>
         <label htmlFor="email">
+          <p>Email</p>
           <input
             type="text"
             name="email"
@@ -62,8 +71,8 @@ function Login() {
             onChange={ (e) => setEmail(e.target.value) }
           />
         </label>
-        <h1>Senha</h1>
         <label htmlFor="password">
+          <p>Senha</p>
           <input
             type="password"
             name="password"
@@ -73,22 +82,27 @@ function Login() {
             onChange={ (e) => setPassword(e.target.value) }
           />
         </label>
+        <Link to="/">
+          <button
+            type="button"
+            data-testid="common_login__button-login"
+            className="button-primary"
+            disabled={ isDisabled }
+            onClick={ UserLogin }
+          >
+            Login
+          </button>
+        </Link>
+        <Link to="/register">
+          <button
+            type="button"
+            data-testid="common_login__button-register"
+            className="button-tertiary"
+          >
+            Ainda não tenho conta
+          </button>
+        </Link>
       </form>
-      <Link to="/">
-        <button
-          type="button"
-          data-testid="common_login__button-login"
-          disabled={ isDisabled }
-          onClick={ UserLogin }
-        >
-          LOGIN
-        </button>
-      </Link>
-      <Link to="/register">
-        <button type="button" data-testid="common_login__button-register">
-          Ainda não tenho conta
-        </button>
-      </Link>
 
       {invalidLogin && (
         <div data-testid="common_login__element-invalid-email">

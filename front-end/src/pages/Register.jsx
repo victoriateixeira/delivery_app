@@ -41,7 +41,7 @@ function Register() {
   };
 
   return (
-    <main className="register-container">
+    <main className="login-container">
       <h1>Cadastro</h1>
       <form>
         <label htmlFor="nome">
@@ -79,6 +79,7 @@ function Register() {
           disabled={ isDisabled }
           onClick={ register }
           data-testid="common_register__button-register"
+          className="button-primary"
         >
           Cadastrar
         </button>

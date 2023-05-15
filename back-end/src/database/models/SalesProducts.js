@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
 
 'SalesProducts',
   {
-    postId: { type: DataTypes.INTEGER, primaryKey: true }, 
-    categoryId: { type: DataTypes.INTEGER, primaryKey: true }, 
+    saleId: { type: DataTypes.INTEGER, primaryKey: true }, 
+    productId: { type: DataTypes.INTEGER, primaryKey: true }, 
     quantity: { type: DataTypes.NUMBER },
       },
   {

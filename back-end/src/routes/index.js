@@ -10,5 +10,6 @@ router.use('/user', userRoutes);
 router.use('/customers/orders', ordersRoutes);
 router.use('/products', productRoutes);
 router.use('/customer/checkout', checkoutRoutes);
+router.use('/customer/products', productRoutes);
 
 module.exports = router;
