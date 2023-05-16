@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { requestAPI } from '../services/deliveryAPI';
+import { read } from '../services/localStorage';
+import NavBar from '../components/NavBar';
 
 function Checkout() {
   const [items, setItems] = useState([]);
   const [seller, setSeller] = useState([]);
+  const [total, setTotal] = useState(0);
   // const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
@@ -16,26 +19,28 @@ function Checkout() {
     fetchSeller();
   }, []);
 
-  // useEffect(() => {
-  //   // Recuperar itens do localStorage
-  //   const savedCartItems = localStorage.getItem('cartItems');
-  //   if (savedCartItems) {
-  //     setCartItems(JSON.parse(savedCartItems));
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   // Atualizar o localStorage sempre que o carrinho de compras for modificado
-  //   localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  // }, [cartItems]);
+  useEffect(() => {
+    const storedItems = read('cart') || [];
+    setItems(storedItems);
+  }, []);
 
   const removeItem = (id) => {
-    const item = products.filter((ele) => ele.id !== id);
-    setItems(item);
+    const updatedItems = items.filter((item) => item.id !== id);
+    setItems(updatedItems);
   };
+  function calculateTotal() {
+    const sum = items.reduce((tot, item) => tot + Number(item.price) * item.qty, 0);
+    setTotal(sum);
+  }
+
+  useEffect(() => {
+    calculateTotal();
+  }, [items]);
 
   return (
     <>
+      <NavBar />
+      <br />
       <h3>Finalizar Pedido</h3>
       <table>
         <thead>
@@ -54,33 +59,33 @@ function Checkout() {
               <th
                 data-testid={ `custumer_checkout_element-order-number-${el}` }
               >
-                {item.item}
+                {el + 1}
               </th>
               <td
                 data-testid={ `custumer_checkout_element-table-name-${el}` }
               >
-                {item.descricao}
+                {item.name}
               </td>
               <td
                 data-testid={ `custumer_checkout_element-table-quantity-${el}` }
               >
-                {item.quantidade}
+                {item.qty}
               </td>
               <td
                 data-testid={ `custumer_checkout_element-table-unit-price-${el}` }
               >
-                {item.valorUnitario}
+                {item.price}
               </td>
               <td
                 data-testid={ `custumer_checkout_element-table-sub-total-${el}` }
               >
-                {item.quantidade * item.valorUnitario}
+                {(item.qty * Number(item.price)).toFixed(2)}
               </td>
               <td>
                 <button
                   type="button"
                   data-testid={ `custumer_checkout_element-table-remove-${el}` }
-                  onClick={ () => removeItem(id) }
+                  onClick={ () => removeItem(item.id) }
                 >
                   Remover
                 </button>
@@ -92,6 +97,8 @@ function Checkout() {
       <div>
         <p data-testid="customer_checkout__element-order-total-price">
           Valor Total:
+          {' '}
+          {total}
 
         </p>
       </div>
