@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import AdminContext from '../contexts/AdminContext';
 import UserCard from '../components/UserCard';
@@ -10,6 +10,22 @@ export default function Admin() {
     password: '',
     role: 'Cliente' });
   const [conflict, setConflict] = useState(false);
+  const [disabled, setDisabled] = useState(true);
+
+  const isRegisterButtonDisabled = () => {
+    const { sellerName, email, password, role } = newUser;
+    const isSellerName = sellerName.length > 11;
+    const isEmail = email.includes('@' && '.com');
+    const isPassword = password.length > 5;
+    const isRole = role === 'P. Vendedora' || role === 'Cliente';
+
+    return (isSellerName && isEmail && isPassword && isRole);
+  };
+
+  useEffect(() => {
+    const isDis = isRegisterButtonDisabled();
+    setDisabled(isDis);
+  }, [newUser]);
 
   const onInputChange = (event) => {
     const { name, value } = event.target;
@@ -35,16 +51,6 @@ export default function Admin() {
     setUserList([...userList, addUser]);
     registerUser(addUser);
     setNewUser('');
-  };
-
-  const isRegisterButtonDisabled = () => {
-    const { sellerName, email, password, role } = newUser;
-    const isSellerName = sellerName.length > 11;
-    const isEmail = email.includes('@' && '.com');
-    const isPassword = password.length > 5;
-    const isRole = role === 'P. Vendedora' || role === 'Cliente';
-
-    return isSellerName && isEmail && isPassword && isRole;
   };
 
   return (
@@ -104,7 +110,7 @@ export default function Admin() {
             type="submit"
             id="register"
             data-testid="admin_manage__button-register"
-            disabled={ !isRegisterButtonDisabled() }
+            disabled={ !disabled }
             onClick={ onRegisterButtonClick }
           >
             Cadastrar
