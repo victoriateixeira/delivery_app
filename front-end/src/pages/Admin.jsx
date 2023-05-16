@@ -14,6 +14,7 @@ export default function Admin() {
 
   const isRegisterButtonDisabled = () => {
     const { sellerName, email, password, role } = newUser;
+    console.log(sellerName, email, password, role);
     const isSellerName = sellerName.length > 11;
     const isEmail = email.includes('@' && '.com');
     const isPassword = password.length > 5;
@@ -50,7 +51,10 @@ export default function Admin() {
     };
     setUserList([...userList, addUser]);
     registerUser(addUser);
-    setNewUser('');
+    setNewUser({ sellerName: '',
+      email: '',
+      password: '',
+      role: 'Cliente' });
   };
 
   return (
