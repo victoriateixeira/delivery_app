@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import NavBar from '../components/NavBar';
 import ProductContext from '../contexts/ProductContext';
 import ProductCard from '../components/ProductCard';
+import '../styles/ProductsStyle.css';
 
 function Products() {
   const { products, cart } = useContext(ProductContext);
@@ -26,31 +27,31 @@ function Products() {
   return (
     <>
       <NavBar />
-      <div>
+      <div className="products-container">
         {products.map((product, index) => index < TWELVE && (
           <div key={ index }>
             <ProductCard product={ product } />
           </div>
         )) }
       </div>
-      <div>
-        <button
-          type="button"
-          data-testid="customer_products__button-cart"
-          disabled={ !isTotalCost() }
-          onClick={ () => history.push('/customer/checkout') }
+
+      <button
+        type="button"
+        className="cart-button"
+        data-testid="customer_products__button-cart"
+        disabled={ !isTotalCost() }
+        onClick={ () => history.push('/customer/checkout') }
+      >
+        <span> Ver Carrinho:</span>
+        <span>R$</span>
+
+        <span
+          data-testid="customer_products__checkout-bottom-value"
         >
-          <span> Ver Carrinho</span>
-          <span>R$</span>
+          {(`${totalCost}`).replace('.', ',')}
 
-          <span
-            data-testid="customer_products__checkout-bottom-value"
-          >
-            {(`${totalCost}`).replace('.', ',')}
-
-          </span>
-        </button>
-      </div>
+        </span>
+      </button>
 
     </>
   );
