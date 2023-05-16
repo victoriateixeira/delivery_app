@@ -29,7 +29,6 @@ function Login() {
     };
     try {
       const setLogin = await postAPI('/user/login', u);
-      console.log(setLogin);
       setUser(setLogin.message);
       history.push('/customer/products');
     } catch (err) {
