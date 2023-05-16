@@ -11,7 +11,7 @@ function CustomersOrders() {
   useEffect(() => {
     const fetchOrders = async () => {
       if (user.id) {
-        const getOrders = await requestAPI(`/customers/orders/${user.id}`);
+        const getOrders = await requestAPI(`/customer/orders/${user.id}`);
         setOrders(getOrders);
       }
     };
@@ -23,6 +23,7 @@ function CustomersOrders() {
       { orders.length > 0
         ? orders.map((order) => (
           <OrderCard
+            // onClick={ () => history.push(`/customer/orders/${order.id}`) }
             key={ order.id }
             id={ order.id }
             date={ order.saleDate }

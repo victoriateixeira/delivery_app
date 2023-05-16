@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 module.exports = (sequelize, DataTypes) => {
   const Sale = sequelize.define(
 'Sale',

@@ -20,7 +20,7 @@ export default function DeliveryProvider({ children }) {
     setIsDisabled,
     invalidLogin,
     setInvalidLogin,
-  }), [email, user, isDisabled, password, invalidLogin]);
+  }), [email, isDisabled, password, invalidLogin, user]);
 
   return (
     <DeliveryContext.Provider value={ value }>

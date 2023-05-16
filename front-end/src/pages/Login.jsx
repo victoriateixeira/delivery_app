@@ -5,19 +5,19 @@ import validationInputs from '../utils/validationInputs';
 import { postAPI } from '../services/deliveryAPI';
 // import { save } from '../services/localStorage';
 import '../styles/LoginStyle.css';
+// import { save } from '../services/localStorage';
 
 function Login() {
   const {
     isDisabled,
     setIsDisabled,
-    setUser,
     email,
     setEmail,
     password,
     setPassword,
     invalidLogin,
     setInvalidLogin,
-    user,
+    setUser,
   } = useContext(DeliveryContext);
 
   const history = useHistory();
@@ -29,11 +29,10 @@ function Login() {
     };
     try {
       const setLogin = await postAPI('/user/login', u);
-      console.log(setLogin.message);
+      console.log(setLogin);
       setUser(setLogin.message);
       history.push('/customer/products');
     } catch (err) {
-      console.log('user:', user, err);
       setInvalidLogin(true);
     }
   };
