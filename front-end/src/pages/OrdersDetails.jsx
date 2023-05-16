@@ -5,12 +5,15 @@ import OrderDetailsTable from '../components/OrderDetailsTable';
 import formatDate from '../utils/helpers';
 import UserContext from '../contexts/UserContext';
 import NavBar from '../components/NavBar';
+import '../styles/OrderDetails.css';
 
 function OrdersDetails() {
   const { id } = useParams();
   const [order, setOrder] = useState(undefined);
   const [status, setStatus] = useState();
   const { user } = useContext(UserContext);
+
+  const statusDispatch = 'EM TRÂNSITO';
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -33,7 +36,7 @@ function OrdersDetails() {
     case 'dispatch':
       updated = await updateAPI(
         `/orders/details/${id}`,
-        { status: 'EM TRÂNSITO' },
+        { status: statusDispatch },
       );
       break;
     case 'delivered':
@@ -50,18 +53,19 @@ function OrdersDetails() {
   return (
     <div className="orders-details">
       <NavBar />
+      <h2 className="page-title">Detalhe do pedido</h2>
       { order ? (
         <div className="order-details-card">
-          <h1>Detalhe do pedido</h1>
-          <p
-            data-testid={
-              `${user.role}_order_details__element-order-details-label-order-id`
-            }
-          >
-            <p>{`PEDIDO 000${order.id}`}</p>
-          </p>
-          {
-            user.role === 'customer'
+          <div className="order-details-label">
+            <h3
+              data-testid={
+                `${user.role}_order_details__element-order-details-label-order-id`
+              }
+            >
+              <p>{`PEDIDO 000${order.id}`}</p>
+            </h3>
+            {
+              user.role === 'customer'
             && (
               <p
                 data-testid={
@@ -71,38 +75,43 @@ function OrdersDetails() {
                 { order.seller }
               </p>
             )
-          }
-          <p
-            data-testid={
-              `${user.role}_order_details__element-order-details-label-order-date`
             }
-          >
-            { formatDate(order.date) }
-          </p>
-          <p
-            data-testid={
-              `${user.role}_order_details__element-order-details-label-delivery-status
+            <h3
+              data-testid={
+                `${user.role}_order_details__element-order-details-label-order-date`
+              }
+            >
+              { formatDate(order.date) }
+            </h3>
+            <p
+              data-testid={
+                `${user.role}_order_details__element-order-details-label-delivery-status
               ${order.id}`
-            }
-          >
-            { status }
-          </p>
-          {
-            user.role === 'customer'
+              }
+              className={ `status-details ${status === 'PENDENTE' && 'pending'}
+          ${status === 'PREPARANDO' && 'preparing'}
+          ${status === statusDispatch && 'dispatch'}
+          ${status === 'ENTREGUE' && 'delivered'}
+          ` }
+            >
+              { status }
+            </p>
+            {
+              user.role === 'customer'
             && (
               <button
                 data-testid="customer_order_details__button-delivery-check"
                 onClick={ handleDeliveryStatus }
                 type="button"
                 name="delivered"
-                disabled={ status !== 'EM TRÂNSITO' }
+                disabled={ status !== statusDispatch }
               >
                 Marcar como entregue
               </button>
             )
-          }
-          {
-            user.role === 'seller'
+            }
+            {
+              user.role === 'seller'
             && (
               <div className="seller-buttons">
                 <button
@@ -111,6 +120,7 @@ function OrdersDetails() {
                   type="button"
                   disabled={ status !== 'PENDENTE' }
                   name="preparing"
+                  className="preparing-order"
                 >
                   Preparar pedido
                 </button>
@@ -120,12 +130,14 @@ function OrdersDetails() {
                   type="button"
                   disabled={ status !== 'PREPARANDO' }
                   name="dispatch"
+                  className="dispatch-order"
                 >
                   Saiu para a entrega
                 </button>
               </div>
             )
-          }
+            }
+          </div>
           <OrderDetailsTable
             products={ order.products }
             user={ `${user.role}` }

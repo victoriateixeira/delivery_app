@@ -34,7 +34,7 @@ function OrderCard({ id, date, status, price, onClick, role, address, addressNum
               data-testid={ `${role}_orders__element-order-price-${id}` }
               className="date-price"
             >
-              {`R$ ${price}`}
+              { `R$ ${(`${price}`).replace('.', ',')}` }
             </h3>
           </div>
         </div>

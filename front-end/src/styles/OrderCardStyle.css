@@ -74,10 +74,11 @@
 
 .address {
   text-align: right;
-  padding: 10px;
+  padding: 3px 10px 10px 10px;
   background-color: #b1c2be;
 }
 
 .orders-list {
   display: flex;
+  justify-content: center;
 }
