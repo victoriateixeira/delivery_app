@@ -42,14 +42,14 @@ function OrderDetailsTable({ products, user }) {
                 `${user}_order_details__element-order-table-unit-price-${index}`
               }
             >
-              { product.price }
+              { `${(`${product.price}`).replace('.', ',')}` }
             </td>
             <td
               data-testid={
                 `${user}_order_details__element-order-table-sub-total-${index}`
               }
             >
-              { product.price * product.quantity }
+              { `${(`${product.price * product.quantity}`).replace('.', ',')}` }
             </td>
           </tr>
         ))}

@@ -142,6 +142,13 @@ function OrdersDetails() {
             products={ order.products }
             user={ `${user.role}` }
           />
+          <div
+            data-testid={
+              `${user.role}_order_details__element-order-total-price`
+            }
+          >
+            <h1>{ `Total: R$ ${(`${order.price}`).replace('.', ',')}` }</h1>
+          </div>
         </div>
       ) : 'Pedido não encontrado'}
     </div>
