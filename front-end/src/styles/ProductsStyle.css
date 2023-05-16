@@ -1,0 +1,139 @@
+a {
+  text-decoration: none;
+}
+
+.products-container {
+  align-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: space-evenly;
+}
+
+.cart-button {
+  align-items: center;
+  align-self: flex-end;
+  background: #036b52;
+  border-radius: 10px;
+  bottom: 0%;
+  color: #f2fffc;
+  display: flex;
+  font-size: 36px;
+  font-weight: 700;
+  height: 79px;
+  justify-content: space-around;
+  left: 70%;
+  line-height: 42.19px;
+  position: fixed;
+  right: 0%;
+  text-align: center;
+  top: 80%;
+  width: 445px;
+}
+
+.product-card {
+  background: white;
+  border: 1px solid #b1c2be;
+  border-radius: 4px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 10px;
+  position: relative;
+
+  /* position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%; */
+}
+
+.product-price {
+  background-color: rgb(177, 194, 190, 0.1);
+  border-radius: 10px;
+  color: #001813;
+  display: inline-block;
+  font-size: 36px;
+  font-weight: 700;
+  height: 63px;
+  margin: 5px;
+  padding-top: 12px;
+  text-align: center;
+  width: 154px;
+}
+
+.info-container {
+  background-color: rgb(177, 194, 190, 0.4);
+  display: flex;
+  flex-direction: column;
+}
+
+.product-name {
+  color: #001813;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.qty-container {
+  align-items: center;
+  align-self: center;
+  background: #eaf1ef;
+  border-radius: 10px;
+  display: flex;
+  justify-content: baseline;
+  margin-bottom: 10px;
+}
+
+.sub-button {
+  background-color: #036b52;
+  border: transparent;
+  border-radius: 10px 0 0 10px;
+  color: #f2fffc;
+  font-size: 36px;
+  font-weight: 700;
+  height: 51px;
+  width: 61px;
+}
+
+.add-button {
+  background-color: #036b52;
+  border: transparent;
+  border-radius: 0 10px 10px 0;
+  color: #f2fffc;
+  font-size: 36px;
+  font-weight: 700;
+  height: 51px;
+  width: 61px;
+}
+
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input {
+  border: solid 1px black;
+  color: #828282;
+  font-size: 24px;
+  font-weight: 400;
+  height: 48px;
+  position: static;
+  text-align: center;
+  width: 61px;
+}
+
+img {
+  align-self: flex-start;
+  border-color: transparent;
+  height: 357px;
+  left: 1.05px;
+  margin-top: 0%;
+  object-fit: contain;
+  width: 375px;
+}

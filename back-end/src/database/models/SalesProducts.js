@@ -5,10 +5,10 @@ module.exports = (sequelize, DataTypes) => {
 
 'SalesProducts',
   {
-    saleId: { type: DataTypes.INTEGER, primaryKey: true }, 
     productId: { type: DataTypes.INTEGER, primaryKey: true }, 
+    saleId: { type: DataTypes.INTEGER, primaryKey: true }, 
     quantity: { type: DataTypes.NUMBER },
-      },
+  },
   {
     timestamps: false,
     tableName: 'sales_products',

@@ -1,0 +1,76 @@
+.page-title {
+  margin-left: 50px;
+  margin-bottom: 30px;
+}
+
+.order-details-card {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+  width: 900px;
+}
+
+.order-details-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  background-color: #b1c2be;
+}
+
+/* padding: [top] [right] [bottom] [left]; */
+.status-details {
+  border-radius: 5px;
+  padding: 5px 30px;
+  margin-left: 20px
+}
+
+.pending {
+  background-color: #ccb800;
+}
+
+.preparing {
+  background-color: #66cc00;
+}
+
+.dispatch {
+  background-color: rgb(255, 185, 56);
+}
+
+.delivered {
+  background-color: #00cc9b;
+}
+
+.order-id {
+  margin-left: 10px;
+}
+
+.date-details {
+  margin-left: 20px;
+}
+
+.seller-buttons {
+  margin-left: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.preparing-order {
+  background-color: #2fc18c;
+  border-style: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  color: #e5e5e5;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+
+.dispatch-order {
+  background-color: #036b52;
+  border-style: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  color: #e5e5e5;
+  padding: 5px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+}

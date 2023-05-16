@@ -6,7 +6,7 @@ import { postAPI } from '../services/deliveryAPI';
 import UserContext from '../contexts/UserContext';
 // import { save } from '../services/localStorage';
 import '../styles/LoginStyle.css';
-import { save } from '../services/localStorage';
+import OnlineDelivery from '../images/OnlineDelivery.png';
 
 function Login() {
   const { setUser } = useContext(UserContext);
@@ -24,6 +24,22 @@ function Login() {
 
   const history = useHistory();
 
+  const defineRoute = (role) => {
+    switch (role) {
+    case 'customer':
+      history.push('/customer/products');
+      break;
+    case 'seller':
+      history.push('/seller/orders');
+      break;
+    case 'administrator':
+      history.push('/admin/manage');
+      break;
+    default:
+      history.push('/customer/products');
+    }
+  };
+
   const UserLogin = async () => {
     const u = {
       email,
@@ -31,10 +47,9 @@ function Login() {
     };
     try {
       const setLogin = await postAPI('/user/login', u);
-      console.log(setLogin);
-      setUser(setLogin.message);
-      history.push('/customer/products');
-      save('user', setLogin.message);
+      const { message } = setLogin;
+      setUser(message);
+      defineRoute(message.role);
     } catch (err) {
       console.log('user:', user, err);
       setInvalidLogin(true);
@@ -56,7 +71,7 @@ function Login() {
   return (
     <main className="login-container">
       <div className="logo-container">
-        {/* <img alt="app-logo" /> */}
+        <img src={ OnlineDelivery } alt="online delivery logo" width="500" />
       </div>
       <h1>Login</h1>
       <form>

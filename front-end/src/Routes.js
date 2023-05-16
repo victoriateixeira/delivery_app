@@ -1,10 +1,11 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
-import CustomersOrders from './pages/CustomersOrders';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Products from './pages/Products';
 import Checkout from './pages/Checkout';
-import CustomersOrdersDetails from './pages/CustomersOrdersDetails';
+import OrdersDetails from './pages/OrdersDetails';
+import AdminPage from './pages/AdminPage';
+import Orders from './pages/Orders';
 
 function Routes() {
   return (
@@ -14,8 +15,11 @@ function Routes() {
       <Route path="/register" component={ Register } exact />
       <Route path="/customer/products" component={ Products } exact />
       <Route path="/customer/checkout" component={ Checkout } exact />
-      <Route path="/customer/orders" component={ CustomersOrders } exact />
-      <Route path="/customers/orders/:id" component={ CustomersOrdersDetails } exact />
+      <Route path="/customer/orders" component={ Orders } exact />
+      <Route path="/customer/orders/:id" component={ OrdersDetails } exact />
+      <Route path="/seller/orders" component={ Orders } exact />
+      <Route path="/seller/orders/:id" component={ OrdersDetails } exact />
+      <Route path="/admin/manage" component={ AdminPage } exact />
     </Switch>
   );
 }

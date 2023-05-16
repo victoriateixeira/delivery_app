@@ -1,4 +1,4 @@
-const { User, Sale } = require('../database/models');
+const { User } = require('../database/models');
 
 const getAllSellers = async () => {
   const sellers = await User.findAll({

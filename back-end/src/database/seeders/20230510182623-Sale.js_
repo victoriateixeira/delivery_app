@@ -8,7 +8,6 @@ module.exports = {
         delivery_address: 'Rua da Silva, Gama',
         delivery_number: '34',
         sale_date: '2023-05-10',
-        status: 'PENDENTE',
       },
     ]);
     await queryInterface.bulkInsert('sales_products', [
