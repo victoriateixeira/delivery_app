@@ -7,6 +7,7 @@ export default function DeliveryProvider({ children }) {
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
   const [invalidLogin, setInvalidLogin] = useState(false);
+  const [user, setUser] = useState({});
 
   const value = useMemo(() => ({
     email,
@@ -17,7 +18,9 @@ export default function DeliveryProvider({ children }) {
     setIsDisabled,
     invalidLogin,
     setInvalidLogin,
-  }), [email, isDisabled, password, invalidLogin]);
+    user,
+    setUser,
+  }), [email, isDisabled, password, invalidLogin, user]);
 
   return (
     <DeliveryContext.Provider value={ value }>
