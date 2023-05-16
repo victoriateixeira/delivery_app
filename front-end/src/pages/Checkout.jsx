@@ -30,7 +30,7 @@ function Checkout() {
   };
   function calculateTotal() {
     const sum = items.reduce((tot, item) => tot + Number(item.price) * item.qty, 0);
-    setTotal(sum);
+    setTotal(sum.toFixed(2));
   }
 
   useEffect(() => {
@@ -57,34 +57,34 @@ function Checkout() {
           {items.map((item, el) => (
             <tr key={ el }>
               <th
-                data-testid={ `custumer_checkout_element-order-number-${el}` }
+                data-testid={ `customer_checkout__element-order-table-item-number-${el}` }
               >
                 {el + 1}
               </th>
               <td
-                data-testid={ `custumer_checkout_element-table-name-${el}` }
+                data-testid={ `customer_checkout__element-order-table-name-${el}` }
               >
                 {item.name}
               </td>
               <td
-                data-testid={ `custumer_checkout_element-table-quantity-${el}` }
+                data-testid={ `customer_checkout__element-order-table-quantity-${el}` }
               >
                 {item.qty}
               </td>
               <td
-                data-testid={ `custumer_checkout_element-table-unit-price-${el}` }
+                data-testid={ `customer_checkout__element-order-table-unit-price-${el}` }
               >
-                {item.price}
+                {item.price.replace('.', ',')}
               </td>
               <td
-                data-testid={ `custumer_checkout_element-table-sub-total-${el}` }
+                data-testid={ `customer_checkout__element-order-table-sub-total-${el}` }
               >
-                {(item.qty * Number(item.price)).toFixed(2)}
+                {(item.qty * Number(item.price)).toFixed(2).replace('.', ',')}
               </td>
               <td>
                 <button
                   type="button"
-                  data-testid={ `custumer_checkout_element-table-remove-${el}` }
+                  data-testid={ `customer_checkout__element-order-table-remove-${el}` }
                   onClick={ () => removeItem(item.id) }
                 >
                   Remover
@@ -98,7 +98,7 @@ function Checkout() {
         <p data-testid="customer_checkout__element-order-total-price">
           Valor Total:
           {' '}
-          {total}
+          {(`${total}`).replace('.', ',')}
 
         </p>
       </div>
@@ -109,7 +109,7 @@ function Checkout() {
           P. Vendedor Responsável:
           <select
             type="select"
-            data-testid="customer_checkout_select-seller"
+            data-testid="customer_checkout__select-seller"
             onChange={ ({ target }) => setSeller(target.value) }
           >
             { console.log(seller)}
@@ -132,7 +132,7 @@ function Checkout() {
           <input
             name="input-address"
             type="text"
-            data-testid="customer_checkout_input-adress"
+            data-testid="customer_checkout__input-address"
           />
         </label>
 
@@ -141,7 +141,7 @@ function Checkout() {
           <input
             name="input-number"
             type="number"
-            data-testid="customer_checkout_input-adress-number"
+            data-testid="customer_checkout__input-address-number"
           />
         </label>
         <br />
@@ -150,7 +150,7 @@ function Checkout() {
         <Link to="/customer/orders">
           <button
             type="button"
-            data-testid="customer_checkout_button-submit-order"
+            data-testid="customer_checkout__button-submit-order"
           >
             Finalizar Pedido
           </button>
