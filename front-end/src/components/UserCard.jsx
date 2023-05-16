@@ -47,3 +47,5 @@ UserCard.propTypes = {
   index: PropTypes.number.isRequired,
   removesUser: PropTypes.func.isRequired,
 };
+
+export default UserCard;

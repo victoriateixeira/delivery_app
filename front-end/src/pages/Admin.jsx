@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
+import AdminContext from '../contexts/AdminContext';
+import UserCard from '../components/UserCard';
 
-function Admin() {
-  const [userList, setUserList] = useState([]);
+export default function Admin() {
+  const { userList, setUserList } = useContext(AdminContext);
   const [newUser, setNewUser] = useState();
 
   onInputChange = (event) => {
@@ -26,11 +28,6 @@ function Admin() {
     return isSellerName && isEmail && isPassword && isRole;
   };
 
-  removesUser = (user) => {
-    const updatedUserList = userList.filter((u) => u.id !== user.id);
-    setUserList(updatedUserList);
-    // adicionar lógica para deletar do banco de dados
-  };
   return (
     <>
       <NavBar />
