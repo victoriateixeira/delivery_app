@@ -5,6 +5,7 @@ import Register from './pages/Register';
 import Products from './pages/Products';
 import Checkout from './pages/Checkout';
 import CustomersOrdersDetails from './pages/CustomersOrdersDetails';
+import Admin from './pages/Admin';
 
 function Routes() {
   return (
@@ -16,6 +17,7 @@ function Routes() {
       <Route path="/customer/checkout" component={ Checkout } exact />
       <Route path="/customer/orders" component={ CustomersOrders } exact />
       <Route path="/customers/orders/:id" component={ CustomersOrdersDetails } exact />
+      <Route path="/admin/manage" component={ Admin } exact />
     </Switch>
   );
 }

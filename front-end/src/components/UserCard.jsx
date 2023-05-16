@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
+import AdminContext from '../contexts/AdminContext';
 
-function UserCard({ savedUser, index, removesUser }) {
+function UserCard({ savedUser, index }) {
+  const { removesUser } = useContext(AdminContext);
   return (
     <tr key={ savedUser.id }>
       <td
@@ -29,7 +32,7 @@ function UserCard({ savedUser, index, removesUser }) {
         <button
           type="button"
           data-testid={ `admin_manage__element-user-table-remove-${index}` }
-          onClick={ () => removesUser }
+          onClick={ () => removesUser(savedUser) }
         >
           Excluir
         </button>
@@ -45,7 +48,6 @@ UserCard.propTypes = {
     role: PropTypes.string.isRequired,
   }).isRequired,
   index: PropTypes.number.isRequired,
-  removesUser: PropTypes.func.isRequired,
 };
 
 export default UserCard;

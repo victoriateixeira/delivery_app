@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { node } from 'prop-types';
 import AdminContext from './AdminContext';
+import { requestAPI } from '../services/deliveryAPI';
 
-export default function AdminProvider() {
+export default function AdminProvider({ children }) {
   const [userList, setUserList] = useState([]);
 
-  removesUser = (user) => {
+  const getUsers = async () => {
+    const response = await requestAPI('/user');
+    setUserList(response);
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  const removesUser = (user) => {
     const updatedUserList = userList.filter((u) => u.id !== user.id);
     setUserList(updatedUserList);
     // adicionar lógica para deletar do banco de dados
@@ -13,6 +24,7 @@ export default function AdminProvider() {
   const value = useMemo(() => ({
     userList,
     setUserList,
+    removesUser,
   }), [userList]);
 
   return (
@@ -21,3 +33,7 @@ export default function AdminProvider() {
     </AdminContext.Provider>
   );
 }
+
+AdminProvider.propTypes = {
+  children: node.isRequired,
+};

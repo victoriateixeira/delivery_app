@@ -7,13 +7,16 @@ import DeliveryProvider from './contexts/DeliveryProvider';
 import ProductProvider from './contexts/ProductProvider';
 import UserProvider from './contexts/UserProvider';
 import './styles/index.css';
+import AdminProvider from './contexts/AdminProvider';
 
 ReactDOM.render(
   <BrowserRouter>
     <DeliveryProvider>
       <UserProvider>
         <ProductProvider>
-          <App />
+          <AdminProvider>
+            <App />
+          </AdminProvider>
         </ProductProvider>
       </UserProvider>
     </DeliveryProvider>

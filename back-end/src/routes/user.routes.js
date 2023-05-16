@@ -5,5 +5,6 @@ const router = express.Router();
 // router.get('/', (_req, res) => res.json({ message: 'oi' }));
 router.post('/login', userController.findUser);
 router.post('/register', userController.createUser);
+router.get('/', userController.findAll);
 
 module.exports = router;
