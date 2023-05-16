@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
 import { useLocation } from 'react-router-dom';
-import UserContext from '../contexts/UserContext';
 import { remove } from '../services/localStorage';
 import ProductContext from '../contexts/ProductContext';
 import '../styles/NavBarStyle.css';
+import DeliveryContext from '../contexts/DeliveryContext';
 
 function NavBar() {
   // useEffect() => {
   //   //Resgatar o NOME do usuário do localStorage
   // }
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(DeliveryContext);
   const { setCart } = useContext(ProductContext);
   const history = useHistory();
   const handlesClick = (page) => {

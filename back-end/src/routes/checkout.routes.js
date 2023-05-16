@@ -4,7 +4,7 @@ const validateJWT = require('../controllers/middlewares/validateJWT');
 
 const checkoutRoutes = express.Router();
 
-checkoutRoutes.get('/', checkoutController.getSellers);
 checkoutRoutes.post('/', validateJWT, checkoutController.postSale);
+checkoutRoutes.get('/', checkoutController.getSellers);
 
 module.exports = checkoutRoutes;

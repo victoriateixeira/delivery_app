@@ -5,17 +5,14 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 import DeliveryProvider from './contexts/DeliveryProvider';
 import ProductProvider from './contexts/ProductProvider';
-import UserProvider from './contexts/UserProvider';
 import './styles/index.css';
 
 ReactDOM.render(
   <BrowserRouter>
     <DeliveryProvider>
-      <UserProvider>
-        <ProductProvider>
-          <App />
-        </ProductProvider>
-      </UserProvider>
+      <ProductProvider>
+        <App />
+      </ProductProvider>
     </DeliveryProvider>
   </BrowserRouter>,
   document.getElementById('root'),

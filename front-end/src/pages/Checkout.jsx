@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { requestAPI } from '../services/deliveryAPI';
-import { read } from '../services/localStorage';
+import { useHistory } from 'react-router-dom';
+import { requestAPI, setToken, postAPI } from '../services/deliveryAPI';
+import { read, save } from '../services/localStorage';
 import NavBar from '../components/NavBar';
 import DeliveryContext from '../contexts/DeliveryContext';
 
 function Checkout() {
   const { user } = useContext(DeliveryContext);
+  const history = useHistory();
   const [items, setItems] = useState([]);
   const [seller, setSeller] = useState([]);
   const [total, setTotal] = useState(0);
   const [address, setAddress] = useState('');
-  const [addressNumber, setAddressNumber] = useState('');
+  const [addressNumber, setAddressNumber] = useState();
   // const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
@@ -30,12 +31,28 @@ function Checkout() {
 
   const removeItem = (id) => {
     const updatedItems = items.filter((item) => item.id !== id);
+    save('cart', updatedItems);
     setItems(updatedItems);
   };
 
   function calculateTotal() {
     const sum = items.reduce((tot, item) => tot + Number(item.price) * item.qty, 0);
     setTotal(sum.toFixed(2));
+  }
+
+  async function handleClick() {
+    setToken(user.token);
+    console.log(typeof total);
+    await postAPI('/customer/checkout', {
+      userId: user.id,
+      sellerId: seller.id,
+      totalPrice: Number(total),
+      deliveryAddress: address,
+      deliveryNumber: addressNumber,
+      saleDate: Date.now(),
+      products: items,
+    });
+    return history.push('/customer/orders');
   }
 
   useEffect(() => {
@@ -136,7 +153,7 @@ function Checkout() {
           Endereço
           <input
             value={ address }
-            onChange={ (e) => setAddress(e.target.value)}
+            onChange={ (e) => setAddress(e.target.value) }
             name="input-address"
             type="text"
             data-testid="customer_checkout__input-address"
@@ -147,7 +164,7 @@ function Checkout() {
           Número
           <input
             value={ addressNumber }
-            onChange={ (e) => setAddressNumber(e.target.value)}
+            onChange={ (e) => setAddressNumber(e.target.value) }
             name="input-number"
             type="number"
             data-testid="customer_checkout__input-address-number"
@@ -155,16 +172,13 @@ function Checkout() {
         </label>
         <br />
         <br />
-
-        <Link to="/customer/orders">
-          <button
-            type="button"
-            data-testid="customer_checkout__button-submit-order"
-          >
-            Finalizar Pedido
-          </button>
-        </Link>
-
+        <button
+          onClick={ handleClick }
+          type="button"
+          data-testid="customer_checkout__button-submit-order"
+        >
+          Finalizar Pedido
+        </button>
       </div>
     </>
   );
