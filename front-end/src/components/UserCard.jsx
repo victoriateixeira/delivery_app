@@ -32,7 +32,7 @@ function UserCard({ savedUser, index }) {
         <button
           type="button"
           data-testid={ `admin_manage__element-user-table-remove-${index}` }
-          onClick={ () => removesUser(savedUser) }
+          onClick={ async () => removesUser(savedUser) }
         >
           Excluir
         </button>
@@ -40,6 +40,7 @@ function UserCard({ savedUser, index }) {
     </>
   );
 }
+
 UserCard.propTypes = {
   savedUser: PropTypes.shape({
     id: PropTypes.number.isRequired,

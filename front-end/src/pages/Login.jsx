@@ -21,15 +21,31 @@ function Login() {
 
   const history = useHistory();
 
+  const defineRoute = (role) => {
+    switch (role) {
+    case 'customer':
+      history.push('/customer/products');
+      break;
+    case 'seller':
+      history.push('/seller/orders');
+      break;
+    case 'administrator':
+      history.push('/admin/manage');
+      break;
+    default:
+      break;
+    }
+  };
+
   const UserLogin = async () => {
     const u = {
       email,
       password,
     };
     try {
-      const setLogin = await postAPI('/user/login', u);
-      setUser(setLogin.message);
-      history.push('/customer/products');
+      const { message } = await postAPI('/user/login', u);
+      setUser(message);
+      defineRoute(message.role);
     } catch (err) {
       setInvalidLogin(true);
     }

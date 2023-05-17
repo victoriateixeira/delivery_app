@@ -10,6 +10,13 @@ const createUserAdmin = async (req, res) => {
   }
 };
 
+const deleteUser = async (req, res) => {
+  const { id } = req.params;
+  const users = await adminService.deleteUser(id);
+  res.status(204).json(users);
+};
+
 module.exports = {
-createUserAdmin,
+  createUserAdmin,
+  deleteUser,
 };

@@ -2,37 +2,35 @@ import React, { useContext, useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import AdminContext from '../contexts/AdminContext';
 import UserCard from '../components/UserCard';
+import validationInputs from '../utils/validationInputs';
 
 export default function Admin() {
-  const SELLER_NAME_LENGTH = 11;
-  const SELLER_PASSWORD_LENGTH = 5;
   const { userList, setUserList, getUsers } = useContext(AdminContext);
   const [conflict, setConflict] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [newUser, setNewUser] = useState({ sellerName: '',
     email: '',
     password: '',
-    role: 'Cliente' });
+    role: 'customer' });
 
   useEffect(() => {
-    getUsers();
-    console.log(userList);
+    const execData = async () => getUsers();
+
+    execData();
   }, []);
 
-  const isRegisterButtonDisabled = () => {
-    const { sellerName, email, password, role } = newUser;
-    console.log(sellerName, email, password, role);
-    const isSellerName = sellerName.length > SELLER_NAME_LENGTH;
-    const isEmail = email.includes('@' && '.com');
-    const isPassword = password.length > SELLER_PASSWORD_LENGTH;
-    const isRole = role === 'P. Vendedora' || role === 'Cliente';
+  // const isRegisterButtonDisabled = () => {
+  //   const isRole = role === 'P. Vendedora' || role === 'Cliente';
 
-    return (isSellerName && isEmail && isPassword && isRole);
-  };
+  //   return (isSellerName && isEmail && isPassword && isRole);
+  // };
 
   useEffect(() => {
-    const isDis = isRegisterButtonDisabled();
-    setDisabled(isDis);
+    const SELLER_NAME_LENGTH = 11;
+    const { sellerName, email, password } = newUser;
+    const validationGeneral = validationInputs(email, password);
+    const isSellerName = sellerName.length > SELLER_NAME_LENGTH;
+    setDisabled(!(validationGeneral && isSellerName));
   }, [newUser]);
 
   const onInputChange = (event) => {
@@ -42,26 +40,36 @@ export default function Admin() {
 
   const registerUser = async (user) => {
     try {
-      await postAPI('/user/register', user);
+      const addUser = await postAPI('/admin/manage', user);
+      console.log(addUser);
+      setUserList([...userList, addUser]);
     } catch (err) {
       setConflict(true);
     }
   };
 
-  const onRegisterButtonClick = (event) => {
+  const onRegisterButtonClick = async (event) => {
     event.preventDefault();
+
     const addUser = {
       name: newUser.sellerName,
       email: newUser.email,
       password: newUser.password,
       role: newUser.role,
     };
-    setUserList([...userList, addUser]);
-    registerUser(addUser);
-    setNewUser({ sellerName: '',
+
+    console.log(addUser);
+
+    await registerUser(addUser);
+
+    setNewUser({
+      sellerName: '',
       email: '',
       password: '',
-      role: 'Cliente' });
+      role: 'customer',
+    });
+
+    console.log(userList);
   };
 
   return (
@@ -121,7 +129,7 @@ export default function Admin() {
             type="submit"
             id="register"
             data-testid="admin_manage__button-register"
-            disabled={ !disabled }
+            disabled={ disabled }
             onClick={ onRegisterButtonClick }
           >
             Cadastrar
@@ -143,7 +151,6 @@ export default function Admin() {
               <th>Nome</th>
               <th>E-mail</th>
               <th>Tipo</th>
-              <th>Excluir</th>
             </tr>
           </thead>
           <tbody>

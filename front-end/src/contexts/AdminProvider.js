@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { node } from 'prop-types';
 import AdminContext from './AdminContext';
-import { requestAPI } from '../services/deliveryAPI';
+import { requestAPI, deleteAPI } from '../services/deliveryAPI';
 
 export default function AdminProvider({ children }) {
   const [userList, setUserList] = useState([]);
@@ -11,9 +11,9 @@ export default function AdminProvider({ children }) {
     setUserList(response);
   };
 
-  const removesUser = (user) => {
-    const updatedUserList = userList.filter((u) => u.id !== user.id);
-    setUserList(updatedUserList);
+  const removesUser = async (user) => {
+    const newUserList = await deleteAPI(`/admin/manage/:${user.id}`);
+    setUserList(newUserList);
     // adicionar lógica para deletar do banco de dados
   };
 

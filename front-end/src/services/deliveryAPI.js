@@ -19,4 +19,9 @@ const updateAPI = async (endpoint, obj) => {
   return data;
 };
 
-export { requestAPI, postAPI, updateAPI };
+const deleteAPI = async (endpoint) => {
+  const { data } = await api.delete(endpoint);
+  return data;
+};
+
+export { requestAPI, postAPI, updateAPI, deleteAPI };

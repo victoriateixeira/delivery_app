@@ -11,4 +11,11 @@ const createUserAdmin = async (user) => {
   return result;
 };
 
-module.exports = { createUserAdmin };
+const deleteUser = async (id) => {
+  const user = await User.findOne({ where: { id } });
+  if (!user) throw new Error('User not found');
+  await User.destroy({ where: { id } });
+  return User.findAll();
+};
+
+module.exports = { createUserAdmin, deleteUser };
