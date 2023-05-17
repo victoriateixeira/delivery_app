@@ -5,7 +5,6 @@ import validationInputs from '../utils/validationInputs';
 import { postAPI } from '../services/deliveryAPI';
 // import { save } from '../services/localStorage';
 import '../styles/LoginStyle.css';
-// import { save } from '../services/localStorage';
 
 function Login() {
   const {
