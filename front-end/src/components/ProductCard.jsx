@@ -9,7 +9,7 @@ function ProductCard({ product }) {
   console.log(product);
   const { addToCart, removeFromCart } = useContext(ProductContext);
   const { id, name, price, urlImage } = product;
-  const [cartQty, setCartQty] = useState(0);
+  const [cartQty, setCartQty] = useState();
 
   // useEffect(() => {
   //   const storeCart = read('cart');
@@ -63,6 +63,7 @@ function ProductCard({ product }) {
   };
 
   const handleChange = ({ target }) => {
+    setCartQty(0);
     const { value } = target;
     console.log(value);
     if (value.length > 0) {
