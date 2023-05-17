@@ -14,16 +14,12 @@ function Routes() {
       <Route path="/" render={ () => <Redirect to="/login" /> } exact />
       <Route path="/login" component={ Login } exact />
       <Route path="/register" component={ Register } exact />
-      <Route path="/customer/products" exact />
-      <Route path="/customer/orders" component={ CustomersOrders } exact />
-      <Route path="/customer/orders/:id" component={ CustomersOrdersDetails } exact />
+      <Route path="/admin/manage" component={ Admin } exact />
       <Route path="/seller/orders" component={ SellerOrders } exact />
-      <Route path="/admin/manage" component={ AdminPage } exact />
       <Route path="/customer/products" component={ Products } exact />
       <Route path="/customer/checkout" component={ Checkout } exact />
       <Route path="/customer/orders" component={ CustomersOrders } exact />
       <Route path="/customers/orders/:id" component={ CustomersOrdersDetails } exact />
-      <Route path="/admin/manage" component={ Admin } exact />
     </Switch>
   );
 }
