@@ -1,4 +1,4 @@
-const { User } = require('../database/models');
+const { User, Sale, SalesProducts } = require('../database/models');
 
 const getAllSellers = async () => {
   const sellers = await User.findAll({
@@ -9,6 +9,15 @@ const getAllSellers = async () => {
   
   return sellers;
 };
+
+// objeto esperado para SalesProducts: 
+// {
+//   sale_id: sale,
+//   product_id: 9,
+//   quantity: 2,
+// },
+
+// localStorage:
 
 // const createSalle = async (title, content, categoryIds, userId) => {
 //   const newPost = await Sale.create({
