@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { node } from 'prop-types';
 import AdminContext from './AdminContext';
 import { requestAPI } from '../services/deliveryAPI';
@@ -11,10 +11,6 @@ export default function AdminProvider({ children }) {
     setUserList(response);
   };
 
-  useEffect(() => {
-    getUsers();
-  }, []);
-
   const removesUser = (user) => {
     const updatedUserList = userList.filter((u) => u.id !== user.id);
     setUserList(updatedUserList);
@@ -25,6 +21,7 @@ export default function AdminProvider({ children }) {
     userList,
     setUserList,
     removesUser,
+    getUsers,
   }), [userList]);
 
   return (

@@ -6,10 +6,15 @@ import ProductCard from '../components/ProductCard';
 import '../styles/ProductsStyle.css';
 
 function Products() {
-  const { products, cart } = useContext(ProductContext);
+  const { products, cart, getProducts } = useContext(ProductContext);
   const [totalCost, setTotalCost] = useState(0);
   const history = useHistory();
   const TWELVE = 12;
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
   useEffect(() => {
     // const storeCart = read('cart') || [];
     // setCart(storeCart);
