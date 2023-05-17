@@ -11,6 +11,8 @@ const createUser = async (user) => {
   return result;
 };
 
+const findAll = async () => User.findAll();
+
 const findUser = async (user) => {
   const foundUser = await User.findOne({ where: { email: user.email } });
   if (foundUser === null) return { type: 404, message: 'Invalid Login' };
@@ -27,6 +29,7 @@ const findUser = async (user) => {
 };
 
 module.exports = {
+  findAll,
   findUser,
   createUser,
 };
