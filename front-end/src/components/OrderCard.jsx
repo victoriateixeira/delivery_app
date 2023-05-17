@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function OrderCard({ id, date, status, price }) {
+function OrderCard({ id, date, status, price, onClick }) {
   return (
-    <div className="order-card">
+    <button className="order-card" type="button" onClick={ onClick }>
       <p data-testid={ `customer_orders__element-order-id-${id}` }>
         { id }
       </p>
@@ -16,7 +16,7 @@ function OrderCard({ id, date, status, price }) {
       <p data-testid={ `customer_orders__element-order-price-${id}` }>
         { price }
       </p>
-    </div>
+    </button>
   );
 }
 
@@ -24,7 +24,8 @@ OrderCard.propTypes = {
   id: PropTypes.number.isRequired,
   date: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  price: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default OrderCard;

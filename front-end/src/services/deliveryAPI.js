@@ -14,4 +14,9 @@ const postAPI = async (endpoint, obj) => {
   return data;
 };
 
-export { requestAPI, postAPI };
+const updateAPI = async (endpoint, obj) => {
+  const { data } = await api.put(endpoint, obj);
+  return data;
+};
+
+export { requestAPI, postAPI, updateAPI };

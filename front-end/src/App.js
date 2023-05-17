@@ -13,7 +13,6 @@ function App() {
         </AdminProvider>
       </ProductProvider>
     </DeliveryProvider>
-
   );
 }
 
