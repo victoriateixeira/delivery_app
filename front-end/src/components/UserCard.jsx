@@ -5,7 +5,7 @@ import AdminContext from '../contexts/AdminContext';
 function UserCard({ savedUser, index }) {
   const { removesUser } = useContext(AdminContext);
   return (
-    <tr key={ savedUser.id }>
+    <>
       <td
         data-testid={ `admin_manage__element-user-table-item-number-${index}` }
       >
@@ -37,7 +37,7 @@ function UserCard({ savedUser, index }) {
           Excluir
         </button>
       </td>
-    </tr>
+    </>
   );
 }
 UserCard.propTypes = {

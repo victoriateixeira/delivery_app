@@ -4,15 +4,15 @@ import AdminContext from '../contexts/AdminContext';
 import UserCard from '../components/UserCard';
 
 export default function Admin() {
-  const ELEVEN = 11;
-  const FIVE = 5;
+  const SELLER_NAME_LENGTH = 11;
+  const SELLER_PASSWORD_LENGTH = 5;
   const { userList, setUserList, getUsers } = useContext(AdminContext);
+  const [conflict, setConflict] = useState(false);
+  const [disabled, setDisabled] = useState(true);
   const [newUser, setNewUser] = useState({ sellerName: '',
     email: '',
     password: '',
     role: 'Cliente' });
-  const [conflict, setConflict] = useState(false);
-  const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
     getUsers();
@@ -22,9 +22,9 @@ export default function Admin() {
   const isRegisterButtonDisabled = () => {
     const { sellerName, email, password, role } = newUser;
     console.log(sellerName, email, password, role);
-    const isSellerName = sellerName.length > ELEVEN;
+    const isSellerName = sellerName.length > SELLER_NAME_LENGTH;
     const isEmail = email.includes('@' && '.com');
-    const isPassword = password.length > FIVE;
+    const isPassword = password.length > SELLER_PASSWORD_LENGTH;
     const isRole = role === 'P. Vendedora' || role === 'Cliente';
 
     return (isSellerName && isEmail && isPassword && isRole);
