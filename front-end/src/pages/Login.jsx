@@ -3,13 +3,11 @@ import { Link, useHistory } from 'react-router-dom';
 import DeliveryContext from '../contexts/DeliveryContext';
 import validationInputs from '../utils/validationInputs';
 import { postAPI } from '../services/deliveryAPI';
-import UserContext from '../contexts/UserContext';
 // import { save } from '../services/localStorage';
 import '../styles/LoginStyle.css';
-import { save } from '../services/localStorage';
+// import { save } from '../services/localStorage';
 
 function Login() {
-  const { setUser } = useContext(UserContext);
   const {
     isDisabled,
     setIsDisabled,
@@ -19,7 +17,7 @@ function Login() {
     setPassword,
     invalidLogin,
     setInvalidLogin,
-    user,
+    setUser,
   } = useContext(DeliveryContext);
 
   const history = useHistory();
@@ -31,12 +29,9 @@ function Login() {
     };
     try {
       const setLogin = await postAPI('/user/login', u);
-      console.log(setLogin);
       setUser(setLogin.message);
       history.push('/customer/products');
-      save('user', setLogin.message);
     } catch (err) {
-      console.log('user:', user, err);
       setInvalidLogin(true);
     }
   };

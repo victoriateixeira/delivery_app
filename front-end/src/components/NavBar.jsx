@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
-import UserContext from '../contexts/UserContext';
 import { remove } from '../services/localStorage';
 import ProductContext from '../contexts/ProductContext';
 
