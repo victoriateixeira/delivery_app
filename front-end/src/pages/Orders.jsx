@@ -2,15 +2,15 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import OrderCard from '../components/OrderCard';
 import { requestAPI } from '../services/deliveryAPI';
-import UserContext from '../contexts/UserContext';
 import formatDate from '../utils/helpers';
 import NavBar from '../components/NavBar';
 import '../styles/OrderCardStyle.css';
+import DeliveryContext from '../contexts/DeliveryContext';
 
 function Orders() {
   const history = useHistory();
   const [orders, setOrders] = useState([]);
-  const { user } = useContext(UserContext);
+  const { user } = useContext(DeliveryContext);
 
   useEffect(() => {
     const fetchOrders = async () => {

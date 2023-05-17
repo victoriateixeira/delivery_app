@@ -3,15 +3,15 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { requestAPI, updateAPI } from '../services/deliveryAPI';
 import OrderDetailsTable from '../components/OrderDetailsTable';
 import formatDate from '../utils/helpers';
-import UserContext from '../contexts/UserContext';
 import NavBar from '../components/NavBar';
 import '../styles/OrderDetails.css';
+import DeliveryContext from '../contexts/DeliveryContext';
 
 function OrdersDetails() {
   const { id } = useParams();
   const [order, setOrder] = useState(undefined);
   const [status, setStatus] = useState();
-  const { user } = useContext(UserContext);
+  const { user } = useContext(DeliveryContext);
 
   const statusDispatch = 'EM TRÂNSITO';
 

@@ -1,13 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { requestAPI } from '../services/deliveryAPI';
-import { read } from '../services/localStorage';
+import React, { useState, useEffect, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import { requestAPI, postAPI, setToken } from '../services/deliveryAPI';
+import { read, save } from '../services/localStorage';
 import NavBar from '../components/NavBar';
+import DeliveryContext from '../contexts/DeliveryContext';
+import ProductContext from '../contexts/ProductContext';
 
 function Checkout() {
-  const [items, setItems] = useState([]);
+  const { user } = useContext(DeliveryContext);
+
+  const { cart, setCart } = useContext(ProductContext);
+  const history = useHistory();
+  // const [items, setItems] = useState([]);
   const [seller, setSeller] = useState([]);
   const [total, setTotal] = useState(0);
+  const [address, setAddress] = useState('');
+  const [addressNumber, setAddressNumber] = useState();
   // const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
@@ -21,21 +29,39 @@ function Checkout() {
 
   useEffect(() => {
     const storedItems = read('cart') || [];
-    setItems(storedItems);
+    setCart(storedItems);
   }, []);
 
   const removeItem = (id) => {
-    const updatedItems = items.filter((item) => item.id !== id);
-    setItems(updatedItems);
+    const updatedItems = cart.filter((item) => item.id !== id);
+    save('cart', updatedItems);
+    setCart(updatedItems);
   };
+
   function calculateTotal() {
-    const sum = items.reduce((tot, item) => tot + Number(item.price) * item.qty, 0);
+    const sum = cart.reduce((tot, item) => tot + Number(item.price) * item.qty, 0);
     setTotal(sum.toFixed(2));
+  }
+
+  async function handleClick() {
+    setToken(user.token);
+    // console.log(typeof total);
+    // console.log(user);
+    const newSale = await postAPI('/customer/checkout', {
+      userId: user.id,
+      sellerId: seller.id,
+      totalPrice: Number(total),
+      deliveryAddress: address,
+      deliveryNumber: addressNumber,
+      saleDate: Date.now(),
+      products: cart,
+    }, user.token);
+    history.push(`/customer/orders/${newSale.id}`);
   }
 
   useEffect(() => {
     calculateTotal();
-  }, [items]);
+  }, [cart]);
 
   return (
     <>
@@ -54,7 +80,7 @@ function Checkout() {
           </tr>
         </thead>
         <tbody>
-          {items.map((item, el) => (
+          {cart.map((item, el) => (
             <tr key={ el }>
               <th
                 data-testid={ `customer_checkout__element-order-table-item-number-${el}` }
@@ -130,6 +156,8 @@ function Checkout() {
         <label htmlFor="input-address">
           Endereço
           <input
+            value={ address }
+            onChange={ (e) => setAddress(e.target.value) }
             name="input-address"
             type="text"
             data-testid="customer_checkout__input-address"
@@ -139,6 +167,8 @@ function Checkout() {
         <label htmlFor="input-number">
           Número
           <input
+            value={ addressNumber }
+            onChange={ (e) => setAddressNumber(e.target.value) }
             name="input-number"
             type="number"
             data-testid="customer_checkout__input-address-number"
@@ -146,16 +176,13 @@ function Checkout() {
         </label>
         <br />
         <br />
-
-        <Link to="/customer/orders">
-          <button
-            type="button"
-            data-testid="customer_checkout__button-submit-order"
-          >
-            Finalizar Pedido
-          </button>
-        </Link>
-
+        <button
+          onClick={ handleClick }
+          type="button"
+          data-testid="customer_checkout__button-submit-order"
+        >
+          Finalizar Pedido
+        </button>
       </div>
     </>
   );

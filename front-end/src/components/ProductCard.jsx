@@ -63,6 +63,7 @@ function ProductCard({ product }) {
   };
 
   const handleChange = ({ target }) => {
+    setCartQty(0);
     const { value } = target;
     console.log(value);
     if (value.length > 0) {
