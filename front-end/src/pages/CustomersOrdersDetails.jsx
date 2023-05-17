@@ -15,7 +15,7 @@ function CustomersOrdersDetails() {
       return setOrder(response);
     };
     fetchDetails();
-  }, [status]);
+  }, [status, id]);
 
   const handleDeliveryStatus = async () => {
     const updated = await updateAPI(
