@@ -13,6 +13,7 @@ function Checkout() {
   const history = useHistory();
   // const [items, setItems] = useState([]);
   const [seller, setSeller] = useState([]);
+
   const [total, setTotal] = useState(0);
   const [address, setAddress] = useState('');
   const [addressNumber, setAddressNumber] = useState();
@@ -49,13 +50,15 @@ function Checkout() {
     // console.log(user);
     const newSale = await postAPI('/customer/checkout', {
       userId: user.id,
-      sellerId: seller.id,
+      sellerId: seller[0].id,
       totalPrice: Number(total),
       deliveryAddress: address,
       deliveryNumber: addressNumber,
       saleDate: Date.now(),
       products: cart,
-    }, user.token);
+    });
+    // console.log(seller.id);
+    // console.log(newSale);
     history.push(`/customer/orders/${newSale.id}`);
   }
 
