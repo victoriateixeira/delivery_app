@@ -8,6 +8,7 @@
   flex-direction: column;
   margin-left: 50px;
   width: 900px;
+  justify-content: space-around;
 }
 
 .order-details-label {
@@ -64,6 +65,12 @@
   cursor: pointer;
 }
 
+.preparing-order:disabled {
+  background-color: gray;
+  color: lightgray;
+  cursor:auto;
+} 
+
 .dispatch-order {
   background-color: #036b52;
   border-style: none;
@@ -74,3 +81,9 @@
   margin-left: 10px;
   cursor: pointer;
 }
+
+.dispatch-order:disabled {
+  background-color: gray;
+  color: lightgray;
+  cursor: auto;
+} 

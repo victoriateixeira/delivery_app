@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { requestAPI, postAPI, setToken } from '../services/deliveryAPI';
-import { read, save } from '../services/localStorage';
+import { read, save, remove } from '../services/localStorage';
 import NavBar from '../components/NavBar';
 import DeliveryContext from '../contexts/DeliveryContext';
 import ProductContext from '../contexts/ProductContext';
@@ -60,6 +60,7 @@ function Checkout() {
     // console.log(seller.id);
     // console.log(newSale);
     history.push(`/customer/orders/${newSale.id}`);
+    remove('cart');
   }
 
   useEffect(() => {
