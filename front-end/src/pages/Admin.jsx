@@ -3,7 +3,7 @@ import NavBar from '../components/NavBar';
 import AdminContext from '../contexts/AdminContext';
 import UserCard from '../components/UserCard';
 import validationInputs from '../utils/validationInputs';
-import { postAPI } from '../services/deliveryAPI';
+import { postAPI, setToken } from '../services/deliveryAPI';
 import DeliveryContext from '../contexts/DeliveryContext';
 
 export default function Admin() {
@@ -43,6 +43,7 @@ export default function Admin() {
 
   const registerUser = async (aUser) => {
     try {
+      setToken(user.token);
       const addUser = await postAPI('/admin/manage', aUser);
       console.log(addUser);
       setUserList([...userList, addUser]);
