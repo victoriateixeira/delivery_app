@@ -9,6 +9,7 @@
   margin-left: 50px;
   width: 900px;
   justify-content: space-around;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .order-details-label {
@@ -16,13 +17,16 @@
   align-items: center;
   margin-bottom: 30px;
   background-color: #b1c2be;
+  justify-content: space-between;
+  padding: 5px;
 }
 
 /* padding: [top] [right] [bottom] [left]; */
 .status-details {
   border-radius: 5px;
   padding: 5px 30px;
-  margin-left: 20px
+  margin-left: 20px;
+  font-weight: bold;
 }
 
 .pending {
@@ -42,7 +46,7 @@
 }
 
 .order-id {
-  margin-left: 10px;
+  margin-left: 16px;
 }
 
 .date-details {
@@ -71,7 +75,7 @@
   cursor:auto;
 } 
 
-.dispatch-order {
+.button-order {
   background-color: #036b52;
   border-style: none;
   border-radius: 5px;
@@ -82,8 +86,19 @@
   cursor: pointer;
 }
 
-.dispatch-order:disabled {
+.button-order:disabled {
   background-color: gray;
   color: lightgray;
   cursor: auto;
-} 
+}
+
+.order-total {
+  background-color: #036b52;
+  display: flex;
+  padding: 5px;
+  border-radius: 10px;
+  margin-top: 300px;
+  margin-bottom: 5px;
+  width: 200px;
+  margin-left: 685px;
+}

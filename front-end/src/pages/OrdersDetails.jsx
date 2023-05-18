@@ -58,6 +58,7 @@ function OrdersDetails() {
         <div className="order-details-card">
           <div className="order-details-label">
             <h3
+              className="order-id"
               data-testid={
                 `${user.role}_order_details__element-order-details-label-order-id`
               }
@@ -72,7 +73,8 @@ function OrdersDetails() {
                   `${user.role}_order_details__element-order-details-label-seller-name`
                 }
               >
-                { order.seller }
+                {`P. Vend: ${order.seller}`}
+                {/* { order.seller } */}
               </p>
             )
             }
@@ -100,6 +102,7 @@ function OrdersDetails() {
               user.role === 'customer'
             && (
               <button
+                className="button-order"
                 data-testid="customer_order_details__button-delivery-check"
                 onClick={ handleDeliveryStatus }
                 type="button"
@@ -130,7 +133,7 @@ function OrdersDetails() {
                   type="button"
                   disabled={ status !== 'PREPARANDO' }
                   name="dispatch"
-                  className="dispatch-order"
+                  className="button-order"
                 >
                   Saiu para a entrega
                 </button>
@@ -143,6 +146,7 @@ function OrdersDetails() {
             user={ `${user.role}` }
           />
           <div
+            className="order-total"
             data-testid={
               `${user.role}_order_details__element-order-total-price`
             }

@@ -5,6 +5,8 @@ import { read, save, remove } from '../services/localStorage';
 import NavBar from '../components/NavBar';
 import DeliveryContext from '../contexts/DeliveryContext';
 import ProductContext from '../contexts/ProductContext';
+import '../styles/CheckoutStyle.css';
+// import TableCheckout from '../components/TableCheckout';
 
 function Checkout() {
   const { user } = useContext(DeliveryContext);
@@ -68,127 +70,147 @@ function Checkout() {
   }, [cart]);
 
   return (
-    <>
+    <div className="checkout-page">
       <NavBar />
-      <br />
-      <h3>Finalizar Pedido</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Descrição</th>
-            <th>Quantidade</th>
-            <th>Valor Unitário</th>
-            <th>Subtotal</th>
-            <th>Remover</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cart.map((item, el) => (
-            <tr key={ el }>
-              <th
-                data-testid={ `customer_checkout__element-order-table-item-number-${el}` }
-              >
-                {el + 1}
-              </th>
-              <td
-                data-testid={ `customer_checkout__element-order-table-name-${el}` }
-              >
-                {item.name}
-              </td>
-              <td
-                data-testid={ `customer_checkout__element-order-table-quantity-${el}` }
-              >
-                {item.qty}
-              </td>
-              <td
-                data-testid={ `customer_checkout__element-order-table-unit-price-${el}` }
-              >
-                {item.price.replace('.', ',')}
-              </td>
-              <td
-                data-testid={ `customer_checkout__element-order-table-sub-total-${el}` }
-              >
-                {(item.qty * Number(item.price)).toFixed(2).replace('.', ',')}
-              </td>
-              <td>
-                <button
-                  type="button"
-                  data-testid={ `customer_checkout__element-order-table-remove-${el}` }
-                  onClick={ () => removeItem(item.id) }
-                >
-                  Remover
-                </button>
-              </td>
+      <div className="checkout-details">
+        <h3 className="checkout-title">Finalizar Pedido</h3>
+        {/* <TableCheckout items={ cart } removeItem={ removeItem } /> */}
+        <table className="details-table">
+          <thead>
+            <tr>
+              <th className="head-table">Item</th>
+              <th className="head-table">Descrição</th>
+              <th className="head-table">Quantidade</th>
+              <th className="head-table">Valor Unitário</th>
+              <th className="head-table">Subtotal</th>
+              <th className="head-table">Remover Item</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <div>
-        <p data-testid="customer_checkout__element-order-total-price">
-          Valor Total:
-          {' '}
-          {(`${total}`).replace('.', ',')}
-
-        </p>
-      </div>
-      <br />
-      <h3>Detalhes e Endereço para Entrega</h3>
-      <div>
-        <label htmlFor="select-seller">
-          P. Vendedor Responsável:
-          <select
-            type="select"
-            data-testid="customer_checkout__select-seller"
-            onChange={ ({ target }) => setSeller(target.value) }
-          >
-            { console.log(seller)}
-            {
-              seller.map((sel) => (
-                <option
-                  key="sel.id"
-                  value={ sel.id }
+          </thead>
+          <tbody>
+            {cart.map((item, el) => (
+              <tr key={ el } className="item-row">
+                <th
+                  className="table-item"
+                  data-testid={
+                    `customer_checkout__element-order-table-item-number-${el}`
+                  }
                 >
-                  {sel.name}
-                </option>
-              ))
-            }
-
-          </select>
-        </label>
-
-        <label htmlFor="input-address">
-          Endereço
-          <input
-            value={ address }
-            onChange={ (e) => setAddress(e.target.value) }
-            name="input-address"
-            type="text"
-            data-testid="customer_checkout__input-address"
-          />
-        </label>
-
-        <label htmlFor="input-number">
-          Número
-          <input
-            value={ addressNumber }
-            onChange={ (e) => setAddressNumber(e.target.value) }
-            name="input-number"
-            type="number"
-            data-testid="customer_checkout__input-address-number"
-          />
-        </label>
+                  {el + 1}
+                </th>
+                <td
+                  className="table-description"
+                  data-testid={ `customer_checkout__element-order-table-name-${el}` }
+                >
+                  {item.name}
+                </td>
+                <td
+                  className="table-quantity"
+                  data-testid={ `customer_checkout__element-order-table-quantity-${el}` }
+                >
+                  {item.qty}
+                </td>
+                <td
+                  className="table-subtotal"
+                  data-testid={
+                    `customer_checkout__element-order-table-unit-price-${el}`
+                  }
+                >
+                  {item.price.replace('.', ',')}
+                </td>
+                <td
+                  className="table-product-price"
+                  data-testid={ `customer_checkout__element-order-table-sub-total-${el}` }
+                >
+                  {(item.qty * Number(item.price)).toFixed(2).replace('.', ',')}
+                </td>
+                <td className="remove-item">
+                  <button
+                    className="button-remove-item"
+                    type="button"
+                    data-testid={ `customer_checkout__element-order-table-remove-${el}` }
+                    onClick={ () => removeItem(item.id) }
+                  >
+                    Remover
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div>
+          <div>
+            <p
+              className="checkout-total"
+              data-testid="customer_checkout__element-order-total-price"
+            >
+              Total:
+              {' '}
+              {`${total}`.replace('.', ',')}
+            </p>
+          </div>
+        </div>
         <br />
-        <br />
-        <button
-          onClick={ handleClick }
-          type="button"
-          data-testid="customer_checkout__button-submit-order"
-        >
-          Finalizar Pedido
-        </button>
+        <h3 className="checkout-title">Detalhes e Endereço para Entrega</h3>
+        <div>
+          <label htmlFor="select-seller" className="checkout-title">
+            P. Vendedor Responsável:
+            <select
+              className="input-checkout"
+              type="select"
+              data-testid="customer_checkout__select-seller"
+              onChange={ ({ target }) => setSeller(target.value) }
+            >
+              { console.log(seller)}
+              {
+                seller.map((sel) => (
+                  <option
+                    key="sel.id"
+                    value={ sel.id }
+                  >
+                    {sel.name}
+                  </option>
+                ))
+              }
+
+            </select>
+          </label>
+          <label htmlFor="input-address" className="checkout-title">
+            Endereço
+            <input
+              className="input-address"
+              value={ address }
+              onChange={ (e) => setAddress(e.target.value) }
+              name="input-address"
+              type="text"
+              data-testid="customer_checkout__input-address"
+            />
+          </label>
+          <label htmlFor="input-number" className="checkout-title">
+            Número
+            <input
+              className="input-checkout"
+              value={ addressNumber }
+              onChange={ (e) => setAddressNumber(e.target.value) }
+              name="input-number"
+              type="number"
+              data-testid="customer_checkout__input-address-number"
+            />
+          </label>
+          <br />
+          <br />
+          <div className="finish-button-container">
+            <button
+              className="finish-button"
+              onClick={ handleClick }
+              type="button"
+              data-testid="customer_checkout__button-submit-order"
+            >
+              Finalizar Pedido
+            </button>
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 
