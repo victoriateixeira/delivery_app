@@ -115,6 +115,7 @@ function ProductCard({ product }) {
           </button>
 
           <input
+            className="product-input"
             type="number"
             min={ 0 }
             data-testid={ `customer_products__input-card-quantity-${id}` }
