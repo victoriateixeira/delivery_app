@@ -1,18 +1,18 @@
-const jwt = require('jsonwebtoken');
-const fs = require('fs');
-const userService = require('../../services/UserService');
+const { verifyToken } = require('../../utils/jwtUtils');
 
-const secret = fs.readFileSync('jwt.evaluation.key');
+const userService = require('../../services/UserService');
 
 const validateToken = async (req, res, next) => {
   const token = req.header('Authorization');
+  
   if (!token) {
     return res.status(401).json({
       message: 'Token not found',
     });
   }
+  
   try {
-    const decoded = jwt.verify(token, secret);
+    const decoded = verifyToken(token);
     const user = await userService.findByEmail(decoded.email);
     if (!user) {
       return res.status(401).json({
