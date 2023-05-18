@@ -12,4 +12,8 @@ function createToken(user) {
   return token;
 }
 
-module.exports = { createToken };
+function verifyToken(token) {
+  jwt.verify(token, secretKey);
+}
+
+module.exports = { createToken, verifyToken };
