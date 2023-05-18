@@ -8,14 +8,20 @@ const createUserAdmin = async (user) => {
   if (verifyEmail || verifyName) throw new Error('Already registered');
   newUser.password = md5(user.password);
   const result = await User.create(newUser);
-  return result;
+  const filtResult = {
+    name: result.name,
+    email: result.email,
+    role: result.role,
+  };
+  return filtResult;
 };
 
 const deleteUser = async (id) => {
   const user = await User.findOne({ where: { id } });
   if (!user) throw new Error('User not found');
   await User.destroy({ where: { id } });
-  return User.findAll();
+  const newUserList = await User.findAll();
+  return newUserList;
 };
 
 module.exports = { createUserAdmin, deleteUser };

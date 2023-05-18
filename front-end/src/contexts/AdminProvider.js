@@ -12,8 +12,10 @@ export default function AdminProvider({ children }) {
   };
 
   const removesUser = async (user) => {
-    const newUserList = await deleteAPI(`/admin/manage/:${user.id}`);
+    console.log(user);
+    const newUserList = await deleteAPI(`/admin/manage/${user.id}`);
     setUserList(newUserList);
+    getUsers();
     // adicionar lógica para deletar do banco de dados
   };
 

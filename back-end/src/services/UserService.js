@@ -11,7 +11,10 @@ const createUser = async (user) => {
   return result;
 };
 
-const findAll = async () => User.findAll();
+const findAll = async () => {
+  const users = await User.findAll({ attributes: { exclude: ['password'] } });
+  return users;
+};
 
 const findUser = async (user) => {
   const foundUser = await User.findOne({ where: { email: user.email } });

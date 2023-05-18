@@ -3,6 +3,7 @@ import NavBar from '../components/NavBar';
 import AdminContext from '../contexts/AdminContext';
 import UserCard from '../components/UserCard';
 import validationInputs from '../utils/validationInputs';
+import { postAPI } from '../services/deliveryAPI';
 
 export default function Admin() {
   const { userList, setUserList, getUsers } = useContext(AdminContext);
@@ -40,9 +41,12 @@ export default function Admin() {
 
   const registerUser = async (user) => {
     try {
+      console.log('HI');
+      console.log(user);
       const addUser = await postAPI('/admin/manage', user);
       console.log(addUser);
       setUserList([...userList, addUser]);
+      setConflict(false);
     } catch (err) {
       setConflict(true);
     }
