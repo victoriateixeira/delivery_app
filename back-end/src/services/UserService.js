@@ -2,11 +2,6 @@ const md5 = require('md5');
 const { User } = require('../database/models');
 const { createToken } = require('../utils/jwtUtils');
 
-const findAll = async () => {
-  const result = await User.findAll();
-  return result;
-};
-
 const createUser = async (user) => {
   const newUser = user;
   const verifyAccount = await User.findOne({ where: { email: user.email } });
@@ -32,7 +27,6 @@ const findUser = async (user) => {
 };
 
 module.exports = {
-  findAll,
   findUser,
   createUser,
 };
