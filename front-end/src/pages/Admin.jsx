@@ -4,9 +4,11 @@ import AdminContext from '../contexts/AdminContext';
 import UserCard from '../components/UserCard';
 import validationInputs from '../utils/validationInputs';
 import { postAPI } from '../services/deliveryAPI';
+import DeliveryContext from '../contexts/DeliveryContext';
 
 export default function Admin() {
   const { userList, setUserList, getUsers } = useContext(AdminContext);
+  const { user } = useContext(DeliveryContext);
   const [conflict, setConflict] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [newUser, setNewUser] = useState({ sellerName: '',
@@ -39,13 +41,12 @@ export default function Admin() {
     setNewUser({ ...newUser, [name]: value });
   };
 
-  const registerUser = async (user) => {
+  const registerUser = async (aUser) => {
     try {
-      console.log('HI');
-      console.log(user);
-      const addUser = await postAPI('/admin/manage', user);
+      const addUser = await postAPI('/admin/manage', aUser);
       console.log(addUser);
       setUserList([...userList, addUser]);
+      console.log(userList);
       setConflict(false);
     } catch (err) {
       setConflict(true);
@@ -77,96 +78,101 @@ export default function Admin() {
   };
 
   return (
-    <>
-      <NavBar />
+    user.token && user.role === 'administrator'
+      ? (
+        <>
 
-      <div>
-        <h1>Cadastrar novo usuário</h1>
-        <form>
-          <label htmlFor="name">
-            Nome
-            <input
-              type="text"
-              name="sellerName"
-              id="name"
-              value={ newUser.sellerName }
-              onChange={ onInputChange }
-              data-testid="admin_manage__input-name"
-            />
-          </label>
-          <label htmlFor="email">
-            Email
-            <input
-              type="email"
-              name="email"
-              id="email"
-              value={ newUser.email }
-              onChange={ onInputChange }
-              data-testid="admin_manage__input-email"
-            />
-          </label>
-          <label htmlFor="password">
-            Senha
-            <input
-              type="password"
-              name="password"
-              id="password"
-              value={ newUser.password }
-              onChange={ onInputChange }
-              data-testid="admin_manage__input-password"
-            />
-          </label>
-          <label htmlFor="role">
-            Tipo
-            <select
-              name="role"
-              id="role"
-              value={ newUser.role }
-              onChange={ onInputChange }
-              data-testid="admin_manage__select-role"
+          <NavBar />
+
+          <div>
+            <h1>Cadastrar novo usuário</h1>
+            <form>
+              <label htmlFor="name">
+                Nome
+                <input
+                  type="text"
+                  name="sellerName"
+                  id="name"
+                  value={ newUser.sellerName }
+                  onChange={ onInputChange }
+                  data-testid="admin_manage__input-name"
+                />
+              </label>
+              <label htmlFor="email">
+                Email
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  value={ newUser.email }
+                  onChange={ onInputChange }
+                  data-testid="admin_manage__input-email"
+                />
+              </label>
+              <label htmlFor="password">
+                Senha
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  value={ newUser.password }
+                  onChange={ onInputChange }
+                  data-testid="admin_manage__input-password"
+                />
+              </label>
+
+              Tipo
+              <select
+                name="role"
+                id="role"
+                value={ newUser.role }
+                onChange={ onInputChange }
+                data-testid="admin_manage__select-role"
+              >
+                <option value="seller" selected>P. Vendedora</option>
+                <option value="customer">Cliente</option>
+              </select>
+
+              <button
+                type="submit"
+                id="register"
+                data-testid="admin_manage__button-register"
+                disabled={ disabled }
+                onClick={ onRegisterButtonClick }
+              >
+                Cadastrar
+              </button>
+            </form>
+            <p
+              id="form-invalid-text"
+              hidden={ !conflict }
+              data-testid="admin_manage__element-invalid-register"
             >
-              <option value="seller" selected>P. Vendedora</option>
-              <option value="customer">Cliente</option>
-            </select>
-          </label>
-          <button
-            type="submit"
-            id="register"
-            data-testid="admin_manage__button-register"
-            disabled={ disabled }
-            onClick={ onRegisterButtonClick }
-          >
-            Cadastrar
-          </button>
-        </form>
-        <p
-          id="form-invalid-text"
-          hidden={ !conflict }
-          data-testid="admin_manage__element-invalid-register"
-        >
-          Usuário já existe!
-        </p>
-      </div>
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th>Nome</th>
-              <th>E-mail</th>
-              <th>Tipo</th>
-            </tr>
-          </thead>
-          <tbody>
-            {userList.length > 0
-            && userList.map((user, index) => (
-              <tr key={ user.id }>
-                <UserCard savedUser={ user } index={ index } />
+              Usuário já existe!
+            </p>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Tipo</th>
+              </tr>
+            </thead>
+            <tbody>
+              {userList.length > 0
+            && userList.map((savedUser, index) => (
+              <tr key={ savedUser.id }>
+                <UserCard savedUser={ savedUser } index={ index } />
               </tr>
             ))}
-          </tbody>
-        </table>
-      </div>
-    </>
+            </tbody>
+          </table>
+
+        </>
+      )
+      : <p>Acesso não autorizado</p>
   );
 }

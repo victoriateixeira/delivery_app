@@ -17,7 +17,6 @@ function Login() {
     setPassword,
     invalidLogin,
     setInvalidLogin,
-    user,
     setUser,
   } = useContext(DeliveryContext);
 
