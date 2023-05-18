@@ -5,6 +5,7 @@ import validationInputs from '../utils/validationInputs';
 import { postAPI } from '../services/deliveryAPI';
 // import { save } from '../services/localStorage';
 import '../styles/LoginStyle.css';
+import OnlineDelivery from '../images/OnlineDelivery.png';
 
 function Login() {
   const {
@@ -16,6 +17,7 @@ function Login() {
     setPassword,
     invalidLogin,
     setInvalidLogin,
+    user,
     setUser,
   } = useContext(DeliveryContext);
 
@@ -43,7 +45,9 @@ function Login() {
       password,
     };
     try {
-      const { message } = await postAPI('/user/login', u);
+      const setLogin = await postAPI('/user/login', u);
+      const { message } = setLogin;
+      // console.log(message);
       setUser(message);
       defineRoute(message.role);
     } catch (err) {
@@ -66,7 +70,7 @@ function Login() {
   return (
     <main className="login-container">
       <div className="logo-container">
-        {/* <img alt="app-logo" /> */}
+        <img src={ OnlineDelivery } alt="online delivery logo" width="500" />
       </div>
       <h1>Login</h1>
       <form>
