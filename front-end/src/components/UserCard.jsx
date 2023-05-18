@@ -1,9 +1,12 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import AdminContext from '../contexts/AdminContext';
+import DeliveryContext from '../contexts/DeliveryContext';
+import { setToken } from '../services/deliveryAPI';
 
 function UserCard({ savedUser, index }) {
   const { removesUser } = useContext(AdminContext);
+  const { user } = useContext(DeliveryContext);
   return (
     <>
       <td
@@ -32,7 +35,10 @@ function UserCard({ savedUser, index }) {
         <button
           type="button"
           data-testid={ `admin_manage__element-user-table-remove-${index}` }
-          onClick={ async () => removesUser(savedUser) }
+          onClick={ async () => {
+            setToken(user.token);
+            await removesUser(savedUser);
+          } }
         >
           Excluir
         </button>

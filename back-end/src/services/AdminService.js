@@ -9,6 +9,7 @@ const createUserAdmin = async (user) => {
   newUser.password = md5(user.password);
   const result = await User.create(newUser);
   const filtResult = {
+    id: result.id,
     name: result.name,
     email: result.email,
     role: result.role,
