@@ -1,6 +1,8 @@
-// eslint-disable-next-line max-lines-per-function
+const { NUMBER } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   const SalesProducts = sequelize.define(
+
 'SalesProducts',
   {
     productId: { type: DataTypes.INTEGER, primaryKey: true }, 
@@ -11,8 +13,10 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
     tableName: 'sales_products',
     underscored: true,
+
   },
 );
+
   SalesProducts.associate = (models) => {
     models.Sale.belongsToMany(models.Product, {
       as: 'products',
@@ -27,5 +31,6 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'saleId',
     });
   };
+ 
   return SalesProducts;
 };
