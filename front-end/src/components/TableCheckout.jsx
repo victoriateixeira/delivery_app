@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function TableCheckout({ items, removeItem }) {
+  console.log(items);
   return (
     <table className="details-table">
       <thead>
@@ -15,7 +16,7 @@ function TableCheckout({ items, removeItem }) {
         </tr>
       </thead>
       <tbody>
-        {items.map((item, el) => (
+        {items && items.map((item, el) => (
           <tr key={ el }>
             <th
               className="table-item"
@@ -56,7 +57,7 @@ function TableCheckout({ items, removeItem }) {
                 className="button-remove-item"
                 type="button"
                 data-testid={ `customer_checkout__element-order-table-remove-${el}` }
-                onClick={ removeItem(item.id) }
+                onClick={ () => removeItem(item.id) }
               >
                 Remover
               </button>
@@ -71,9 +72,11 @@ function TableCheckout({ items, removeItem }) {
 TableCheckout.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       qty: PropTypes.number.isRequired,
       price: PropTypes.string.isRequired,
+      urlImage: PropTypes.string.isRequired,
     }),
   ).isRequired,
   removeItem: PropTypes.func.isRequired,

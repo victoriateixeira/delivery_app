@@ -6,7 +6,7 @@ import NavBar from '../components/NavBar';
 import DeliveryContext from '../contexts/DeliveryContext';
 import ProductContext from '../contexts/ProductContext';
 import '../styles/CheckoutStyle.css';
-// import TableCheckout from '../components/TableCheckout';
+import TableCheckout from '../components/TableCheckout';
 
 function Checkout() {
   const { user } = useContext(DeliveryContext);
@@ -33,6 +33,7 @@ function Checkout() {
   useEffect(() => {
     const storedItems = read('cart') || [];
     setCart(storedItems);
+    console.log(cart);
   }, []);
 
   const removeItem = (id) => {
@@ -74,69 +75,7 @@ function Checkout() {
       <NavBar />
       <div className="checkout-details">
         <h3 className="checkout-title">Finalizar Pedido</h3>
-        {/* <TableCheckout items={ cart } removeItem={ removeItem } /> */}
-        <table className="details-table">
-          <thead>
-            <tr>
-              <th className="head-table">Item</th>
-              <th className="head-table">Descrição</th>
-              <th className="head-table">Quantidade</th>
-              <th className="head-table">Valor Unitário</th>
-              <th className="head-table">Subtotal</th>
-              <th className="head-table">Remover Item</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cart.map((item, el) => (
-              <tr key={ el } className="item-row">
-                <th
-                  className="table-item"
-                  data-testid={
-                    `customer_checkout__element-order-table-item-number-${el}`
-                  }
-                >
-                  {el + 1}
-                </th>
-                <td
-                  className="table-description"
-                  data-testid={ `customer_checkout__element-order-table-name-${el}` }
-                >
-                  {item.name}
-                </td>
-                <td
-                  className="table-quantity"
-                  data-testid={ `customer_checkout__element-order-table-quantity-${el}` }
-                >
-                  {item.qty}
-                </td>
-                <td
-                  className="table-subtotal"
-                  data-testid={
-                    `customer_checkout__element-order-table-unit-price-${el}`
-                  }
-                >
-                  {item.price.replace('.', ',')}
-                </td>
-                <td
-                  className="table-product-price"
-                  data-testid={ `customer_checkout__element-order-table-sub-total-${el}` }
-                >
-                  {(item.qty * Number(item.price)).toFixed(2).replace('.', ',')}
-                </td>
-                <td className="remove-item">
-                  <button
-                    className="button-remove-item"
-                    type="button"
-                    data-testid={ `customer_checkout__element-order-table-remove-${el}` }
-                    onClick={ () => removeItem(item.id) }
-                  >
-                    Remover
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <TableCheckout items={ cart } removeItem={ removeItem } />
         <div>
           <div>
             <p
