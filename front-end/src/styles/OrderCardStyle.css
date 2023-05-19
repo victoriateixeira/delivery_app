@@ -1,3 +1,9 @@
+.orders-list {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .order-card {
   align-items: center;
   background-color: white;
@@ -7,6 +13,7 @@
   display: flex;
   justify-content: space-between;
   margin-left: 30px;
+  margin-top: 20px;
   width: 600px;
 }
 

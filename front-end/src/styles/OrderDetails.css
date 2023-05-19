@@ -93,12 +93,14 @@
 }
 
 .order-total {
+  align-items: center;
   background-color: #036b52;
   border-radius: 10px;
   display: flex;
+  justify-content: center;
   margin-bottom: 5px;
-  margin-left: 685px;
+  margin-left: 580px;
   margin-top: 300px;
   padding: 5px;
-  width: 200px;
+  width: 300px;
 }
