@@ -34,7 +34,7 @@ function Login() {
       history.push('/admin/manage');
       break;
     default:
-      break
+      break;
     }
   };
 
