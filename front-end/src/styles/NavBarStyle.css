@@ -1,7 +1,7 @@
 .nav-list {
+  align-items: center;
   background-color: #036b52;
   display: flex;
-  align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
 }
@@ -17,31 +17,31 @@
 }
 
 .button-margin {
-  padding: 20px 70px 20px 70px;
-  text-transform: uppercase;
   background-color: #036b52;
-  cursor: pointer;
+  border-style: none;
   color: #e5e5e5;
+  cursor: pointer;
   font-size: 16px;
   font-weight: 700;
-  border-style: none;
+  padding: 20px 70px;
+  text-transform: uppercase;
 }
 
 .button-margin-logout {
-  background-color: #056CF9;
+  background-color: #056cf9;
   border-style: none;
+  color: #e5e5e5;
   cursor: pointer;
   font-size: 16px;
   font-weight: 700;
-  color: #e5e5e5;
+  padding: 20px 40px;
   text-transform: uppercase;
-  padding: 20px 40px 20px 40px;
 }
 
 .username {
-  background-color: #421981;;
-  padding: 20px 30px 20px 30px;
+  background-color: #421981;
   color: #e5e5e5;
+  padding: 20px 30px;
 }
 
 .button-active {

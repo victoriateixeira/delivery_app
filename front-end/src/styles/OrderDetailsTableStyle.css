@@ -7,7 +7,7 @@
 
 .head-table {
   font-size: 12px;
-  font-weight: normal;
+  font-weight: 400;
 }
 
 .table-item {
@@ -45,41 +45,41 @@
 
 .orders-details .table-product-price {
   background-color: #056cf9;
+  color: #f2fffc;
+  font-size: 20px;
   text-align: center;
   width: 100px;
-  font-size: 20px;
-  color: #f2fffC;
 }
 
 .checkout-page .table-subtotal {
-  background-color: #421981;;
+  background-color: #421981;
+  color: #f2fffc;
+  font-size: 20px;
   text-align: center;
   width: 100px;
-  font-size: 20px;
-  color: #f2fffC;
 }
 
 .checkout-page .table-product-price {
-  background-color: #056cf9;;
+  background-color: #056cf9;
+  color: #f2fffc;
+  font-size: 20px;
   text-align: center;
   width: 100px;
-  font-size: 20px;
-  color: #f2fffC;
 }
 
 .checkout-page .remove-item {
-  border-style: none;
-  border-radius: 0 10px 10px 0;
   background-color: #2fc18c;
-  width: 100px;
-  text-align: center;
-  padding: 5px 10px 5px 10px;
+  border-radius: 0 10px 10px 0;
+  border-style: none;
   font-size: 20px;
+  padding: 5px 10px;
+  text-align: center;
+  width: 100px;
 }
 
 .checkout-page .button-remove-item {
-  color: #f2fffC;
-  font-size: 20px;
   background-color: transparent;
   border-style: none;
+  color: #f2fffc;
+  font-size: 20px;
 }

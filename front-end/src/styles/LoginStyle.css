@@ -2,6 +2,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+  margin-top: 100px;
 }
 
 form {
@@ -69,6 +70,3 @@ form .button-tertiary {
   font-size: 12pt;
 }
 
-.login-container {
-  margin-top: 100px;
-}

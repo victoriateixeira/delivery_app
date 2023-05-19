@@ -1,32 +1,32 @@
 .page-title {
-  margin-left: 50px;
   margin-bottom: 30px;
+  margin-left: 50px;
 }
 
 .order-details-card {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   margin-left: 50px;
   width: 900px;
-  justify-content: space-around;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .order-details-label {
-  display: flex;
   align-items: center;
-  margin-bottom: 30px;
   background-color: #b1c2be;
+  display: flex;
   justify-content: space-between;
+  margin-bottom: 30px;
   padding: 5px;
 }
 
 /* padding: [top] [right] [bottom] [left]; */
 .status-details {
   border-radius: 5px;
-  padding: 5px 30px;
+  font-weight: 700;
   margin-left: 20px;
-  font-weight: bold;
+  padding: 5px 30px;
 }
 
 .pending {
@@ -34,7 +34,7 @@
 }
 
 .preparing {
-  background-color: #66cc00;
+  background-color: #6c0;
 }
 
 .dispatch {
@@ -54,36 +54,36 @@
 }
 
 .seller-buttons {
-  margin-left: 50px;
   display: flex;
   justify-content: space-between;
+  margin-left: 50px;
 }
 
 .preparing-order {
   background-color: #2fc18c;
-  border-style: none;
   border-radius: 5px;
-  text-transform: uppercase;
+  border-style: none;
   color: #e5e5e5;
-  padding: 5px 20px;
   cursor: pointer;
+  padding: 5px 20px;
+  text-transform: uppercase;
 }
 
 .preparing-order:disabled {
   background-color: gray;
   color: lightgray;
-  cursor:auto;
-} 
+  cursor: auto;
+}
 
 .button-order {
   background-color: #036b52;
-  border-style: none;
   border-radius: 5px;
-  text-transform: uppercase;
+  border-style: none;
   color: #e5e5e5;
-  padding: 5px 20px;
-  margin-left: 10px;
   cursor: pointer;
+  margin-left: 10px;
+  padding: 5px 20px;
+  text-transform: uppercase;
 }
 
 .button-order:disabled {
@@ -94,11 +94,11 @@
 
 .order-total {
   background-color: #036b52;
-  display: flex;
-  padding: 5px;
   border-radius: 10px;
-  margin-top: 300px;
+  display: flex;
   margin-bottom: 5px;
-  width: 200px;
   margin-left: 685px;
+  margin-top: 300px;
+  padding: 5px;
+  width: 200px;
 }
