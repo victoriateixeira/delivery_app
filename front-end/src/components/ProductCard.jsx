@@ -6,7 +6,7 @@ import '../styles/ProductsStyle.css';
 
 function ProductCard({ product }) {
   const TWENTY_ONE = 21;
-  console.log(product);
+  // console.log(product);
   const { addToCart, removeFromCart } = useContext(ProductContext);
   const { id, name, price, urlImage } = product;
   const [cartQty, setCartQty] = useState(0);
@@ -65,7 +65,7 @@ function ProductCard({ product }) {
   const handleChange = ({ target }) => {
     setCartQty(0);
     const { value } = target;
-    console.log(value);
+    // console.log(value);
     if (value.length > 0) {
       setCartQty(Number(value));
       addToCart(product, Number(value));

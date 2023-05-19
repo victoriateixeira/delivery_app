@@ -22,8 +22,8 @@ function Checkout() {
   useEffect(() => {
     const fetchSeller = async () => {
       const response = await requestAPI('/customer/checkout/');
-
-      return setSeller(response);
+      setSeller(response);
+      console.log(response);
     };
     fetchSeller();
   }, []);
@@ -46,8 +46,6 @@ function Checkout() {
 
   async function handleClick() {
     setToken(user.token);
-    // console.log(typeof total);
-    // console.log(user);
     const newSale = await postAPI('/customer/checkout', {
       userId: user.id,
       sellerId: seller[0].id,
@@ -57,8 +55,6 @@ function Checkout() {
       saleDate: Date.now(),
       products: cart,
     });
-    // console.log(seller.id);
-    // console.log(newSale);
     history.push(`/customer/orders/${newSale.id}`);
   }
 
@@ -137,22 +133,18 @@ function Checkout() {
         <label htmlFor="select-seller">
           P. Vendedor Responsável:
           <select
-            type="select"
             data-testid="customer_checkout__select-seller"
-            onChange={ ({ target }) => setSeller(target.value) }
           >
-            { console.log(seller)}
-            {
-              seller.map((sel) => (
+            <option value="0">Vazio</option>
+            { seller.length > 0
+              && seller.map((sel) => (
                 <option
                   key="sel.id"
                   value={ sel.id }
                 >
                   {sel.name}
                 </option>
-              ))
-            }
-
+              ))}
           </select>
         </label>
 

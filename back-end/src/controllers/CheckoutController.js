@@ -13,7 +13,7 @@ const postSale = async (req, res, next) => {
   console.log(req.header);
   try {
     const result = await checkoutService.createSale(req.body);
-    res.status(200).json(result);
+    res.status(201).json(result);
   } catch (error) {
     next(error);
   }

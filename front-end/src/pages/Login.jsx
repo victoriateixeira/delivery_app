@@ -17,7 +17,6 @@ function Login() {
     setPassword,
     invalidLogin,
     setInvalidLogin,
-    user,
     setUser,
   } = useContext(DeliveryContext);
 
@@ -35,7 +34,7 @@ function Login() {
       history.push('/admin/manage');
       break;
     default:
-      history.push('/customer/products');
+      break
     }
   };
 
@@ -51,7 +50,7 @@ function Login() {
       setUser(message);
       defineRoute(message.role);
     } catch (err) {
-      console.log('user:', user, err);
+      // console.log('user:', user, err);
       setInvalidLogin(true);
     }
   };

@@ -32,7 +32,7 @@ const createSale = async (sale) => {
   const { products, ...rest } = sale;
   
   const newSale = await Sale.create(rest);
-  console.log(newSale);
+  // console.log(newSale);
   const productsSale = products.map((product) => (
     {
       saleId: newSale.id,
