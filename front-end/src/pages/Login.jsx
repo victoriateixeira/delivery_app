@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import DeliveryContext from '../contexts/DeliveryContext';
 import validationInputs from '../utils/validationInputs';
 import { postAPI } from '../services/deliveryAPI';
-import { save } from '../services/localStorage';
+import { read, save } from '../services/localStorage';
 import '../styles/LoginStyle.css';
 import OnlineDelivery from '../images/OnlineDelivery.png';
 
@@ -53,6 +53,13 @@ function Login() {
       setInvalidLogin(true);
     }
   };
+
+  useEffect(() => {
+    const getLocalStorage = read('user');
+    if (getLocalStorage) {
+      defineRoute(getLocalStorage.role);
+    }
+  }, []);
 
   useEffect(() => {
     const validationGeneral = validationInputs(email, password);

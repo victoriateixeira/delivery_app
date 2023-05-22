@@ -14,7 +14,7 @@ function OrderCard({ id, date, status, price, onClick, role, address, addressNum
       <div className="container-card">
         <div className="date-price-status">
           <h1
-            data-testid={ `${role}_orders__element-order-status-${id}` }
+            data-testid={ `${role}_orders__element-delivery-status-${id}` }
             className={ `status ${status === 'Pendente' && 'pending'}
           ${status === 'Preparando' && 'preparing'}
           ${status === 'Em trânsito' && 'dispatch'}
@@ -31,7 +31,7 @@ function OrderCard({ id, date, status, price, onClick, role, address, addressNum
               { date }
             </h3>
             <h3
-              data-testid={ `${role}_orders__element-order-price-${id}` }
+              data-testid={ `${role}_orders__element-card-price-${id}` }
               className="date-price"
             >
               { `R$ ${(`${price}`).replace('.', ',')}` }
