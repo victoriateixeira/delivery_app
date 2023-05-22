@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import DeliveryContext from '../contexts/DeliveryContext';
 import validationInputs from '../utils/validationInputs';
 import { postAPI } from '../services/deliveryAPI';
-// import { save } from '../services/localStorage';
+import { save } from '../services/localStorage';
 import '../styles/LoginStyle.css';
 import OnlineDelivery from '../images/OnlineDelivery.png';
 
@@ -46,11 +46,10 @@ function Login() {
     try {
       const setLogin = await postAPI('/user/login', u);
       const { message } = setLogin;
-      // console.log(message);
       setUser(message);
+      save('user', message);
       defineRoute(message.role);
     } catch (err) {
-      // console.log('user:', user, err);
       setInvalidLogin(true);
     }
   };
