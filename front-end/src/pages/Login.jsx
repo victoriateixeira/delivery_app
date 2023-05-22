@@ -22,16 +22,16 @@ function Login() {
 
   const history = useHistory();
 
-  const defineRoute = (role) => {
+  const defineRoute = async (role) => {
     switch (role) {
     case 'customer':
-      history.push('/customer/products');
+      await history.push('/customer/products');
       break;
     case 'seller':
-      history.push('/seller/orders');
+      await history.push('/seller/orders');
       break;
     case 'administrator':
-      history.push('/admin/manage');
+      await history.push('/admin/manage');
       break;
     default:
       break;
@@ -48,7 +48,7 @@ function Login() {
       const { message } = setLogin;
       setUser(message);
       save('user', message);
-      defineRoute(message.role);
+      await defineRoute(message.role);
     } catch (err) {
       setInvalidLogin(true);
     }

@@ -13,7 +13,6 @@ function Routes() {
       <Route path="/" render={ () => <Redirect to="/login" /> } exact />
       <Route path="/login" component={ Login } exact />
       <Route path="/register" component={ Register } exact />
-      <Route path="/admin/manage" component={ AdminPage } exact />
       <Route path="/customer/products" component={ Products } exact />
       <Route path="/customer/checkout" component={ Checkout } exact />
       <Route path="/customer/orders" component={ Orders } exact />
