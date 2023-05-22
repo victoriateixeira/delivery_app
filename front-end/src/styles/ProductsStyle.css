@@ -89,7 +89,7 @@ a {
   margin-bottom: 10px;
 }
 
-.sub-button {
+.sub-button, .add-button {
   background-color: #036b52;
   border: transparent;
   border-radius: 10px 0 0 10px;
@@ -97,18 +97,18 @@ a {
   font-size: 36px;
   font-weight: 700;
   height: 51px;
+  transition: all 0.3s;
   width: 61px;
 }
 
+
 .add-button {
-  background-color: #036b52;
-  border: transparent;
   border-radius: 0 10px 10px 0;
-  color: #f2fffc;
-  font-size: 36px;
-  font-weight: 700;
-  height: 51px;
-  width: 61px;
+}
+
+.sub-button:hover, .add-button:hover {
+  background: #04523f;
+  cursor: pointer;
 }
 
 .product-input::-webkit-inner-spin-button {

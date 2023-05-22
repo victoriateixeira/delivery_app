@@ -1,5 +1,10 @@
 const userService = require('../services/UserService');
 
+const findAll = async (_req, res) => {
+  const users = await userService.findAll();
+  return res.status(200).json(users);
+};
+
 const createUser = async (req, res) => {
   const user = req.body;
   try {
@@ -22,4 +27,5 @@ const findUser = async (req, res) => {
 module.exports = {
  findUser,
  createUser,
+ findAll,
 };

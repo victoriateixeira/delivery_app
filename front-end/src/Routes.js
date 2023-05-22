@@ -3,8 +3,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Products from './pages/Products';
 import Checkout from './pages/Checkout';
+import Admin from './pages/Admin';
 import OrdersDetails from './pages/OrdersDetails';
-import AdminPage from './pages/AdminPage';
 import Orders from './pages/Orders';
 
 function Routes() {
@@ -19,7 +19,7 @@ function Routes() {
       <Route path="/customer/orders/:id" component={ OrdersDetails } exact />
       <Route path="/seller/orders" component={ Orders } exact />
       <Route path="/seller/orders/:id" component={ OrdersDetails } exact />
-      <Route path="/admin/manage" component={ AdminPage } exact />
+      <Route path="/admin/manage" component={ Admin } exact />
     </Switch>
   );
 }

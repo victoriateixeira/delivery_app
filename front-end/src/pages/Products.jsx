@@ -6,10 +6,15 @@ import ProductCard from '../components/ProductCard';
 import '../styles/ProductsStyle.css';
 
 function Products() {
-  const { products, cart } = useContext(ProductContext);
+  const { products, cart, getProducts } = useContext(ProductContext);
   const [totalCost, setTotalCost] = useState(0);
   const history = useHistory();
-  const TWELVE = 12;
+  const MAX_PAGE_ITEMS = 12;
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
   useEffect(() => {
     // const storeCart = read('cart') || [];
     // setCart(storeCart);
@@ -28,7 +33,7 @@ function Products() {
     <>
       <NavBar />
       <div className="products-container">
-        {products.map((product, index) => index < TWELVE && (
+        {products.map((product, index) => index < MAX_PAGE_ITEMS && (
           <div key={ index }>
             <ProductCard product={ product } />
           </div>

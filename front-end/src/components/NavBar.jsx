@@ -7,9 +7,6 @@ import '../styles/NavBarStyle.css';
 import DeliveryContext from '../contexts/DeliveryContext';
 
 function NavBar() {
-  // useEffect() => {
-  //   //Resgatar o NOME do usuário do localStorage
-  // }
   const { user, setUser } = useContext(DeliveryContext);
   const { setCart } = useContext(ProductContext);
   const history = useHistory();

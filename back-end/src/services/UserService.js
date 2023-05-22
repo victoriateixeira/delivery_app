@@ -11,6 +11,11 @@ const createUser = async (user) => {
   return result;
 };
 
+const findAll = async () => {
+  const users = await User.findAll({ attributes: { exclude: ['password'] } });
+  return users;
+};
+
 const findUser = async (user) => {
   const foundUser = await User.findOne({ where: { email: user.email } });
   if (foundUser === null) return { type: 404, message: 'Invalid Login' };
@@ -32,6 +37,7 @@ const findByEmail = async (email) => {
 };
 
 module.exports = {
+  findAll,
   findUser,
   createUser,
   findByEmail,

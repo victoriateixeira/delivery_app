@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { node } from 'prop-types';
 import ProductContext from './ProductContext';
 import { requestAPI } from '../services/deliveryAPI';
@@ -53,10 +53,6 @@ export default function ProductProvider({ children }) {
     }
   };
 
-  useEffect(() => {
-    getProducts();
-  }, []);
-
   const value = useMemo(() => ({
     products,
     setProducts,
@@ -64,6 +60,7 @@ export default function ProductProvider({ children }) {
     setCart,
     addToCart,
     removeFromCart,
+    getProducts,
   }), [products, cart]);
 
   return (
