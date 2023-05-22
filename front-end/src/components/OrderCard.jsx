@@ -17,7 +17,7 @@ function OrderCard({ id, date, status, price, onClick, role, address, addressNum
             data-testid={ `${role}_orders__element-delivery-status-${id}` }
             className={ `status ${status === 'Pendente' && 'pending'}
           ${status === 'Preparando' && 'preparing'}
-          ${status === 'Em trânsito' && 'dispatch'}
+          ${status === 'Em Trânsito' && 'dispatch'}
           ${status === 'Entregue' && 'delivered'}
           ` }
           >

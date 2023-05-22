@@ -13,7 +13,7 @@ function OrdersDetails() {
   const [status, setStatus] = useState();
   const { user } = useContext(DeliveryContext);
 
-  const statusDispatch = 'Em trânsito';
+  const statusDispatch = 'Em Trânsito';
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -121,7 +121,7 @@ function OrdersDetails() {
                   data-testid="seller_order_details__button-preparing-check"
                   onClick={ handleDeliveryStatus }
                   type="button"
-                  disabled={ status !== 'PENDENTE' }
+                  disabled={ status !== 'Pendente' }
                   name="preparing"
                   className="preparing-order"
                 >
@@ -131,7 +131,7 @@ function OrdersDetails() {
                   data-testid="seller_order_details__button-dispatch-check"
                   onClick={ handleDeliveryStatus }
                   type="button"
-                  disabled={ status !== 'PREPARANDO' }
+                  disabled={ status !== 'Preparando' }
                   name="dispatch"
                   className="button-order"
                 >
