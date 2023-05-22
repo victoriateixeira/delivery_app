@@ -13,7 +13,7 @@ function OrdersDetails() {
   const [status, setStatus] = useState();
   const { user } = useContext(DeliveryContext);
 
-  const statusDispatch = 'EM TRÂNSITO';
+  const statusDispatch = 'Em trânsito';
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -30,7 +30,7 @@ function OrdersDetails() {
     case 'preparing':
       updated = await updateAPI(
         `/orders/details/${id}`,
-        { status: 'PREPARANDO' },
+        { status: 'Preparando' },
       );
       break;
     case 'dispatch':
@@ -42,10 +42,10 @@ function OrdersDetails() {
     case 'delivered':
       updated = await updateAPI(
         `/orders/details/${id}`,
-        { status: 'ENTREGUE' },
+        { status: 'Entregue' },
       );
       break;
-    default: updated = 'PENDENTE';
+    default: updated = 'Pendente';
     }
     return setStatus(updated.status);
   };
@@ -90,10 +90,10 @@ function OrdersDetails() {
                 `${user.role}_order_details__element-order-details-label-delivery-status
               ${order.id}`
               }
-              className={ `status-details ${status === 'PENDENTE' && 'pending'}
-          ${status === 'PREPARANDO' && 'preparing'}
+              className={ `status-details ${status === 'Pendente' && 'pending'}
+          ${status === 'Preparando' && 'preparing'}
           ${status === statusDispatch && 'dispatch'}
-          ${status === 'ENTREGUE' && 'delivered'}
+          ${status === 'Entregue' && 'delivered'}
           ` }
             >
               { status }

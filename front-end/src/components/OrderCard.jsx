@@ -15,10 +15,10 @@ function OrderCard({ id, date, status, price, onClick, role, address, addressNum
         <div className="date-price-status">
           <h1
             data-testid={ `${role}_orders__element-order-status-${id}` }
-            className={ `status ${status === 'PENDENTE' && 'pending'}
-          ${status === 'PREPARANDO' && 'preparing'}
-          ${status === 'EM TRÂNSITO' && 'dispatch'}
-          ${status === 'ENTREGUE' && 'delivered'}
+            className={ `status ${status === 'Pendente' && 'pending'}
+          ${status === 'Preparando' && 'preparing'}
+          ${status === 'Em trânsito' && 'dispatch'}
+          ${status === 'Entregue' && 'delivered'}
           ` }
           >
             { status }

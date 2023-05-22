@@ -106,7 +106,6 @@ function Checkout() {
                   </option>
                 ))
               }
-
             </select>
           </label>
           <label htmlFor="input-address" className="checkout-title">
