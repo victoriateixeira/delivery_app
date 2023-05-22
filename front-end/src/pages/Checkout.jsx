@@ -73,75 +73,67 @@ function Checkout() {
         <h3 className="checkout-title">Finalizar Pedido</h3>
         <TableCheckout items={ cart } removeItem={ removeItem } />
         <div>
-          <div>
-            <p
-              className="checkout-total"
-              data-testid="customer_checkout__element-order-total-price"
-            >
-              Total:
-              {' '}
-              {`${total}`.replace('.', ',')}
-            </p>
-          </div>
+          <p
+            className="checkout-total"
+            data-testid="customer_checkout__element-order-total-price"
+          >
+            Total:
+            {' '}
+            {`${total}`.replace('.', ',')}
+          </p>
         </div>
         <br />
         <h3 className="checkout-title">Detalhes e Endereço para Entrega</h3>
-        <div>
-          <label htmlFor="select-seller" className="checkout-title">
-            P. Vendedor Responsável:
-            <select
-              className="input-checkout"
-              type="select"
-              data-testid="customer_checkout__select-seller"
-              onChange={ ({ target }) => setSeller(target.value) }
-            >
-              { console.log(seller)}
-              {
-                seller.map((sel) => (
-                  <option
-                    key="sel.id"
-                    value={ sel.id }
-                  >
-                    {sel.name}
-                  </option>
-                ))
-              }
-            </select>
-          </label>
-          <label htmlFor="input-address" className="checkout-title">
-            Endereço
-            <input
-              className="input-address"
-              value={ address }
-              onChange={ (e) => setAddress(e.target.value) }
-              name="input-address"
-              type="text"
-              data-testid="customer_checkout__input-address"
-            />
-          </label>
-          <label htmlFor="input-number" className="checkout-title">
-            Número
-            <input
-              className="input-checkout"
-              value={ addressNumber }
-              onChange={ (e) => setAddressNumber(e.target.value) }
-              name="input-number"
-              type="number"
-              data-testid="customer_checkout__input-address-number"
-            />
-          </label>
-          <br />
-          <br />
-          <div className="finish-button-container">
-            <button
-              className="finish-button"
-              onClick={ handleClick }
-              type="button"
-              data-testid="customer_checkout__button-submit-order"
-            >
-              Finalizar Pedido
-            </button>
-          </div>
+        <label htmlFor="select-seller">
+          P. Vendedor Responsável:
+          <select
+            data-testid="customer_checkout__select-seller"
+          >
+            <option value="0">Vazio</option>
+            { seller.length > 0
+              && seller.map((sel) => (
+                <option
+                  key="sel.id"
+                  value={ sel.id }
+                >
+                  {sel.name}
+                </option>
+              ))}
+          </select>
+        </label>
+        <label htmlFor="input-address" className="checkout-title">
+          Endereço
+          <input
+            className="input-address"
+            value={ address }
+            onChange={ (e) => setAddress(e.target.value) }
+            name="input-address"
+            type="text"
+            data-testid="customer_checkout__input-address"
+          />
+        </label>
+        <label htmlFor="input-number" className="checkout-title">
+          Número
+          <input
+            className="input-checkout"
+            value={ addressNumber }
+            onChange={ (e) => setAddressNumber(e.target.value) }
+            name="input-number"
+            type="number"
+            data-testid="customer_checkout__input-address-number"
+          />
+        </label>
+        <br />
+        <br />
+        <div className="finish-button-container">
+          <button
+            className="finish-button"
+            onClick={ handleClick }
+            type="button"
+            data-testid="customer_checkout__button-submit-order"
+          >
+            Finalizar Pedido
+          </button>
         </div>
       </div>
     </div>
