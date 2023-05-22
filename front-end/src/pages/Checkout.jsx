@@ -24,8 +24,8 @@ function Checkout() {
   useEffect(() => {
     const fetchSeller = async () => {
       const response = await requestAPI('/customer/checkout/');
-
-      return setSeller(response);
+      setSeller(response);
+      console.log(response);
     };
     fetchSeller();
   }, []);
@@ -49,8 +49,6 @@ function Checkout() {
 
   async function handleClick() {
     setToken(user.token);
-    // console.log(typeof total);
-    // console.log(user);
     const newSale = await postAPI('/customer/checkout', {
       userId: user.id,
       sellerId: seller[0].id,
@@ -60,8 +58,6 @@ function Checkout() {
       saleDate: Date.now(),
       products: cart,
     });
-    // console.log(seller.id);
-    // console.log(newSale);
     history.push(`/customer/orders/${newSale.id}`);
     remove('cart');
   }
