@@ -6,10 +6,10 @@ import '../styles/ProductsStyle.css';
 
 function ProductCard({ product }) {
   const TWENTY_ONE = 21;
-  // console.log(product);
+  // console.log(product.id);
   const { addToCart, removeFromCart } = useContext(ProductContext);
   const { id, name, price, urlImage } = product;
-  const [cartQty, setCartQty] = useState();
+  const [cartQty, setCartQty] = useState(0);
 
   // useEffect(() => {
   //   const storeCart = read('cart');

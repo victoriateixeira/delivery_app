@@ -89,7 +89,6 @@ function Checkout() {
           <select
             data-testid="customer_checkout__select-seller"
           >
-            <option value="0">Vazio</option>
             { seller.length > 0
               && seller.map((sel) => (
                 <option
