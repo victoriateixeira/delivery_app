@@ -2,7 +2,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const sinon = require('sinon');
 const app = require('../../api/app');
-const { orders, order, updatedSale } = require('../mocks/CustomersOrders.mock');
+const { orders, order, updatedSale } = require('./mocks/CustomersOrders.mock');
 const { Sale } = require('../../database/models');
 const { orderObject } = require('../../services/OrdersService');
 
@@ -58,8 +58,9 @@ describe('Testa o back-end de Orders e OrdersDetails', function () {
 
   describe('PUT /customers/orders/details/:id', function () {
     it('Testa se atualiza o status do pedido com sucesso', async function () {
-      const bodyUpdate = { status: 'ENTREGUE' };
+      const bodyUpdate = { status: 'Entregue' };
       const updateOrderStub = sinon.stub(Sale, 'update').resolves([1]);
+      const getOrderByIdStub = sinon.stub(Sale, 'findOne').resolves(order);
       const updateOrder = await chai.request(app)
         .put('/orders/details/1')
         .send(bodyUpdate);
@@ -67,6 +68,7 @@ describe('Testa o back-end de Orders e OrdersDetails', function () {
       expect(updateOrder).to.have.status(200);
     
       updateOrderStub.restore();
+      getOrderByIdStub.restore();
     });
   });
 });

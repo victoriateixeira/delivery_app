@@ -8,7 +8,7 @@ const orders = [{
   deliveryAddress: 'Rua da Silva, Gama',
   deliveryNumber: '34',
   saleDate: objectDate,
-  status: 'ENTREGUE',
+  status: 'Entregue',
 }];
 
 const order = {
@@ -19,7 +19,7 @@ const order = {
   deliveryAddress: 'Rua da Silva, Gama',
   deliveryNumber: '34',
   saleDate: objectDate,
-  status: 'ENTREGUE',
+  status: 'Entregue',
   products: [
     {
       name: 'Becks 600ml',
@@ -38,7 +38,7 @@ const updatedSale = {
   id: 1,
   price: '17.78',
   date: objectDate,
-  status: 'ENTREGUE',
+  status: 'Entregue',
   seller: 'Fulana Pereira',
   products: [
     {
